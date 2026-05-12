@@ -1,0 +1,2629 @@
+/* ============================================================
+   karta.css — Billiga Pizzor kartvy
+   ============================================================ */
+
+/* Dölj Leaflet attribution */
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+/* Kartan fyller hela höjden under navbar */
+#karta-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Flytande prisväxlarhjul */
+#karta-prishjul {
+  position: fixed;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(30, 27, 24, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  padding: 6px 4px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.45);
+  white-space: nowrap;
+  pointer-events: auto;
+}
+#karta-prishjul-prev,
+#karta-prishjul-next {
+  background: none;
+  border: none;
+  color: #f5f0e8;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 12px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+#karta-prishjul-prev:hover,
+#karta-prishjul-next:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+#karta-prishjul-label {
+  color: #ffb87a;
+  font-size: 0.88rem;
+  font-weight: 700;
+  min-width: 110px;
+  text-align: center;
+  padding: 0 4px;
+  pointer-events: none;
+}
+
+#karta-prishjul-info {
+  width: 34px;
+  height: 34px;
+  margin: 0 4px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 179, 102, 0.55);
+  background: rgba(255, 255, 255, 0.06);
+  color: #f5f0e8;
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+
+#karta-prishjul-info:hover,
+#karta-prishjul-info:focus {
+  background: rgba(255, 179, 102, 0.18);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 3px rgba(255, 179, 102, 0.18);
+  outline: none;
+}
+
+.karta-prisinfo-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1310;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(6, 8, 10, 0.72);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  transition: opacity 0.2s ease;
+}
+
+.karta-prisinfo-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.karta-prisinfo-modal {
+  position: relative;
+  width: min(100%, 880px);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: radial-gradient(circle at 15% 15%, rgba(255, 178, 108, 0.08), transparent 42%), linear-gradient(160deg, rgba(19, 23, 31, 0.97), rgba(10, 13, 18, 0.97));
+  box-shadow: 0 28px 78px rgba(0, 0, 0, 0.58), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  color: #ece7dd;
+  transform: translateY(8px) scale(0.98);
+  opacity: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  overflow: hidden;
+}
+
+.karta-prisinfo-overlay.is-open .karta-prisinfo-modal {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+#karta-prisinfo-stang {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ddd8ce;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+#karta-prisinfo-stang:hover,
+#karta-prisinfo-stang:focus {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  outline: none;
+}
+
+.karta-prisinfo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.karta-prisinfo-block {
+  padding: 26px 28px;
+}
+
+.karta-prisinfo-block--steps {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.karta-prisinfo-eyebrow {
+  margin: 0 0 8px;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.52);
+  font-weight: 800;
+}
+
+#karta-prisinfo-rubrik {
+  margin: 0;
+  color: #ffb87a;
+  font-size: clamp(1.45rem, 2.5vw, 2.05rem);
+  line-height: 1.1;
+}
+
+.karta-prisinfo-beskrivning {
+  margin: 10px 0 0;
+  color: #ece7dd;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.karta-prisinfo-stats {
+  margin-top: 20px;
+  display: grid;
+  gap: 12px;
+}
+
+.karta-prisinfo-stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.karta-prisinfo-stat-ikon {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 184, 122, 0.12);
+  border: 1px solid rgba(255, 184, 122, 0.3);
+  font-size: 1.05rem;
+}
+
+.karta-prisinfo-stat-label {
+  margin: 0;
+  font-size: 0.77rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.56);
+}
+
+.karta-prisinfo-stat-value {
+  margin: 2px 0 0;
+  font-size: 1.02rem;
+  color: #f5f1e9;
+}
+
+.karta-prisinfo-steps {
+  margin: 8px 0 0;
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+  counter-reset: prisinfo;
+}
+
+.karta-prisinfo-steps li {
+  position: relative;
+  padding-left: 40px;
+  color: #ece7de;
+  line-height: 1.45;
+  font-size: 0.98rem;
+}
+
+.karta-prisinfo-steps li::before {
+  counter-increment: prisinfo;
+  content: counter(prisinfo);
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #ffb24f, #f08a21);
+  color: #2a1a00;
+  font-weight: 800;
+  font-size: 0.84rem;
+  box-shadow: 0 6px 14px rgba(240, 136, 35, 0.35);
+}
+
+.karta-prisinfo-footnote {
+  margin: 18px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 760px) {
+  .karta-prisinfo-overlay {
+    padding: 14px;
+  }
+
+  .karta-prisinfo-modal {
+    width: 100%;
+    max-height: calc(100vh - 28px);
+    overflow: auto;
+    border-radius: 16px;
+  }
+
+  .karta-prisinfo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .karta-prisinfo-block {
+    padding: 18px 16px;
+  }
+
+  .karta-prisinfo-block--steps {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* ============================================================
+   NYA STILAR: Prisfilter, Favoriter, Områdesfilter, Popup-knappar
+   ============================================================ */
+
+/* Maxpris-slider – samma look som #karta-radius */
+.karta-maxpris-slider {
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    #e0366a 0%,
+    #e0366a var(--slider-fill, 0%),
+    rgba(255,255,255,0.14) var(--slider-fill, 0%),
+    rgba(255,255,255,0.14) 100%
+  );
+  outline: none;
+  width: 100%;
+  margin: 4px 0 4px;
+}
+.karta-maxpris-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: #e0366a;
+  box-shadow: 0 2px 14px rgba(224,54,106,0.6);
+  cursor: pointer;
+}
+.karta-maxpris-slider::-moz-range-thumb {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: #e0366a;
+  box-shadow: 0 2px 14px rgba(224,54,106,0.6);
+  cursor: pointer;
+}
+
+/* Områdesknappar */
+.karta-omraden-rad {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.karta-omrade-knapp {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: #c8c4bb;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  text-align: center;
+}
+.karta-omrade-knapp:hover {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
+.karta-omrade-knapp.is-active {
+  background: rgba(240,104,32,0.22);
+  border-color: rgba(240,104,32,0.55);
+  color: #ffb87a;
+}
+
+/* Popup util-rad (hjärta + dela) */
+.karta-popup-util-rad {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+}
+.karta-popup-btn--util {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.07);
+  color: #c8c4bb;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.karta-popup-btn--util:hover {
+  background: rgba(255,255,255,0.13);
+  color: #fff;
+}
+.karta-popup-btn--util.is-favorit {
+  background: rgba(224,54,106,0.18);
+  border-color: rgba(224,54,106,0.4);
+  color: #ff8ab0;
+}
+
+/* Hjärta-badge på kartmarkören */
+.karta-markor-hjarta {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  font-size: 13px;
+  line-height: 1;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.7));
+  z-index: 2;
+  pointer-events: none;
+}
+.karta-markor-wrap {
+  position: relative;
+  overflow: visible;
+}
+.karta-markor-billigast::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 3px solid #ffd700;
+  animation: billigast-ring 1.6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+.karta-markor-kron {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  line-height: 1;
+  z-index: 3;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
+  pointer-events: none;
+  user-select: none;
+}
+@keyframes billigast-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(255,215,0,0.8); }
+  60%  { box-shadow: 0 0 0 12px rgba(255,215,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,215,0,0); }
+}
+/* Billigast-markör: krona högst upp, pris under kronan */
+.karta-markor-billigast .karta-markor-kron {
+  top: -42px;
+  z-index: 4;
+}
+.karta-markor-billigast .karta-markor-pris {
+  top: -18px;
+  z-index: 2;
+}
+/* Tooltip för billigast-markör: visas till höger, alltid synlig */
+.karta-tooltip-billigast {
+  z-index: 9999 !important;
+  background: rgba(10, 10, 10, 0.95) !important;
+  border-color: rgba(255, 215, 0, 0.6) !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.6) !important;
+}
+
+/* Pizza-sökresultat rad */
+.karta-sok-pizza-rad {
+  border-top: 1px solid rgba(255,255,255,0.07);
+  color: #ffd19e;
+  font-style: italic;
+}
+.karta-sok-pizza-rad:first-child {
+  border-top: none;
+}
+/* Område/stad-etikett i sökdropdown */
+.karta-sok-plats {
+  color: rgba(255,255,255,0.45);
+  font-size: 0.78em;
+  font-weight: 400;
+}
+
+/* Leaflet popup anpassning */
+.leaflet-popup-content-wrapper {
+  background: linear-gradient(165deg, #161616 0%, #111111 100%);
+  color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 0;
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  padding: 0;
+}
+
+.leaflet-popup-tip {
+  background: #1a1a1a;
+}
+
+.leaflet-popup-close-button {
+  color: #e4e4e4 !important;
+  font-size: 1.2rem !important;
+  top: 8px !important;
+  right: 10px !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #ffffff !important;
+}
+
+.karta-popup {
+  padding: 16px 18px 16px;
+  min-width: 225px;
+  max-width: 280px;
+}
+
+.karta-popup-namn-lank:hover,
+.karta-popup-namn-lank:focus {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Karusell */
+.karta-popup-karusell {
+  overflow: hidden;
+}
+.karta-popup-sida {
+  display: none;
+}
+.karta-popup-sida--aktiv {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.karta-popup-karusell-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 0 4px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  margin-top: 8px;
+}
+.karta-popup-nav-pil {
+  background: rgba(255,255,255,0.07);
+  border: none;
+  color: #ccc;
+  font-size: 1.2rem;
+  line-height: 1;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+  padding: 0;
+}
+.karta-popup-nav-pil:hover {
+  background: rgba(205,33,42,0.3);
+  color: #fff;
+}
+.karta-popup-nav-prickar {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.karta-popup-nav-prick {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transition: background 0.2s;
+}
+.karta-popup-nav-prick--aktiv {
+  background: #cd212a;
+}
+/* Öppettider-tabell på sida 2 */
+.karta-popup-oppettider {
+  margin-bottom: 12px;
+}
+.karta-popup-oppettider-rubrik {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #aaa;
+  margin: 0 0 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.karta-popup-oppettider-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.karta-popup-oppettider-lista li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #d0d0d0;
+}
+.karta-popup-oppettider-dag {
+  color: #888;
+  text-transform: capitalize;
+}
+.karta-popup-oppettider-tid {
+  font-weight: 600;
+  color: #f0f0f0;
+}
+.karta-popup-oppettider-lista li.is-oppet {
+  background-color: rgba(76, 175, 80, 0.15);
+  border: 1px solid rgba(76, 175, 80, 0.4);
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin: 2px 0;
+}
+.karta-popup-oppettider-lista li.is-oppet .karta-popup-oppettider-dag {
+  color: #4caf50;
+}
+.karta-popup-oppettider-lista li.is-oppet .karta-popup-oppettider-tid {
+  color: #4caf50;
+}
+.karta-popup-oppettider-lista li.is-stangt {
+  background-color: rgba(244, 67, 54, 0.15);
+  border: 1px solid rgba(244, 67, 54, 0.4);
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin: 2px 0;
+}
+.karta-popup-oppettider-lista li.is-stangt .karta-popup-oppettider-dag {
+  color: #f44336;
+}
+.karta-popup-oppettider-lista li.is-stangt .karta-popup-oppettider-tid {
+  color: #f44336;
+}
+
+/* Menyöversikt (sida 3) */
+.karta-popup-stats-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.karta-popup-stats-rad {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.83rem;
+}
+.karta-popup-stats-ikon {
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.karta-popup-stats-namn {
+  flex: 1;
+  color: #c0c0c0;
+}
+.karta-popup-stats-antal {
+  font-weight: 700;
+  color: #f0f0f0;
+}
+.karta-popup-snitt-sektion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.karta-popup-snitt-rubrik {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+.karta-popup-snitt-pris {
+  font-size: 1rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.karta-popup-snitt-pris--n1 { color: #9ef0b0; }
+.karta-popup-snitt-pris--n2 { color: #b9f29a; }
+.karta-popup-snitt-pris--n3 { color: #ffd88a; }
+.karta-popup-snitt-pris--n4 { color: #ffc199; }
+.karta-popup-snitt-pris--n5 { color: #ffb1b1; }
+.karta-popup-snitt-dots {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  margin-left: auto;
+}
+.karta-popup-snitt-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  transition: background 0.2s;
+}
+.karta-popup-snitt-dot--aktiv.karta-popup-snitt-dot--n1 { background: #9ef0b0; }
+.karta-popup-snitt-dot--aktiv.karta-popup-snitt-dot--n2 { background: #b9f29a; }
+.karta-popup-snitt-dot--aktiv.karta-popup-snitt-dot--n3 { background: #ffd88a; }
+.karta-popup-snitt-dot--aktiv.karta-popup-snitt-dot--n4 { background: #ffc199; }
+.karta-popup-snitt-dot--aktiv.karta-popup-snitt-dot--n5 { background: #ffb1b1; }
+
+.karta-popup-namn {
+  margin: 0 0 2px;
+}
+
+.karta-popup-namn-lank,
+.karta-popup-namn-lank:link,
+.karta-popup-namn-lank:visited {
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+}
+
+.karta-popup-adress {
+  margin: 0 0 4px;
+  color: #9a9a9a;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.karta-popup-prisbubbla {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.karta-popup-prisbubbla--level1 {
+  background: rgba(40, 167, 69, 0.18);
+  color: #9ef0b0;
+  border: 1px solid rgba(40, 167, 69, 0.35);
+}
+
+.karta-popup-prisbubbla--level2 {
+  background: rgba(162, 198, 58, 0.2);
+  color: #d8f39f;
+  border: 1px solid rgba(162, 198, 58, 0.34);
+}
+
+.karta-popup-prisbubbla--level3 {
+  background: rgba(194, 208, 77, 0.18);
+  color: #edf3a5;
+  border: 1px solid rgba(194, 208, 77, 0.34);
+}
+
+.karta-popup-prisbubbla--level4 {
+  background: rgba(255, 195, 77, 0.18);
+  color: #ffd88a;
+  border: 1px solid rgba(255, 195, 77, 0.32);
+}
+
+.karta-popup-prisbubbla--level5 {
+  background: rgba(233, 74, 74, 0.2);
+  color: #ffc1c1;
+  border: 1px solid rgba(233, 74, 74, 0.34);
+}
+
+.karta-popup-prisbubbla--level6 {
+  background: rgba(255, 101, 101, 0.18);
+  color: #ffb1b1;
+  border: 1px solid rgba(255, 101, 101, 0.32);
+}
+
+.karta-popup-snitt {
+  font-size: 0.79rem;
+  color: #f0f0f0;
+  font-weight: 700;
+}
+
+.karta-popup-snitt--saknas {
+  color: #c1c1c1;
+  margin: 0;
+}
+
+.karta-popup-btn {
+  display: block;
+  background: linear-gradient(145deg, #d9313a, #b81b25);
+  color: #ffffff !important;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 136, 136, 0.28);
+  font-size: 0.88rem;
+  font-weight: 800;
+  transition: background 0.2s, transform 0.15s ease;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: 0 8px 16px rgba(130, 16, 24, 0.32);
+}
+
+.karta-popup-btn:hover,
+.karta-popup-btn:focus,
+.karta-popup-btn:visited {
+  background: #ff3a45;
+  color: #ffffff !important;
+}
+
+.karta-popup-btn:hover,
+.karta-popup-btn:focus {
+  transform: translateY(-1px);
+}
+
+.karta-popup-btn--maps {
+  background: linear-gradient(145deg, #2f8eff, #0a63d3);
+  border-color: rgba(146, 201, 255, 0.35);
+  margin-top: 8px;
+  box-shadow: 0 8px 16px rgba(10, 99, 211, 0.33);
+}
+
+.karta-popup-btn--maps,
+.karta-popup-btn--maps:link,
+.karta-popup-btn--maps:visited,
+.karta-popup-btn--maps:hover,
+.karta-popup-btn--maps:focus,
+.karta-popup-btn--maps:active {
+  color: #f3f9ff !important;
+  text-decoration: none;
+}
+
+.karta-popup-btn--maps:hover,
+.karta-popup-btn--maps:focus {
+  background: linear-gradient(145deg, #4a9bff, #1d74df);
+}
+
+.karta-popup-knappar {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.karta-popup-distans {
+  font-size: 0.82rem;
+  color: #ffc36c;
+  font-weight: 700;
+  margin: 0;
+}
+
+.karta-popup-prisrad {
+  text-align: center;
+  margin: 0;
+}
+
+/* Kontrollpanel (sök + närmast mig) */
+#karta-meny-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: fixed;
+  z-index: 1003;
+  background: linear-gradient(90deg, #138a4b 0%, #f4f2eb 50%, #cb2d2d 100%);
+  color: #1f2b22;
+  border: 1px solid rgba(18, 63, 39, 0.25);
+  border-radius: 999px;
+  padding: 10px 15px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.24);
+}
+
+#karta-vanster-meny {
+  position: fixed;
+  width: min(92vw, 400px);
+  max-height: min(78vh, calc(100vh - 170px));
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1202;
+  background: #111916;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.8),
+    0 4px 20px rgba(0, 0, 0, 0.5);
+  padding: 18px 16px 16px;
+  color: #e4e0d6;
+  /* Drop-down animation */
+  opacity: 0;
+  transform: translateY(-14px) scale(0.98);
+  pointer-events: none;
+  transition: opacity 0.22s ease-out, transform 0.22s ease-out;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+
+#karta-vanster-meny.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+#karta-vanster-meny::before {
+  display: none;
+}
+
+.karta-meny-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.karta-meny-header-vänster {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #e8e4da;
+}
+
+.karta-meny-header h2 {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: #f0ede4;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#karta-filter-help-knapp {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.09);
+  color: #f2efe8;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+#karta-filter-help-knapp:hover,
+#karta-filter-help-knapp:focus {
+  background: rgba(240, 104, 32, 0.2);
+  border-color: rgba(240, 104, 32, 0.5);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.karta-filter-help-hint {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border: 1px solid rgba(96, 189, 79, 0.36);
+  background: linear-gradient(150deg, rgba(96, 189, 79, 0.16), rgba(66, 136, 55, 0.08));
+  color: #e9f8db;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: -2px 0 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.karta-filter-help-hint.is-visible {
+  display: flex;
+  animation: kartaHelpHintIn 0.35s ease;
+}
+
+@keyframes kartaHelpHintIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.karta-help-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1305;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(5, 8, 7, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: opacity 0.2s ease;
+}
+
+.karta-help-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.karta-help-modal {
+  width: min(100%, 620px);
+  max-height: min(82vh, 760px);
+  overflow: auto;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(170deg, #141b17 0%, #0d1210 100%);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.62), 0 6px 20px rgba(0, 0, 0, 0.4);
+  color: #ece8de;
+  transform: scale(0.97);
+  opacity: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.karta-help-overlay.is-open .karta-help-modal {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.karta-help-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: sticky;
+  top: 0;
+  background: linear-gradient(170deg, #141b17 0%, #0d1210 100%);
+  z-index: 1;
+}
+
+.karta-help-header h3 {
+  margin: 0;
+  font-size: 1.02rem;
+  letter-spacing: 0.02em;
+  color: #f4f1e8;
+}
+
+#karta-help-stang {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ddd9d0;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+#karta-help-stang:hover,
+#karta-help-stang:focus {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  outline: none;
+}
+
+.karta-help-content {
+  padding: 16px 18px 20px;
+}
+
+.karta-help-sektion + .karta-help-sektion {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.karta-help-sektion h4 {
+  margin: 0 0 9px;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.karta-help-sektion p {
+  margin: 0 0 10px;
+  color: #e2ddd3;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.karta-help-sektion p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .karta-help-overlay {
+    padding: 14px;
+  }
+
+  .karta-help-modal {
+    width: 100%;
+    max-height: calc(100vh - 28px);
+    border-radius: 16px;
+  }
+
+  .karta-help-header,
+  .karta-help-content {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .karta-filter-help-hint {
+    font-size: 0.76rem;
+    line-height: 1.35;
+  }
+}
+
+.karta-meny-underrubrik {
+  display: none;
+}
+
+.karta-meny-footer {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#karta-meny-stang {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #c8c4bb;
+  font-size: 1.2rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+
+#karta-meny-stang:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.karta-meny-sektion {
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 10px;
+}
+
+.karta-meny-rubrik {
+  margin: 0 0 14px 0;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.69rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.karta-label {
+  display: block;
+  color: #c8c4ba;
+  font-size: 0.86rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+#karta-radius,
+#karta-fardmedel {
+  width: 100%;
+}
+
+#karta-radius {
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    #f06820 0%,
+    #f06820 var(--slider-fill, 0%),
+    rgba(255,255,255,0.14) var(--slider-fill, 0%),
+    rgba(255,255,255,0.14) 100%
+  );
+  outline: none;
+  width: 100%;
+  margin: 4px 0 14px;
+}
+
+#karta-radius::-webkit-slider-thumb {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: #f06820;
+  box-shadow: 0 2px 14px rgba(240, 104, 32, 0.65);
+  cursor: pointer;
+}
+
+#karta-radius::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: #f06820;
+  box-shadow: 0 2px 14px rgba(240, 104, 32, 0.65);
+  cursor: pointer;
+}
+
+#karta-radius:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+#karta-fardmedel {
+  appearance: none;
+  background: rgba(255, 255, 255, 0.07);
+  color: #e0dcd4;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 11px;
+  font-size: 0.9rem;
+  padding: 11px 40px 11px 12px;
+  outline: none;
+  font-weight: 600;
+  line-height: 1.2;
+  width: 100%;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.07), rgba(255,255,255,0.07)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23aaaaaa' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat, no-repeat;
+  background-position: 0 0, calc(100% - 12px) 50%;
+  background-size: auto, 14px;
+}
+
+#karta-fardmedel:focus {
+  border-color: rgba(240, 104, 32, 0.7);
+  box-shadow: 0 0 0 3px rgba(240, 104, 32, 0.18);
+}
+
+#karta-fardmedel option {
+  background: #1a2018;
+  color: #e0dcd4;
+}
+
+.karta-meny-knapp {
+  flex: unset;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+  border: 1.5px solid transparent;
+  text-transform: uppercase;
+}
+
+.karta-meny-knapp--sekundar {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(200, 196, 186, 0.75);
+  box-shadow: none;
+}
+
+.karta-meny-knapp--sekundar:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #e0dcd4;
+}
+
+.karta-meny-knapp--primär {
+  background: linear-gradient(145deg, #f06820, #d4521a);
+  border-color: rgba(255, 140, 80, 0.25);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(240, 104, 32, 0.45);
+  font-size: 0.94rem;
+}
+
+.karta-meny-knapp--primär:hover {
+  background: linear-gradient(145deg, #f87a30, #e05f20);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(240, 104, 32, 0.55);
+}
+
+#karta-position-knapp {
+  margin-top: 10px;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.82rem;
+  flex: unset;
+  text-transform: none;
+  font-weight: 700;
+  letter-spacing: 0;
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.karta-meny-knapp:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+}
+
+.karta-meny-hjalp {
+  margin: 8px 0 0 0;
+  color: rgba(200, 196, 186, 0.65);
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.karta-meny-hjalp.is-error {
+  color: #f07070;
+}
+
+.karta-meny-hjalp.is-ok {
+  color: #6fdc9a;
+}
+
+#karta-kontroller {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 84px;
+  bottom: calc(84px + env(safe-area-inset-bottom));
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#karta-sok-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Collapsed: bara ikon-knapp */
+#karta-sok-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(12, 12, 12, 0.88);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  color: #ccc;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+#karta-sok-toggle:hover { background: rgba(30,30,30,0.95); }
+
+#karta-sok-stang {
+  display: none;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(24, 26, 30, 0.85);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #d8dde6;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  line-height: 1;
+  border-radius: 999px;
+  text-align: center;
+  z-index: 4;
+}
+#karta-sok-stang:hover { color: #fff; background: rgba(38, 42, 50, 0.95); }
+
+/* Expanded state */
+#karta-sok-wrap:not(.is-collapsed) #karta-sok-toggle { display: none; }
+#karta-sok-wrap:not(.is-collapsed) #karta-sok-stang { display: block; }
+#karta-sok-wrap:not(.is-collapsed) #karta-sok { display: block; }
+#karta-sok-wrap:not(.is-collapsed) #karta-sok-ikon { display: block; }
+
+/* Collapsed state */
+#karta-sok-wrap.is-collapsed #karta-sok { display: none; }
+#karta-sok-wrap.is-collapsed #karta-sok-ikon { display: none; }
+
+#karta-sok-ikon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#karta-sok {
+  background: rgba(12, 12, 12, 0.88);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 50px;
+  color: #f0f0f0;
+  padding: 12px 52px 12px 40px;
+  font-size: 0.9rem;
+  width: 300px;
+  outline: none;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: border-color 0.2s, box-shadow 0.2s, width 0.25s;
+  font-family: inherit;
+}
+
+#karta-sok::placeholder {
+  color: #555;
+}
+
+#karta-sok:focus {
+  border-color: rgba(205,33,42,0.7);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.55), 0 0 0 3px rgba(205,33,42,0.18);
+  width: 340px;
+}
+
+#karta-sok-resultat {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: rgba(14, 14, 14, 0.97);
+  border: 1.5px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+  list-style: none;
+  margin: 0;
+  padding: 6px 0;
+  z-index: 10;
+  max-height: min(320px, 45vh);
+  overflow-y: auto;
+  overflow-x: hidden;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(205,33,42,0.5) transparent;
+}
+
+#karta-sok-resultat li {
+  padding: 11px 18px;
+  color: #d0d0d0;
+  font-size: 0.875rem;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#karta-sok-resultat li::before {
+  content: "🍕";
+  font-size: 0.8rem;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+#karta-sok-resultat li:last-child {
+  border-bottom: none;
+}
+
+#karta-sok-resultat li:hover {
+  background: rgba(205, 33, 42, 0.2);
+  color: #fff;
+}
+
+#karta-narmast-knapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background: rgba(12, 12, 12, 0.88);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #ff4d4f;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+#karta-narmast-knapp svg {
+  width: 20px;
+  height: 20px;
+}
+
+#karta-narmast-knapp:hover {
+  background: rgba(26, 28, 34, 0.95);
+  border-color: rgba(255,77,79,0.35);
+  box-shadow: 0 6px 24px rgba(255,77,79,0.2);
+  transform: scale(1.04);
+}
+
+#karta-narmast-knapp:active {
+  transform: scale(0.96);
+}
+
+#karta-satellit-knapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  height: 40px;
+  border-radius: 9999px;
+  background: rgba(12, 12, 12, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #d7e8ff;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s, color 0.15s;
+  flex-shrink: 0;
+  padding: 0 12px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+#karta-satellit-knapp:hover {
+  background: rgba(24, 30, 44, 0.95);
+  border-color: rgba(113, 180, 255, 0.4);
+  box-shadow: 0 6px 24px rgba(96, 160, 255, 0.22);
+  transform: scale(1.04);
+}
+
+#karta-satellit-knapp:active {
+  transform: scale(0.98);
+}
+
+#karta-satellit-knapp.is-aktiv {
+  color: #ffffff;
+  background: rgba(22, 60, 110, 0.92);
+  border-color: rgba(126, 196, 255, 0.7);
+  box-shadow: 0 6px 24px rgba(70, 140, 230, 0.34);
+}
+
+#karta-narmast-knapp:disabled {
+  opacity: 0.5;
+  cursor: wait;
+  transform: none;
+}
+
+/* Markör anpassning */
+.leaflet-marker-icon.karta-markor-ikon {
+  background: transparent;
+  border: none;
+}
+
+.leaflet-marker-icon.karta-markor-ikon:hover .karta-markor-wrap {
+  transform: scale(1.06);
+  transition: transform 0.15s ease;
+}
+
+.karta-markor-wrap {
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+
+.karta-markor-figur {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  left: 8px;
+  top: 12px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35));
+}
+
+.karta-markor-pris {
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  transform: translateX(-50%);
+  min-width: 56px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  color: #f7f9ff;
+  font-size: 0.7rem;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  text-align: center;
+  white-space: nowrap;
+  border: 1px solid rgba(255,255,255,0.62);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.32);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.karta-markor-pris--level1 {
+  background: linear-gradient(145deg, #1fbf79, #0f8b59);
+}
+
+.karta-markor-pris--level2 {
+  background: linear-gradient(145deg, #a8cc48, #7ea62d);
+}
+
+.karta-markor-pris--level3 {
+  background: linear-gradient(145deg, #cdbb34, #9f8614);
+}
+
+.karta-markor-pris--level4 {
+  background: linear-gradient(145deg, #f0a53e, #ca7f12);
+}
+
+.karta-markor-pris--level5 {
+  background: linear-gradient(145deg, #e75454, #b93131);
+}
+
+.karta-markor-pris--level6 {
+  background: linear-gradient(145deg, #de4f5d, #a72a35);
+}
+
+.karta-markor-shell {
+  background: transparent;
+  border: none;
+}
+
+.karta-markor-pin {
+  width: 30px;
+  height: 42px;
+  background: linear-gradient(165deg, #ff4b57 0%, #cd212a 70%);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border: 2px solid rgba(255,255,255,0.96);
+  box-shadow: 0 7px 20px rgba(0,0,0,0.48), 0 0 0 2px rgba(205,33,42,0.18);
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.karta-markor-core {
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  box-shadow: inset 0 0 0 2px rgba(255, 75, 87, 0.55);
+}
+
+.karta-markor-pin:hover {
+  transform: rotate(-45deg) scale(1.06);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.52), 0 0 0 3px rgba(255,75,87,0.2);
+}
+
+.karta-tooltip-namn {
+  background: rgba(10, 10, 10, 0.9);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  padding: 5px 10px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.karta-tooltip-namn::before {
+  display: none;
+}
+
+/* Kluster-ikon */
+.karta-kluster {
+  width: 40px;
+  height: 40px;
+  background: #cd212a;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.45);
+  transition: transform 0.15s;
+}
+
+.karta-kluster:hover {
+  transform: scale(1.12);
+}
+
+.karta-kluster span {
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Info badge */
+#karta-info-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(12, 12, 12, 0.8);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 9999px;
+  height: 38px;
+  padding: 0 11px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ccc;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+#karta-info-text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.karta-info-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: karta-info-pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes karta-info-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@media (max-width: 600px) {
+  #karta-meny-toggle {
+    display: none !important;
+  }
+
+  /* === BOTTOM SHEET på mobil === */
+  #karta-vanster-meny {
+    /* Ignorera JS-positionering via !important */
+    position: fixed !important;
+    top: auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 88vh !important;
+    border-radius: 22px 22px 0 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    /* Slide-up animation */
+    transform: translateY(100%) !important;
+    opacity: 1 !important;
+    transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1) !important;
+    box-shadow: 0 -8px 40px rgba(0,0,0,0.6) !important;
+  }
+
+  #karta-vanster-meny.is-open {
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+  }
+
+  /* Drag-handle-strecket överst */
+  #karta-vanster-meny::before {
+    content: '';
+    display: block !important;
+    width: 40px;
+    height: 4px;
+    background: rgba(255,255,255,0.18);
+    border-radius: 99px;
+    margin: 12px auto 0;
+    flex-shrink: 0;
+  }
+
+  /* Scroll-area: allt utom footern */
+  #karta-vanster-meny > *:not(.karta-meny-footer) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  #karta-vanster-meny > .karta-meny-header {
+    padding-top: 14px;
+    padding-bottom: 12px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  /* Scrollbart innehåll */
+  #karta-vanster-meny > .karta-meny-sektion {
+    flex-shrink: 0;
+  }
+
+  /* Sticky footer = alltid synlig */
+  #karta-vanster-meny .karta-meny-footer {
+    position: sticky !important;
+    bottom: 0 !important;
+    background: #111916 !important;
+    border-top: 1px solid rgba(255,255,255,0.09) !important;
+    padding: 14px 16px !important;
+    padding-bottom: max(14px, env(safe-area-inset-bottom)) !important;
+    margin-top: auto !important;
+    flex-shrink: 0 !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+  }
+
+  #karta-vanster-meny .karta-meny-footer .karta-meny-knapp--sekundar {
+    flex: 1 !important;
+    width: auto !important;
+  }
+
+  #karta-vanster-meny .karta-meny-footer .karta-meny-knapp--primär {
+    flex: 1.6 !important;
+    width: auto !important;
+  }
+
+  /* Mellanrummet mellan header och sektioner */
+  #karta-vanster-meny > .karta-meny-sektion:first-of-type {
+    margin-top: 10px;
+  }
+
+  /* Overlay-bakgrund */
+  #karta-meny-overlay {
+    display: block !important;
+  }
+
+  .karta-meny-header {
+    margin-bottom: 4px;
+  }
+
+  .karta-meny-header h2 {
+    font-size: 1.05rem;
+  }
+
+  .karta-meny-sektion {
+    margin-left: 16px;
+    margin-right: 16px;
+    padding: 14px;
+  }
+
+  .karta-meny-rubrik {
+    font-size: 0.69rem;
+  }
+
+  .karta-label {
+    font-size: 0.84rem;
+  }
+
+  .karta-meny-hjalp {
+    font-size: 0.75rem;
+  }
+
+  #karta-kontroller {
+    left: 12px;
+    right: 12px;
+    transform: none;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    top: auto !important;
+    bottom: 88px;
+    bottom: calc(88px + env(safe-area-inset-bottom));
+  }
+
+  #karta-sok-wrap {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+  }
+
+  #karta-vanster-meny.is-open ~ #karta-kontroller {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  #karta-sok {
+    width: 100%;
+    max-width: 220px;
+    min-width: 140px;
+    box-sizing: border-box;
+    padding: 10px 48px 10px 38px;
+    font-size: 0.88rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  #karta-sok-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  #karta-sok:focus {
+    width: 100%;
+    max-width: 220px;
+    min-width: 140px;
+  }
+
+  #karta-sok-stang {
+    right: 6px;
+    width: 30px;
+    height: 30px;
+  }
+
+  #karta-narmast-knapp {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  #karta-satellit-knapp {
+    min-width: 54px;
+    height: 40px;
+    font-size: 0.7rem;
+    padding: 0 10px;
+  }
+
+  #karta-info-badge {
+    max-width: 40vw;
+    height: 38px;
+    font-size: 0.72rem;
+    padding: 0 10px;
+    gap: 5px;
+  }
+
+  .karta-info-dot {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+/* Extra small mobil (< 480px) */
+@media (max-width: 479px) {
+  #karta-kontroller {
+    gap: 8px;
+  }
+
+  #karta-sok-wrap {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+  }
+
+  #karta-sok {
+    width: 100%;
+    max-width: 180px;
+    min-width: 118px;
+    padding: 9px 40px 9px 36px;
+  }
+
+  #karta-sok:focus {
+    width: 100%;
+    max-width: 180px;
+    min-width: 118px;
+  }
+
+  #karta-sok-toggle {
+    width: 38px;
+    height: 38px;
+  }
+
+  #karta-narmast-knapp {
+    width: 38px;
+    height: 38px;
+  }
+
+  #karta-satellit-knapp {
+    min-width: 50px;
+    height: 38px;
+    font-size: 0.66rem;
+    padding: 0 9px;
+  }
+
+  #karta-narmast-knapp svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  #karta-info-badge {
+    max-width: 36vw;
+    height: 36px;
+    font-size: 0.68rem;
+    padding: 0 9px;
+    gap: 4px;
+  }
+
+  .karta-info-dot {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+/* Overlay-bakgrund (syns bara på mobil) */
+#karta-meny-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.52);
+  z-index: 1201;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+#karta-meny-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ============================================================
+   Nya tillägg: Snabbval, toggles, popup-extras
+   ============================================================ */
+
+/* Snabbval-knappar */
+.karta-snabbval-rad {
+  display: flex;
+  gap: 8px;
+}
+
+.karta-snabbval-knapp {
+  flex: 1;
+  padding: 11px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  color: #d8d4ca;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s, transform 0.1s;
+  min-height: 44px;
+}
+
+.karta-snabbval-knapp:hover,
+.karta-snabbval-knapp:focus {
+  background: rgba(240, 104, 32, 0.2);
+  border-color: rgba(240, 104, 32, 0.35);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.karta-snabbval-knapp:active {
+  transform: translateY(0);
+}
+
+/* Aktiv-state för snabbval-knappar (pristyp-väljare) */
+.karta-snabbval-knapp--aktiv {
+  background: rgba(205, 33, 42, 0.25) !important;
+  border-color: rgba(205, 33, 42, 0.6) !important;
+  color: #ff8a8a !important;
+}
+
+/* Toggle-rader (Snabbt stopp, Öppet nu) */
+.karta-toggle-rad {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  border: 1.5px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  min-height: 56px;
+  margin-bottom: 8px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.karta-toggle-rad:last-child {
+  margin-bottom: 0;
+}
+
+/* Orange border när toggle är aktiv — :has() stöds i alla moderna browsers */
+.karta-toggle-rad:has(.karta-toggle-input:checked) {
+  border-color: rgba(240, 104, 32, 0.7);
+  background: rgba(240, 104, 32, 0.07);
+}
+
+.karta-toggle-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.karta-toggle-ikon {
+  font-size: 1.1rem;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+
+.karta-toggle-label > span > strong {
+  display: block;
+  font-size: 0.88rem;
+  color: #e4e0d6;
+  line-height: 1.3;
+}
+
+.karta-toggle-desc {
+  display: block;
+  font-size: 0.72rem;
+  color: rgba(200, 196, 186, 0.55);
+  margin-top: 1px;
+  line-height: 1.3;
+}
+
+/* Toggle-switch */
+.karta-toggle-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.karta-toggle-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.karta-toggle-spak {
+  display: block;
+  width: 48px;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  transition: background 0.2s, border-color 0.2s;
+  cursor: pointer;
+}
+
+.karta-toggle-spak::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.karta-toggle-input:checked + .karta-toggle-spak {
+  background: #f06820;
+  border-color: rgba(240, 104, 32, 0.5);
+}
+
+.karta-toggle-input:checked + .karta-toggle-spak::after {
+  transform: translateX(20px);
+  background: #fff;
+}
+
+.karta-toggle-input:focus-visible + .karta-toggle-spak {
+  outline: 2px solid #f06820;
+  outline-offset: 2px;
+}
+
+/* Popup: frånpris, öppet-status, ring-knapp */
+.karta-popup-franpris {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #2bb55a;
+}
+
+.karta-popup-oppet-rad {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.karta-popup-franpris-inline {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #2bb55a;
+}
+
+.karta-popup-oppet {
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.karta-popup-oppet--oppen {
+  color: #2bb55a;
+}
+
+.karta-popup-oppet--stangt {
+  color: #d53838;
+}
+
+.karta-popup-oppet--okant {
+  color: #9a8830;
+}
+
+.karta-popup-tid-kvar {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #c8a830;
+  margin: 2px 0 6px 0;
+  opacity: 0.92;
+}
+
+.karta-popup-btn--ring {
+  background: linear-gradient(145deg, #138a4b, #0d6638);
+  border-color: rgba(19, 138, 75, 0.35);
+  box-shadow: 0 8px 16px rgba(13, 102, 56, 0.3);
+  margin-top: 8px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #fff !important;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(19, 138, 75, 0.35);
+  font-size: 0.88rem;
+  font-weight: 800;
+  box-sizing: border-box;
+}
+
+.karta-popup-btn--ring:hover,
+.karta-popup-btn--ring:focus {
+  background: linear-gradient(145deg, #17a358, #0f7a43);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+  .karta-snabbval-knapp {
+    font-size: 0.8rem;
+    padding: 9px 6px;
+  }
+
+  .karta-toggle-label > span > strong {
+    font-size: 0.84rem;
+  }
+}
+
+  /* ============================================================
+     App Topbar
+     ============================================================ */
+  #karta-app-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 84px;
+    z-index: 1200;
+    background: linear-gradient(180deg, rgba(7, 13, 16, 0.96) 0%, rgba(7, 13, 16, 0.52) 65%, rgba(7, 13, 16, 0) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 14px 0;
+    pointer-events: none;
+  }
+
+  .karta-app-topbar-titel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .karta-app-topbar-logo {
+    display: block;
+    height: 72px;
+    width: auto;
+    max-width: calc(100vw - 230px);
+    object-fit: contain;
+    background: transparent;
+  }
+
+  .karta-app-topbar-btn {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 0;
+    color: #f5eee2;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.15s, color 0.15s;
+    white-space: nowrap;
+    font-family: inherit;
+    min-width: 68px;
+    pointer-events: auto;
+  }
+
+  .karta-app-topbar-btn:hover,
+  .karta-app-topbar-btn:focus {
+    color: #fff;
+    transform: translateY(-1px);
+    outline: none;
+  }
+
+  /* Aktiv/öppen state på filter-knapp */
+  .karta-app-topbar-btn[aria-expanded="true"] {
+    color: #ff7d47;
+  }
+
+  .karta-app-topbar-btn-ikon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    color: #ff7340;
+    border: 4px solid rgba(255, 112, 59, 0.96);
+    background: rgba(10, 20, 24, 0.78);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  }
+
+  .karta-app-topbar-btn-text {
+    line-height: 1;
+  }
+
+  .karta-app-topbar-btn--placeholder {
+    opacity: 0.82;
+    cursor: default;
+  }
+
+  .karta-app-topbar-btn--placeholder .karta-app-topbar-btn-ikon {
+    color: #dcd6c6;
+    border-color: rgba(170, 178, 170, 0.85);
+  }
+
+  #karta-filter-knapp {
+    position: fixed;
+    top: 40px;
+    left: 16px;
+    z-index: 1210;
+  }
+
+  .karta-app-topbar-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    height: auto;
+    padding: 4px 16px;
+    flex: 0 1 auto;
+    width: auto;
+    min-height: 0;
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+  }
+
+  .karta-app-topbar-social .social-btn {
+    padding: 14px 50px;
+    font-size: 0.95rem;
+    width: 136px;
+    min-width: 136px;
+    height: 64px;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+    letter-spacing: 0.02em;
+  }
+
+  .karta-app-topbar-social .social-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+  }
+
+  .karta-app-topbar-social .social-btn--fb {
+    background: #1877f2;
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(24,119,242,0.30);
+  }
+
+  .karta-app-topbar-social .social-btn--ig {
+    background: linear-gradient(135deg, #f09433, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888);
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(220,39,67,0.30);
+  }
+
+  .karta-app-topbar-social .social-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .karta-app-topbar-social .social-btn--fb .social-icon {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  @media (max-width: 760px) {
+    #karta-app-topbar {
+      height: 76px;
+      padding: 4px 10px 0;
+    }
+
+    .karta-app-topbar-titel {
+      top: 2px;
+    }
+
+    .karta-app-topbar-logo {
+      height: 62px;
+      max-width: calc(100vw - 210px);
+    }
+
+    .karta-app-topbar-social {
+      gap: 8px;
+      padding: 0 4px;
+    }
+
+    .karta-app-topbar-social .nav-social-label {
+      display: none;
+    }
+
+    .karta-app-topbar-social .social-btn {
+      width: 60px;
+      min-width: 60px;
+      height: 60px;
+      padding: 0;
+    }
+
+    .karta-app-topbar-social .social-btn--fb .social-icon {
+      width: 30px !important;
+      height: 30px !important;
+    }
+
+    .karta-app-topbar-social .social-btn--ig .social-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  /* ============================================================
+     App Bottom Nav
+     ============================================================ */
+  #karta-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 72px;
+    z-index: 1005;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 4px;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  .karta-bnav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    flex: 1;
+    padding: 6px 2px;
+    color: rgba(255, 255, 255, 0.42);
+    text-decoration: none;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: color 0.15s;
+    min-height: 56px;
+    font-family: inherit;
+  }
+
+  .karta-bnav-item:hover,
+  .karta-bnav-item:focus,
+  .karta-bnav-item.is-aktiv {
+    color: #fff;
+    outline: none;
+  }
+
+  .karta-bnav-item svg {
+    transition: transform 0.15s;
+    flex-shrink: 0;
+  }
+
+  .karta-bnav-item:hover svg,
+  .karta-bnav-item.is-aktiv svg {
+    transform: scale(1.12);
+  }
+
+  /* Center-knapp: Pizzagubbe */
+  .karta-bnav-item--center {
+    flex: 1.3;
+    color: transparent;
+  }
+
+  .karta-bnav-center-ring {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #d53838, #b82525);
+    border: 3px solid rgba(255, 255, 255, 0.92);
+    box-shadow:
+      0 4px 20px rgba(205, 33, 42, 0.6),
+      0 0 0 1px rgba(205, 33, 42, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: -10px;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .karta-bnav-item--center:hover .karta-bnav-center-ring,
+  .karta-bnav-item--center:focus .karta-bnav-center-ring {
+    transform: scale(1.1) translateY(-2px);
+    box-shadow:
+      0 8px 28px rgba(205, 33, 42, 0.7),
+      0 0 0 1px rgba(205, 33, 42, 0.4);
+  }
+
+  .karta-bnav-center-ring img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+  }
+
+  /* iPhone safe area */
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    #karta-bottom-nav {
+      height: calc(72px + env(safe-area-inset-bottom));
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+
+  /* ============================================================
+     MOBILE HARDENING
+     ============================================================ */
+  @media (max-width: 767px) {
+    #karta-app-topbar {
+      height: 72px;
+      padding: 4px 10px 0;
+    }
+
+    .karta-app-topbar-logo {
+      height: 58px;
+      max-width: calc(100vw - 150px);
+    }
+
+    /* Dölj Leaflet zoom-knappar på mobil */
+    .leaflet-control-zoom {
+      display: none !important;
+    }
+
+    #karta-filter-knapp {
+      top: 8px;
+      left: 10px;
+    }
+
+    #karta-sok-wrap {
+      max-width: calc(100vw - 24px);
+    }
+
+    #karta-sok,
+    #karta-sok:focus {
+      width: min(320px, calc(100vw - 24px));
+      max-width: calc(100vw - 24px);
+    }
+
+    #karta-sok-resultat {
+      max-width: calc(100vw - 24px);
+    }
+
+    .karta-popup {
+      max-width: min(330px, 88vw);
+    }
+
+    .karta-popup-btn {
+      white-space: normal;
+      text-align: center;
+    }
+  }
+

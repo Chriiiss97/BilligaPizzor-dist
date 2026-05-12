@@ -1,0 +1,816 @@
+﻿<!doctype html>
+<html lang="sv">
+  <head>
+    
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Title -->
+  <title>Pizzerior i G&ouml;teborgsomr&aring;det &ndash; Billiga Pizzor</title>
+
+  <!-- Meta Description -->
+  <meta name="description" content="Hitta alla pizzerior i M&ouml;lndal, Lindome, K&aring;llered och Kroksl&auml;tt. J&auml;mf&ouml;r priser och menyer fr&aring;n lokala pizzarestauranger.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://billigapizzor.se/pizzerior.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Pizzerior i G&ouml;teborgsomr&aring;det &ndash; Billiga Pizzor">
+  <meta property="og:description" content="Hitta alla pizzerior i M&ouml;lndal och j&auml;mf&ouml;r priser fr&aring;n lokala restauranger.">
+  <meta property="og:url" content="https://billigapizzor.se/pizzerior.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Pizzerior i G&ouml;teborgsomr&aring;det &ndash; Billiga Pizzor">
+  <meta name="twitter:description" content="Hitta alla pizzerior i M&ouml;lndal och j&auml;mf&ouml;r priser fr&aring;n lokala restauranger.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Pizzerior i G&ouml;teborgsomr&aring;det &ndash; Billiga Pizzor">
+  <meta property="og:description" content="Se alla pizzerior i M&ouml;lndal och j&auml;mf&ouml;r deras pizzor och priser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://billigapizzor.se/pizzerior">
+  <meta property="og:locale" content="sv_SE">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pizzerior i G&ouml;teborgsomr&aring;det &ndash; Billiga Pizzor">
+  <meta name="twitter:description" content="Se alla pizzerior i M&ouml;lndal och j&auml;mf&ouml;r priser snabbt.">
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Billig Pizza",
+    "url": "https://billigapizzor.se/"
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/Pizza%20_Gubbe.png" />
+  <link rel="apple-touch-icon" href="/images/Pizza%20_Gubbe.png" />
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/css/index.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    /* ============================================================
+       PIZZERIOR – Premium Dark Mode Redesign
+    ============================================================ */
+
+    /* Sida-wrapper */
+    .pizzerior-page {
+      min-height: 100vh;
+      background: #0a0a0a;
+    }
+
+    /* Hero sektion – ingen bild, centrerad text */
+    .pizzerior-hero {
+      text-align: left;
+      padding: clamp(48px, 8vw, 80px) 20px clamp(32px, 5vw, 56px);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .pizzerior-hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) clamp(290px, 29vw, 360px);
+      align-items: start;
+      gap: clamp(22px, 4vw, 46px);
+    }
+
+    .pizzerior-hero-copy {
+      min-width: 0;
+      max-width: 760px;
+    }
+
+    .pizzerior-omrade-namn {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #22c55e;
+      margin-bottom: 14px;
+    }
+
+    .pizzerior-hero h2 {
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.05;
+      color: #ffffff;
+      margin: 0 0 14px;
+      letter-spacing: -0.5px;
+    }
+
+    .pizzerior-undertext {
+      font-size: 1rem;
+      color: #6b7280;
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .pizzerior-map-card {
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.34);
+      width: 100%;
+    }
+
+    .pizzerior-map-frame {
+      position: relative;
+    }
+
+    #pizzerior-karta-iframe {
+      height: 230px;
+      width: 100%;
+      background: #0a0a0a;
+      border: 0;
+      display: block;
+    }
+
+    .pizzerior-map-expand-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(9, 13, 16, 0.72);
+      color: #d6f8ea;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 5;
+      backdrop-filter: blur(7px);
+      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .pizzerior-map-expand-btn:hover {
+      transform: translateY(-1px);
+      background: rgba(15, 22, 28, 0.86);
+      border-color: rgba(255,255,255,0.34);
+    }
+
+    .pizzerior-map-expand-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .pizzerior-karta-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2200;
+      background: rgba(0,0,0,0.74);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .pizzerior-karta-modal.is-open {
+      display: flex;
+    }
+
+    .pizzerior-karta-modal-inner {
+      position: relative;
+      width: min(1120px, 96vw);
+      height: min(86vh, 760px);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: #0a0a0a;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.6);
+    }
+
+    #pizzerior-karta-iframe-stor {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      background: #0a0a0a;
+    }
+
+    .pizzerior-karta-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 8;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.28);
+      background: rgba(8, 12, 15, 0.76);
+      color: #ffffff;
+      font-size: 1.4rem;
+      line-height: 1;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(7px);
+    }
+
+    .pizzerior-map-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 12px;
+      background: rgba(255,255,255,0.01);
+    }
+
+    .pizzerior-map-badge {
+      grid-column: 1 / -1;
+      width: 100%;
+      justify-content: center;
+      background: #0e0e0e;
+    }
+
+    .min-position-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 8px 14px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 999px;
+      user-select: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      font-family: inherit;
+    }
+    .min-position-btn:hover { border-color: rgba(34,197,94,0.4); }
+    .min-position-btn.aktiv { border-color: #22c55e; background: rgba(34,197,94,0.07); }
+    .min-position-ikon { width: 14px; height: 14px; color: #6b7280; flex-shrink: 0; }
+    .min-position-btn.aktiv .min-position-ikon { color: #22c55e; }
+    .min-position-text { font-size: 0.82rem; font-weight: 600; color: #9ca3af; white-space: nowrap; }
+    .min-position-btn.aktiv .min-position-text { color: #22c55e; }
+    .min-position-btn:disabled { opacity: 0.5; cursor: default; }
+
+    .pizzerior-map-badge #pizzerior-antal-siffra {
+      color: #ecfdf5;
+      font-size: 1.45rem;
+    }
+
+    .pizzerior-map-badge .pizzerior-antal-label {
+      color: #86efac;
+    }
+
+    /* Container */
+    .pizzerior-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 clamp(16px, 3vw, 40px);
+    }
+
+    /* ── Search row ── */
+    .pizzerior-filter-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding-bottom: 28px;
+    }
+
+    .pizzerior-search-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 860px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    #pizzerior-sokruta {
+      flex: 1 1 280px;
+      max-width: 460px;
+      padding: 13px 22px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 12px;
+      font-size: 15px;
+      color: #e5e7eb;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    #pizzerior-sokruta::placeholder { color: #4b5563; }
+
+    #pizzerior-sokruta:hover {
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    #pizzerior-sokruta:focus {
+      outline: none;
+      border-color: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.12);
+    }
+
+    .pizzerior-sort-wrapper { position: relative; }
+
+    #pizzerior-sortera {
+      padding: 13px 36px 13px 16px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 12px;
+      color: #e5e7eb;
+      font-size: 15px;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 14px;
+      transition: border-color 0.2s;
+      white-space: nowrap;
+    }
+
+    #pizzerior-sortera:hover { border-color: rgba(255,255,255,0.2); }
+    #pizzerior-sortera:focus {
+      outline: none;
+      border-color: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.12);
+    }
+
+    #pizzerior-narmast-btn {
+      padding: 13px 22px;
+      background: transparent;
+      border: 1.5px solid #22c55e;
+      border-radius: 12px;
+      color: #22c55e;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+
+    #pizzerior-narmast-btn:hover {
+      background: rgba(34,197,94,0.10);
+      box-shadow: 0 0 18px rgba(34,197,94,0.2);
+      transform: translateY(-1px);
+    }
+
+    #pizzerior-narmast-btn.narmast-aktiv {
+      background: rgba(34,197,94,0.15);
+      color: #fff;
+    }
+
+    #pizzerior-narmast-btn:disabled { opacity: 0.5; cursor: default; transform: none; }
+
+    .pizzerior-traffar {
+      font-size: 0.875rem;
+      color: #6b7280;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+      min-height: 1.2em;
+    }
+
+    /* ── Filter footer: pills + badge ── */
+    .pizzerior-filter-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    #pizzerior-omrade-filter {
+      flex: 1;
+      justify-content: flex-start;
+    }
+
+    .pizzerior-antal-badge {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 14px 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .pizzerior-antal-ikon {
+      width: 32px;
+      height: 32px;
+      color: #22c55e;
+      flex-shrink: 0;
+    }
+
+    .pizzerior-antal-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    #pizzerior-antal-siffra {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .pizzerior-antal-label {
+      font-size: 0.78rem;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
+      .pizzerior-filter-footer { flex-direction: column; align-items: flex-start; }
+      .pizzerior-antal-badge { width: 100%; }
+      .oppet-nu-toggle { width: 100%; justify-content: center; }
+    }
+
+    /* ── Område-filter pills ── */
+    #pizzerior-omrade-filter {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 10px;
+      padding-bottom: 0;
+    }
+
+    .pizzerior-omrade-btn {
+      padding: 9px 18px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      color: #9ca3af;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .pizzerior-omrade-btn:hover {
+      border-color: rgba(255,255,255,0.28);
+      color: #e5e7eb;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .pizzerior-omrade-btn.aktiv {
+      background: rgba(34,197,94,0.14);
+      border-color: #22c55e;
+      color: #22c55e;
+      font-weight: 700;
+    }
+
+    /* ── Pizzeria-kort grid ── */
+    #pizzerior-lista {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+    }
+
+    /* Pizzeria-kort – override globala .pizza-kort styles */
+    #pizzerior-lista .pizza-kort {
+      width: auto;
+      max-width: none;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      padding: 28px 26px 24px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+      cursor: pointer;
+    }
+
+    #pizzerior-lista .pizza-kort:hover {
+      transform: translateY(-4px);
+      border-color: rgba(34,197,94,0.35);
+      box-shadow: 0 8px 32px rgba(34,197,94,0.08);
+    }
+
+    /* Pizzeria namn */
+    #pizzerior-lista .pizza-kort h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 18px;
+      line-height: 1.25;
+      letter-spacing: -0.2px;
+    }
+
+    /* Telefon & adress rader */
+    #pizzerior-lista .pizza-kort p {
+      margin: 0 0 10px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    /* Distans-rad */
+    #pizzerior-lista .pizza-kort .kort-distans {
+      margin: 4px 0 14px;
+      font-size: 0.82rem;
+      color: #22c55e;
+      font-weight: 600;
+    }
+
+    /* Visa meny-knapp */
+    #pizzerior-lista .pizza-kort .pizzeria-btn {
+      margin-top: auto;
+      width: 100%;
+      padding: 11px 0;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+
+    #pizzerior-lista .pizza-kort .pizzeria-btn .btn-emoji {
+      font-size: 16px;
+    }
+
+    #pizzerior-lista .pizza-kort .pizzeria-btn:hover {
+      border-color: rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.05);
+      color: #ffffff;
+    }
+
+    /* ── Öppet nu toggle ── */
+    .oppet-nu-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 8px 14px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 999px;
+      user-select: none;
+      transition: border-color 0.2s;
+    }
+    .oppet-nu-toggle:hover { border-color: rgba(34,197,94,0.4); }
+    .oppet-nu-toggle.aktiv { border-color: #22c55e; background: rgba(34,197,94,0.07); }
+    .oppet-nu-ikon { width: 14px; height: 14px; color: #6b7280; flex-shrink: 0; }
+    .oppet-nu-toggle.aktiv .oppet-nu-ikon { color: #22c55e; }
+    .oppet-nu-text { font-size: 0.82rem; font-weight: 600; color: #9ca3af; white-space: nowrap; }
+    .oppet-nu-toggle.aktiv .oppet-nu-text { color: #22c55e; }
+    .oppet-nu-switch {
+      width: 32px; height: 18px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 999px;
+      position: relative;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .oppet-nu-toggle.aktiv .oppet-nu-switch { background: #22c55e; }
+    .oppet-nu-knob {
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 14px; height: 14px;
+      background: #fff;
+      border-radius: 50%;
+      transition: left 0.2s;
+    }
+    .oppet-nu-toggle.aktiv .oppet-nu-knob { left: 16px; }
+
+    /* ── Responsiv ── */
+    @media (max-width: 1200px) {
+      #pizzerior-lista { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 860px) {
+      .pizzerior-hero {
+        text-align: center;
+      }
+
+      .pizzerior-hero-layout {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .pizzerior-hero-copy {
+        margin: 0 auto;
+      }
+
+      #pizzerior-lista { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+      .pizzerior-hero h2 { font-size: clamp(1.9rem, 6vw, 2.8rem); }
+
+      .pizzerior-map-card {
+        max-width: 460px;
+        margin: 0 auto;
+      }
+
+      .pizzerior-karta-modal-inner {
+        width: 100%;
+        height: min(82vh, 720px);
+        border-radius: 14px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      #pizzerior-lista { grid-template-columns: 1fr; gap: 14px; padding-bottom: 40px; }
+      .pizzerior-search-row { flex-direction: column; }
+      #pizzerior-sokruta { max-width: 280px; width: 280px; flex: none; padding: 8px 14px; font-size: 14px; }
+      #pizzerior-sortera { width: 100%; }
+      #pizzerior-narmast-btn { width: 100%; }
+    }
+  </style>
+</head>
+  <body class="index-kort-lage pizzerior-page">
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/" class="nav-logo">
+          <img src="/images/Pizza _Gubbe.png" alt="Pizza Gubbe - Billiga Pizzor">
+        </a>
+
+        <div class="hamburger-ikon" onclick="toggleMobilMeny()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="nav-social">
+          <span class="nav-social-label">Följ oss</span>
+          <a href="https://www.facebook.com/profile.php?id=61588728802691" class="social-btn social-btn--fb" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg class="social-icon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9v-2.89h2.54V9.81c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.12 22 16.99 22 12z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/billigapizzor/" class="social-btn social-btn--ig" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="social-icon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="/" onclick="closeMobilMeny()">PIZZOR</a></li>
+          <li><a href="/pizzerior" onclick="closeMobilMeny()">PIZZERIOR</a></li>
+          <li><a href="/karta" onclick="closeMobilMeny()">KARTA</a></li>
+          <li><a href="/statistik" onclick="closeMobilMeny()">STATISTIK</a></li>
+          <li><a href="/om-oss" onclick="closeMobilMeny()">OM OSS</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <button id="topp-knapp" title="G&aring; till toppen">&#9650;</button>
+
+    <header class="pizzerior-hero">
+      <div class="pizzerior-hero-layout">
+        <div class="pizzerior-hero-copy">
+          <span id="pizzerior-omrade-namn" class="pizzerior-omrade-namn">Alla pizzerior</span>
+          <h2 id="pizzerior-rubrik">Hitta Sveriges bästa pizzerior</h2>
+          <p class="pizzerior-undertext">Jämför menyer, priser och öppettider nära dig</p>
+        </div>
+
+        <aside class="pizzerior-map-card" aria-label="Kartöversikt för pizzerior">
+          <div class="pizzerior-map-frame">
+            <button id="pizzerior-map-expand" class="pizzerior-map-expand-btn" type="button" aria-label="Visa större karta">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+            </button>
+            <iframe id="pizzerior-karta-iframe" title="Pizzeriakarta" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          </div>
+          <div class="pizzerior-map-meta">
+            <label class="oppet-nu-toggle" id="oppet-nu-toggle-wrap">
+              <svg class="oppet-nu-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span class="oppet-nu-text">Öppet nu</span>
+              <div class="oppet-nu-switch" id="oppet-nu-switch">
+                <div class="oppet-nu-knob"></div>
+              </div>
+            </label>
+            <button id="pizzerior-min-position-btn" class="min-position-btn" type="button" aria-label="Centrera karta på min position">
+              <svg class="min-position-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="7" stroke-opacity="0.35"/></svg>
+              <span class="min-position-text">Min position</span>
+            </button>
+            <div class="pizzerior-antal-badge pizzerior-map-badge" id="pizzerior-antal-badge">
+              <svg class="pizzerior-antal-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5L12 4l9 5.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/><rect x="8" y="7" width="3" height="3" rx="0.5"/><rect x="13" y="7" width="3" height="3" rx="0.5"/></svg>
+              <div class="pizzerior-antal-text">
+                <span id="pizzerior-antal-siffra">–</span>
+                <span class="pizzerior-antal-label">pizzerior hittade</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <div id="pizzerior-karta-modal" class="pizzerior-karta-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Stor pizzeriakarta">
+      <div class="pizzerior-karta-modal-inner">
+        <button id="pizzerior-karta-modal-close" class="pizzerior-karta-modal-close" type="button" aria-label="Stäng större karta">×</button>
+        <iframe id="pizzerior-karta-iframe-stor" title="Stor pizzeriakarta" loading="lazy" referrerpolicy="no-referrer"></iframe>
+      </div>
+    </div>
+
+    <div class="pizzerior-container">
+      <div class="pizzerior-filter-bar">
+        <div class="pizzerior-search-row">
+          <input
+            type="text"
+            id="pizzerior-sokruta"
+            placeholder="Sök bland pizzerior…"
+            aria-label="Sök bland pizzerior"
+            autocomplete="off"
+          />
+          <div class="pizzerior-sort-wrapper">
+            <select id="pizzerior-sortera" aria-label="Sortera pizzerior">
+              <option value="namn">Namn A–Ö</option>
+              <option value="namn-desc">Namn Ö–A</option>
+            </select>
+          </div>
+          <button id="pizzerior-narmast-btn" type="button">📍 Närmast mig</button>
+        </div>
+        <div id="pizzerior-traffar" class="pizzerior-traffar"></div>
+      </div>
+
+      <div class="pizzerior-filter-footer">
+        <div id="pizzerior-omrade-filter" class="pizzerior-omrade-filter"></div>
+      </div>
+
+      <div id="pizzerior-lista"></div>
+    </div>
+
+    <div id="policy-overlay" class="policy-overlay"></div>
+    <div id="policy-modal" class="policy-box">
+      <div class="policy-innehall">
+        <div class="policy-ikon">&#128737;&#65039;</div>
+        <h3>Cookies & Integritet</h3>
+        <p>
+          Vi anv&auml;nder Google Analytics f&ouml;r att f&ouml;rst&aring; hur sidan anv&auml;nds. All
+          data samlas in anonymt.
+        </p>
+        <div class="policy-knappar">
+          <button onclick="sparaCookieVal(true)" class="stang-btn">
+            Acceptera alla
+          </button>
+          <button onclick="sparaCookieVal(false)" class="sekundar-btn">
+            Endast n&ouml;dv&auml;ndiga
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <section id="policy-sektion" class="dold-sektion">
+      <div class="om-oss-container">
+        <h2>Cookies & Integritet &#128737;&#65039;</h2>
+        <p>
+          Vi anv&auml;nder Google Analytics f&ouml;r att f&ouml;rst&aring; hur sidan anv&auml;nds. All
+          data samlas in anonymt och anv&auml;nds endast f&ouml;r att f&ouml;rb&auml;ttra tj&auml;nsten
+          f&ouml;r dig.
+        </p>
+        <p>
+          Genom att anv&auml;nda sidan godk&auml;nner du att cookies anv&auml;nds. Du kan n&auml;r
+          som helst &auml;ndra ditt val genom att rensa webbl&auml;sarens cookies.
+        </p>
+
+        <button onclick="togglaPolicySektion()" class="stang-btn">St&auml;ng</button>
+      </div>
+    </section>
+
+<script src="/js/shared.js" defer></script>
+<script src="/js/supabase-config.js" defer></script>
+<script src="/js/pizzerior-sida.js" defer></script>
+
+
+<nav class="bottom-nav" aria-label="Sidobottennav">
+  <div class="bottom-nav-social">
+    <a href="https://www.facebook.com/profile.php?id=61588728802691" class="social-btn social-btn--fb" target="_blank" rel="noopener noreferrer">
+      <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9v-2.89h2.54V9.81c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.12 22 16.99 22 12z"/></svg>
+      Facebook
+    </a>
+    <a href="https://www.instagram.com/billigapizzor/" class="social-btn social-btn--ig" target="_blank" rel="noopener noreferrer">
+      <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      Instagram
+    </a>
+  </div>
+  <div class="bottom-nav-links">
+    <a href="/" class="bottom-nav-link">Pizzor</a>
+    <a href="/pizzerior" class="bottom-nav-link">Pizzerior</a>
+    <a href="/karta" class="bottom-nav-link">Karta</a>
+    <a href="/statistik" class="bottom-nav-link">Statistik</a>
+    <a href="/om-oss" class="bottom-nav-link">Om oss</a>
+  </div>
+</nav>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <div>
+      <p class="footer-heading">Info</p>
+      <ul class="footer-links">
+        <li><a href="/integritetspolicy">Integritetspolicy</a></li>
+        <li><a href="mailto:kontakt@billigapizzor.se">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
+
+

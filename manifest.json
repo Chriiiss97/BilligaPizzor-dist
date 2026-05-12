@@ -1,0 +1,35 @@
+{
+  "name": "Billiga Pizzor",
+  "short_name": "Billiga Pizzor",
+  "description": "Jämför pizzapriser från lokala pizzerior i Mölndal",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#121212",
+  "theme_color": "#1f7a4c",
+  "lang": "sv",
+  "categories": ["food", "lifestyle"],
+  "icons": [
+    {
+      "src": "/images/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Pizzerior",
+      "short_name": "Pizzerior",
+      "description": "Se alla pizzerior i Mölndal",
+      "url": "/pizzerior"
+    }
+  ]
+}

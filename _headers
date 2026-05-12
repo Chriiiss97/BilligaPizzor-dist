@@ -1,0 +1,38 @@
+# Netlify HTTP response headers
+# https://docs.netlify.com/routing/headers/
+#
+# Applied to all routes unless a more specific rule matches.
+
+/*
+  # Prevent clickjacking
+  X-Frame-Options: SAMEORIGIN
+
+  # Prevent MIME-type sniffing
+  X-Content-Type-Options: nosniff
+
+  # Control referrer information sent to other origins
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Restrict access to browser features
+  # Geolocation is enabled because the "narmast" feature uses it.
+  Permissions-Policy: geolocation=(self), camera=(), microphone=(), payment=(), usb=()
+
+  # Content Security Policy
+  # Notes:
+  #   - 'unsafe-inline' for scripts is required because HTML files use inline
+  #     onclick handlers (e.g. onclick="toggleMobilMeny()"). Removing them would
+  #     require refactoring all HTML files and is out of scope.
+  #   - googletagmanager.com / google-analytics.com are needed for GTM.
+  #   - maps.googleapis.com / maps.gstatic.com are needed for Google Maps links.
+  #   - connect-src allows the JSON data fetch and Google Analytics beacons.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://consent.cookiebot.com https://consentcdn.cookiebot.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://server.arcgisonline.com https://*.arcgisonline.com https://unpkg.com; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://consentcdn.cookiebot.com https://unpkg.com https://yixjzzehejrfcpyccyxp.supabase.co; font-src 'self'; frame-src 'self' https://consent.cookiebot.com https://consentcdn.cookiebot.com https://www.google.com https://maps.google.com https://www.openstreetmap.org; object-src 'none'; base-uri 'self'; form-action 'self'
+
+# Service worker must be served with correct MIME type and no caching
+/service-worker.js
+  Content-Type: application/javascript
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# Allow manifest to be fetched cross-origin (needed for some browsers/PWA installers)
+/manifest.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=86400

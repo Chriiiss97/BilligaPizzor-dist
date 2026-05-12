@@ -1,0 +1,34 @@
+# ================================
+# 1. GAMLA NETLIFY-DOMÄN → NY DOMÄN
+# ================================
+https://billigpizza.netlify.app/* https://billigapizzor.se/:splat 301!
+http://billigpizza.netlify.app/* https://billigapizzor.se/:splat 301!
+
+# ================================
+# 2. WWW → UTAN WWW
+# ================================
+https://www.billigapizzor.se/* https://billigapizzor.se/:splat 301!
+http://www.billigapizzor.se/* https://billigapizzor.se/:splat 301!
+
+# ================================
+# 3. STARTSIDAN & Sidor
+# ================================
+/index.html / 301!
+/pizzerior.html /pizzerior 301!
+/faq.html /faq 301!
+/om-oss.html /om-oss 301!
+/pizzans-historia.html /pizzans-historia 301!
+/pizza-i-varlden.html /pizza-i-varlden 301!
+/fakta-om-pizza.html /fakta-om-pizza 301!
+
+# ================================
+# 4. CLEAN URLS
+# ================================
+
+# Pizzerior
+/pizzerior/:slug /pizzerior/pizzeria.html?slug=:slug 200
+/pizzerior/:slug/ /pizzerior/pizzeria.html?slug=:slug 200
+
+# Vanliga sidor
+/:page /:page.html 200
+/:page/ /:page.html 200

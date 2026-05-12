@@ -1,0 +1,489 @@
+/* =====================================================
+   OM OSS – Premium dark design matching global system
+   ===================================================== */
+
+/* PAGE BASE */
+body.om-oss-page {
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 6%,  rgba(31, 122, 76, 0.18), rgba(31, 122, 76, 0) 38%),
+    radial-gradient(circle at 90% 5%,  rgba(205, 33, 42, 0.16), rgba(205, 33, 42, 0) 40%),
+    #0f0f0f;
+  color: #e6e6e6;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* MAIN WRAPPER */
+.omos-main {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(40px, 7vh, 90px) clamp(16px, 4vw, 32px) 60px;
+  box-sizing: border-box;
+}
+
+/* =====================================================
+   HERO
+   ===================================================== */
+.omos-hero {
+  text-align: center;
+  margin-bottom: clamp(40px, 6vh, 72px);
+  animation: omosfadeup 700ms cubic-bezier(0.2, 0.75, 0.2, 1) both;
+}
+
+.omos-hero-icon {
+  display: block;
+  font-size: clamp(2.4rem, 6vw, 3.4rem);
+  margin-bottom: 18px;
+  filter: drop-shadow(0 0 18px rgba(31, 122, 76, 0.45));
+}
+
+.omos-hero h1 {
+  margin: 0 0 16px;
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.14;
+  color: #ffffff;
+}
+
+.omos-hero-lead {
+  margin: 0 auto;
+  max-width: 580px;
+  font-size: clamp(1rem, 2.2vw, 1.12rem);
+  color: #a0a0a0;
+  line-height: 1.72;
+}
+
+/* =====================================================
+   CARDS
+   ===================================================== */
+.omos-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.omos-card {
+  background: linear-gradient(145deg, rgba(29, 29, 29, 0.96), rgba(20, 20, 20, 0.93));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 22px;
+  padding: clamp(24px, 4vw, 36px) clamp(22px, 4vw, 36px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
+  position: relative;
+  overflow: hidden;
+  animation: omosfadeup 700ms cubic-bezier(0.2, 0.75, 0.2, 1) both;
+  transition:
+    box-shadow 340ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 340ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 340ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.omos-card::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10%;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.055) 0%,
+    rgba(255, 255, 255, 0.01) 38%,
+    rgba(255, 255, 255, 0) 65%
+  );
+  pointer-events: none;
+}
+
+.omos-card:nth-child(1) { animation-delay: 60ms; }
+.omos-card:nth-child(2) { animation-delay: 130ms; }
+.omos-card:nth-child(3) { animation-delay: 200ms; }
+.omos-card:nth-child(4) { animation-delay: 270ms; }
+.omos-card:nth-child(5) { animation-delay: 340ms; }
+
+@media (hover: hover) {
+  .omos-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.44);
+    border-color: rgba(31, 122, 76, 0.38);
+  }
+}
+
+.omos-card--problem { border-color: rgba(205, 33, 42, 0.28); }
+.omos-card--solution { border-color: rgba(31, 122, 76, 0.32); }
+.omos-card--time     { border-color: rgba(255, 255, 255, 0.1); }
+.omos-card--vision   { border-color: rgba(31, 122, 76, 0.28); }
+.omos-card--contact  { border-color: rgba(205, 33, 42, 0.22); }
+
+.omos-card-label {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 14px;
+  padding: 5px 13px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  color: #f1f1f1;
+  background: rgba(31, 122, 76, 0.22);
+  border: 1px solid rgba(31, 122, 76, 0.32);
+}
+
+.omos-card--problem .omos-card-label,
+.omos-card--contact .omos-card-label {
+  background: rgba(205, 33, 42, 0.18);
+  border-color: rgba(205, 33, 42, 0.3);
+}
+
+.omos-card h2 {
+  margin: 0 0 14px;
+  font-size: clamp(1.18rem, 2.8vw, 1.42rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.015em;
+  line-height: 1.28;
+}
+
+.omos-card p {
+  margin: 0 0 14px;
+  font-size: clamp(0.95rem, 1.9vw, 1.05rem);
+  color: #b4b4b4;
+  line-height: 1.78;
+}
+
+.omos-card p:last-child { margin-bottom: 0; }
+
+/* LIST */
+.omos-list {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 16px;
+}
+
+.omos-list li {
+  position: relative;
+  padding: 9px 0 9px 28px;
+  font-size: clamp(0.95rem, 1.9vw, 1.04rem);
+  color: #b4b4b4;
+  line-height: 1.68;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.omos-list li:last-child { border-bottom: none; }
+
+.omos-list li::before {
+  content: "🍕";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  font-size: 0.88rem;
+}
+
+/* EMAIL */
+.omos-email {
+  margin-top: 4px;
+  font-size: 1.04rem;
+  color: #b4b4b4;
+}
+
+.omos-email a {
+  color: #cd212a;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 220ms ease;
+}
+
+.omos-email a:hover { color: #e63a44; }
+
+/* =====================================================
+   HERO ACTIONS
+   ===================================================== */
+.omos-hero-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+/* =====================================================
+   CARD ACTIONS
+   ===================================================== */
+.omos-card-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+.omos-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 0.93rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition:
+    background 260ms ease,
+    box-shadow 260ms ease,
+    transform 200ms ease,
+    border-color 260ms ease;
+  white-space: nowrap;
+}
+
+.omos-btn--primary {
+  background: linear-gradient(135deg, rgba(31, 122, 76, 0.88), rgba(22, 90, 56, 0.95));
+  border: 1px solid rgba(31, 122, 76, 0.65);
+  color: #ffffff;
+}
+
+.omos-btn--primary:hover {
+  background: linear-gradient(135deg, #1f7a4c, #165a38);
+  box-shadow: 0 6px 22px rgba(31, 122, 76, 0.38);
+  transform: translateY(-1px);
+}
+
+.omos-btn--ghost {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #c8c8c8;
+}
+
+.omos-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.26);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* =====================================================
+   ANIMATIONS
+   ===================================================== */
+@keyframes omosfadeup {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 600px) {
+  .omos-card {
+    border-radius: 16px;
+    padding: 22px 18px;
+  }
+  .omos-hero h1 {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .omos-main {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .omos-hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .omos-hero-lead {
+    font-size: 0.92rem;
+  }
+
+  .omos-hero-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .omos-btn {
+    width: 100%;
+    max-width: 260px;
+    justify-content: center;
+  }
+
+  .omos-card {
+    border-radius: 14px;
+    padding: 18px 14px;
+  }
+
+  .omos-card h2 {
+    font-size: 1.1rem;
+  }
+
+  .omos-card p,
+  .omos-list li {
+    font-size: 0.9rem;
+  }
+}
+
+/* Behållaren som håller allt på mitten */
+.om-oss-wrapper {
+  width: 100%;
+  max-width: 900px; /* Begränsar bredden så det inte flyter ut */
+  padding: 50px 20px;
+  box-sizing: border-box;
+}
+
+/* Centrerad Header med Bild-Text-Bild */
+.hero-section {
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.side-img {
+  width: 80px; /* Små dekorativa bilder som i din referens */
+  height: auto;
+  object-fit: contain;
+}
+
+.header-text h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  color: #222;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: 10px;
+}
+
+/* Innehållssektioner */
+.main-content {
+  text-align: center; /* Centrerar rubriker och brödtext */
+}
+
+.info-row {
+  margin-bottom: 50px;
+  max-width: 700px; /* Gör texten smalare i mitten för bättre läsbarhet */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #e44d26; /* Pizza-röd färg */
+}
+
+p {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+/* Speciell styling för listan */
+.pizza-list {
+  list-style: none;
+  padding: 0;
+  display: inline-block;
+  text-align: left; /* Listan är centrerad men texten i den börjar från vänster */
+}
+
+.pizza-list li {
+  margin-bottom: 10px;
+}
+
+/* Om oss – ny innehållssektion */
+.about-content {
+  max-width: 760px;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+  text-align: left;
+}
+
+.about-content h2 {
+  font-size: 1.6rem;
+  color: #e44d26;
+  margin-top: 40px;
+  margin-bottom: 12px;
+}
+
+.about-content p {
+  line-height: 1.8;
+  font-size: 1.05rem;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.about-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.about-list li {
+  padding: 8px 0 8px 24px;
+  position: relative;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #333;
+}
+
+.about-list li::before {
+  content: '🍕';
+  position: absolute;
+  left: 0;
+}
+
+@media (max-width: 600px) {
+  .about-content {
+    padding: 0 16px;
+  }
+  .about-content h2 {
+    font-size: 1.35rem;
+  }
+  .about-content p,
+  .about-list li {
+    font-size: 1rem;
+  }
+}
+
+/* Legacy section mobile fallback */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+
+  .side-img {
+    width: 56px;
+  }
+
+  .header-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  .info-row {
+    padding: 0 8px;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+  }
+}

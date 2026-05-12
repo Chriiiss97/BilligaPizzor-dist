@@ -1,0 +1,2239 @@
+﻿<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pizzastatistik – Billiga Pizzor i Göteborgsområdet</title>
+    <meta name="description" content="Utforska pizzastatistik från Mölndal. Snittpris, billigaste och dyraste pizzerior, populära ingredienser – beräknat dynamiskt från vår databas.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://billigapizzor.se/statistik" />
+
+    <meta property="og:title" content="Pizzastatistik – Billiga Pizzor">
+    <meta property="og:description" content="Utforska pizzastatistik från Mölndal. Snittpris, billigaste pizzerior och populära ingredienser.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://billigapizzor.se/statistik">
+    <meta property="og:locale" content="sv_SE">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Pizzastatistik – Billiga Pizzor">
+    <meta name="twitter:description" content="Dynamisk pizzastatistik från Mölndal. Snittpris, ranking och populära ingredienser.">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/images/Pizza%20_Gubbe.png" />
+    <link rel="apple-touch-icon" href="/images/Pizza%20_Gubbe.png" />
+    <link rel="stylesheet" href="/css/index.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/statistik.css" />
+  </head>
+  <body class="statistik-page">
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/" class="nav-logo">
+          <img src="/images/Pizza _Gubbe.png" alt="Pizza Gubbe - Billiga Pizzor">
+        </a>
+
+        <div class="hamburger-ikon" onclick="toggleMobilMeny()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="nav-social">
+          <span class="nav-social-label">Följ oss</span>
+          <a href="https://www.facebook.com/profile.php?id=61588728802691" class="social-btn social-btn--fb" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg class="social-icon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9v-2.89h2.54V9.81c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.12 22 16.99 22 12z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/billigapizzor/" class="social-btn social-btn--ig" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="social-icon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="/" onclick="closeMobilMeny()">PIZZOR</a></li>
+          <li><a href="/pizzerior" onclick="closeMobilMeny()">PIZZERIOR</a></li>
+          <li><a href="/karta" onclick="closeMobilMeny()">KARTA</a></li>
+          <li><a href="/statistik" onclick="closeMobilMeny()">STATISTIK</a></li>
+          <li><a href="/om-oss" onclick="closeMobilMeny()">OM OSS</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="stat-main">
+
+      <!-- HERO -->
+      <header class="stat-hero">
+        <span class="stat-hero-icon">📊</span>
+        <h1>Pizzastatistik</h1>
+        <p class="stat-hero-lead">Dynamisk statistik baserad på vår databas – uppdateras automatiskt när ny data läggs till.</p>
+      </header>
+
+      <!-- SCOPE SELECTOR -->
+      <div class="stat-scope" id="stat-scope-knappar" role="group" aria-label="Filtrera statistik efter område"></div>
+
+      <!-- SCOPE TITLE -->
+      <p class="stat-scope-title" id="stat-scope-titel"></p>
+
+      <!-- STATUS / LOADING -->
+      <div class="stat-status" id="stat-status" aria-live="polite">Laddar statistik…</div>
+
+      <!-- SECTIONS (injected by JS) -->
+      <div class="stat-sections" id="stat-sections" hidden></div>
+
+    </main>
+
+<script src="/js/supabase-config.js"></script>
+<script src="/js/shared.js" defer></script>
+    <script>
+    (function () {
+      'use strict';
+
+      /* ------------------------------------------------
+         1. DATA LOADING
+      ------------------------------------------------ */
+      var supabaseCfg = window.BP_SUPABASE_CONFIG || {};
+      var SUPABASE_URL = supabaseCfg.url || '';
+      var SUPABASE_ANON_KEY = supabaseCfg.anonKey || '';
+      var allaPizzerior = []; // grupperad struktur
+      var currentScope = { type: 'country', value: null };
+      var omradesInsikterScope = null;
+      var lokalKanslaStad = null;
+      var snabbFaktaIndex = 0;
+      var jamforScopeA = null;
+      var jamforScopeB = null;
+
+      // Prisstatistik ska bara byggas av rader som matchar pizzor.json-schema.
+      function arPrisradFranPizzorJson(row) {
+        if (!row || typeof row !== 'object') return false;
+        if (typeof row.pizzeria !== 'string' || !row.pizzeria.trim()) return false;
+        if (typeof row.pizza_namn !== 'string' || !row.pizza_namn.trim()) return false;
+        if (typeof row.pris !== 'number' || !isFinite(row.pris) || row.pris <= 0) return false;
+
+        // extras.json-rader kännetecknas av fälten kategori + namn (utan pizza_namn).
+        if (Object.prototype.hasOwnProperty.call(row, 'kategori')) return false;
+        if (Object.prototype.hasOwnProperty.call(row, 'namn') && !Object.prototype.hasOwnProperty.call(row, 'pizza_namn')) return false;
+
+        return true;
+      }
+
+      function hamtaSupabaseRows(query) {
+        var batchSize = 1000;
+        var offset = 0;
+        var allaRows = [];
+
+        function hamtaBatch() {
+          var separator = query.indexOf('?') >= 0 ? '&' : '?';
+          var pagedQuery = query + separator + 'limit=' + batchSize + '&offset=' + offset;
+          return fetch(SUPABASE_URL + '/rest/v1/' + pagedQuery, {
+            headers: {
+              apikey: SUPABASE_ANON_KEY
+            }
+          }).then(function (r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status + ' for ' + query);
+            return r.json();
+          }).then(function (rows) {
+            var lista = Array.isArray(rows) ? rows : [];
+            allaRows = allaRows.concat(lista);
+            if (lista.length < batchSize) return allaRows;
+            offset += batchSize;
+            return hamtaBatch();
+          });
+        }
+
+        return hamtaBatch();
+      }
+
+      function hamtaPizzorData() {
+        return Promise.all([
+          hamtaSupabaseRows('pizzerior?select=id,namn,adress,stad,omrade,telefon,hemsida&order=id.asc'),
+          hamtaSupabaseRows('pizzor?select=pizzeria_id,pizza_namn,pris,ingredienser&order=id.asc')
+        ]).then(function (result) {
+          var pizzerior = Array.isArray(result[0]) ? result[0] : [];
+          var pizzor = Array.isArray(result[1]) ? result[1] : [];
+          var pizzeriaById = {};
+
+          pizzerior.forEach(function (p) {
+            if (p && p.id !== null && p.id !== undefined) {
+              pizzeriaById[String(p.id)] = p;
+            }
+          });
+
+          return pizzor.map(function (row) {
+            var info = pizzeriaById[String(row && row.pizzeria_id)] || {};
+            return {
+              pizzeria: info.namn || '',
+              adress: info.adress || '',
+              omrade: info.omrade || '',
+              stad: info.stad || '',
+              telefon: info.telefon || '',
+              hemsida: info.hemsida || '',
+              pizza_namn: (row && row.pizza_namn) || '',
+              pris: Number(row && row.pris) || 0,
+              ingredienser: Array.isArray(row && row.ingredienser) ? row.ingredienser : []
+            };
+          });
+        });
+      }
+
+      hamtaPizzorData()
+        .then(function (flatData) {
+          var pizzorData = (Array.isArray(flatData) ? flatData : []).filter(arPrisradFranPizzorJson);
+          allaPizzerior = grupperaPizzerior(pizzorData);
+          byggScopeKnappar(pizzorData);
+          renderaStatistik();
+        })
+        .catch(function (err) {
+          var el = document.getElementById('stat-status');
+          if (el) {
+            el.textContent = 'Kunde inte ladda data. Försök igen senare.';
+            el.classList.add('stat-status--error');
+          }
+          console.error('Statistik: kunde inte ladda data fran Supabase', err);
+        });
+
+      /* ------------------------------------------------
+         2. GRUPPERA FLAT DATA → PIZZERIOR
+      ------------------------------------------------ */
+      function grupperaPizzerior(rows) {
+        var map = {};
+        rows.forEach(function (row) {
+          var key = row.pizzeria;
+          if (!map[key]) {
+            map[key] = {
+              pizzeria: row.pizzeria,
+              adress:   row.adress   || '',
+              omrade:   row.omrade   || '',
+              stad:     row.stad     || '',
+              telefon:  row.telefon  || '',
+              hemsida:  row.hemsida  || '',
+              pizzor:   []
+            };
+          }
+          if (row.pizza_namn) {
+            map[key].pizzor.push({
+              namn:         row.pizza_namn,
+              pris:         row.pris,
+              ingredienser: Array.isArray(row.ingredienser) ? row.ingredienser : []
+            });
+          }
+        });
+        return Object.values(map);
+      }
+
+      /* ------------------------------------------------
+         3. SCOPE KNAPPAR
+      ------------------------------------------------ */
+      function byggScopeKnappar(flatData) {
+        var stader = [];
+        var omraden = [];
+        flatData.forEach(function (row) {
+          if (row.stad   && stader.indexOf(row.stad) === -1)   stader.push(row.stad);
+          if (row.omrade && omraden.indexOf(row.omrade) === -1) omraden.push(row.omrade);
+        });
+        stader.sort();
+        omraden.sort();
+
+        var wrap = document.getElementById('stat-scope-knappar');
+        if (!wrap) return;
+
+        function skapaKnapp(label, type, value) {
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'stat-scope-btn';
+          btn.textContent = label;
+          btn.dataset.scopeKey = type + ':' + (value || '');
+          if (type === 'country') btn.classList.add('aktiv');
+          btn.addEventListener('click', function () {
+            currentScope = { type: type, value: value };
+            markeraAktivScopeKnapp();
+            renderaStatistik();
+          });
+          wrap.appendChild(btn);
+        }
+
+        skapaKnapp('🌍 Alla', 'country', null);
+        stader.forEach(function (s) { skapaKnapp('🏙 ' + s, 'city', s); });
+        omraden.forEach(function (o) { skapaKnapp('📍 ' + o, 'area', o); });
+      }
+
+      /* ------------------------------------------------
+         4. FILTRERA PIZZERIOR
+      ------------------------------------------------ */
+      function filtreraPizzerior(scope) {
+        if (!scope.value) return allaPizzerior;
+        return allaPizzerior.filter(function (p) {
+          return p.stad === scope.value || p.omrade === scope.value;
+        });
+      }
+
+      function scopeEtikett(scope) {
+        if (!scope || !scope.value) return 'Hela databasen';
+        return scope.value;
+      }
+
+      function hamtaScopeAlternativ() {
+        var stader = [];
+        var omraden = [];
+
+        allaPizzerior.forEach(function (p) {
+          if (p.stad && stader.indexOf(p.stad) === -1) stader.push(p.stad);
+          if (p.omrade && omraden.indexOf(p.omrade) === -1) omraden.push(p.omrade);
+        });
+
+        stader.sort();
+        omraden.sort();
+
+        var out = [{ key: 'country:', type: 'country', value: null, label: 'Hela databasen' }];
+        stader.forEach(function (s) { out.push({ key: 'city:' + s, type: 'city', value: s, label: 'Stad: ' + s }); });
+        omraden.forEach(function (o) { out.push({ key: 'area:' + o, type: 'area', value: o, label: 'Område: ' + o }); });
+        return out;
+      }
+
+      function scopeNyckel(scope) {
+        var typ = (scope && scope.type) ? scope.type : 'country';
+        var value = (scope && scope.value) ? scope.value : '';
+        return typ + ':' + value;
+      }
+
+      function markeraAktivScopeKnapp() {
+        var wrap = document.getElementById('stat-scope-knappar');
+        if (!wrap) return;
+        var aktivNyckel = scopeNyckel(currentScope);
+        wrap.querySelectorAll('.stat-scope-btn').forEach(function (b) {
+          b.classList.toggle('aktiv', b.dataset.scopeKey === aktivNyckel);
+        });
+      }
+
+      function skapaScopeFranNyckel(key) {
+        var parts = String(key || '').split(':');
+        var typ = parts[0] || 'country';
+        var value = parts.slice(1).join(':') || null;
+        return { type: typ, value: value };
+      }
+
+      /* ------------------------------------------------
+         5. BERÄKNA STATISTIK
+      ------------------------------------------------ */
+      function snitt(arr) {
+        if (!arr.length) return 0;
+        return arr.reduce(function (s, v) { return s + v; }, 0) / arr.length;
+      }
+
+      function normaliseraNamn(namn) {
+        return String(namn || '')
+          .toLowerCase()
+          .trim()
+          .replace(/\s+/g, ' ');
+      }
+
+      function beraknaStatistik(dataset) {
+        var allaPizzor = dataset.reduce(function (acc, p) {
+          return acc.concat(p.pizzor);
+        }, []);
+        var priser = allaPizzor
+          .map(function (p) { return p.pris; })
+          .filter(function (v) { return typeof v === 'number' && v > 0; });
+
+        /* snitt per pizzeria */
+        var pizzeriorMedPris = dataset
+          .map(function (p) {
+            var ps = p.pizzor.map(function (pi) { return pi.pris; }).filter(function (v) { return typeof v === 'number' && v > 0; });
+            var snittExakt = ps.length ? snitt(ps) : null;
+            var varians = null;
+            var stdAvvikelse = null;
+            if (ps.length > 1 && snittExakt != null) {
+              varians = ps.reduce(function (sum, v) {
+                var diff = v - snittExakt;
+                return sum + (diff * diff);
+              }, 0) / ps.length;
+              stdAvvikelse = Math.sqrt(varians);
+            }
+            return {
+              pizzeria: p.pizzeria,
+              adress: p.adress || '',
+              omrade: p.omrade,
+              stad: p.stad,
+              lagstaPris: ps.length ? Math.min.apply(null, ps) : null,
+              snittPrisExakt: snittExakt,
+              snittPris: snittExakt != null ? Math.round(snittExakt) : null,
+              antalPizzor: p.pizzor.length,
+              valueScore: snittExakt ? (p.pizzor.length / snittExakt) : null,
+              prisStdAvvikelse: stdAvvikelse,
+              prisVariation: ps.length ? (Math.max.apply(null, ps) - Math.min.apply(null, ps)) : null
+            };
+          })
+          .filter(function (p) { return p.snittPris !== null; });
+
+        pizzeriorMedPris.sort(function (a, b) { return a.snittPrisExakt - b.snittPrisExakt; });
+
+        var pizzeriorEfterLagsta = pizzeriorMedPris
+          .slice()
+          .filter(function (p) { return p.lagstaPris != null; })
+          .sort(function (a, b) {
+            if (a.lagstaPris !== b.lagstaPris) return a.lagstaPris - b.lagstaPris;
+            return a.snittPrisExakt - b.snittPrisExakt;
+          });
+
+        var sorteradePriser = priser.slice().sort(function (a, b) { return a - b; });
+
+        function percentil(sorted, p) {
+          if (!sorted.length) return null;
+          if (sorted.length === 1) return sorted[0];
+          var pos = (sorted.length - 1) * p;
+          var lower = Math.floor(pos);
+          var upper = Math.ceil(pos);
+          if (lower === upper) return sorted[lower];
+          var vikt = pos - lower;
+          return sorted[lower] + (sorted[upper] - sorted[lower]) * vikt;
+        }
+
+        var medianPris = sorteradePriser.length ? Math.round(percentil(sorteradePriser, 0.5)) : null;
+        var kvartil1 = sorteradePriser.length ? Math.round(percentil(sorteradePriser, 0.25)) : null;
+        var kvartil3 = sorteradePriser.length ? Math.round(percentil(sorteradePriser, 0.75)) : null;
+        var prisbredd = (priser.length ? (Math.max.apply(null, priser) - Math.min.apply(null, priser)) : null);
+        var andelUnder100 = priser.length
+          ? Math.round((priser.filter(function (v) { return v <= 100; }).length / priser.length) * 100)
+          : null;
+        var andelOver150 = priser.length
+          ? Math.round((priser.filter(function (v) { return v >= 150; }).length / priser.length) * 100)
+          : null;
+
+        var pizzaNamnMap = {};
+        var pizzaDisplayMap = {};
+        allaPizzor.forEach(function (p) {
+          if (!p.namn) return;
+          var key = normaliseraNamn(p.namn);
+          if (!key) return;
+          pizzaNamnMap[key] = (pizzaNamnMap[key] || 0) + 1;
+          if (!pizzaDisplayMap[key]) pizzaDisplayMap[key] = p.namn.trim();
+        });
+
+        var vanligastePizzatyper = Object.keys(pizzaNamnMap)
+          .map(function (k) {
+            return { namn: pizzaDisplayMap[k], antal: pizzaNamnMap[k] };
+          })
+          .sort(function (a, b) { return b.antal - a.antal; })
+          .slice(0, 30);
+
+        var valueRanking = pizzeriorMedPris
+          .slice()
+          .filter(function (p) { return p.valueScore != null; })
+          .sort(function (a, b) { return b.valueScore - a.valueScore; });
+
+        var jamnastPizzeria = pizzeriorMedPris
+          .slice()
+          .filter(function (p) { return p.prisStdAvvikelse != null; })
+          .sort(function (a, b) { return a.prisStdAvvikelse - b.prisStdAvvikelse; })[0] || null;
+
+        var mestSpretigPizzeria = pizzeriorMedPris
+          .slice()
+          .filter(function (p) { return p.prisStdAvvikelse != null; })
+          .sort(function (a, b) { return b.prisStdAvvikelse - a.prisStdAvvikelse; })[0] || null;
+
+        /* ingrediensräkning */
+        var ingMap = {};
+        allaPizzor.forEach(function (p) {
+          p.ingredienser.forEach(function (ing) {
+            var k = ing.toLowerCase().trim();
+            ingMap[k] = (ingMap[k] || 0) + 1;
+          });
+        });
+        var topIng = Object.keys(ingMap)
+          .map(function (k) { return { namn: k, antal: ingMap[k] }; })
+          .sort(function (a, b) { return b.antal - a.antal; })
+          .slice(0, 50);
+
+        /* ingrediens-par */
+        var parMap = {};
+        var TRIVIAL = { 'tomatsås': true, 'ost': true, 'mozzarella': true };
+        allaPizzor.forEach(function (p) {
+          var ings = p.ingredienser
+            .map(function (i) { return i.toLowerCase().trim(); })
+            .filter(function (i) { return !TRIVIAL[i]; });
+          for (var a = 0; a < ings.length; a++) {
+            for (var b = a + 1; b < ings.length; b++) {
+              var pair = ings[a] < ings[b] ? ings[a] + ' + ' + ings[b] : ings[b] + ' + ' + ings[a];
+              parMap[pair] = (parMap[pair] || 0) + 1;
+            }
+          }
+        });
+        var topPar = Object.keys(parMap)
+          .map(function (k) { return { namn: k, antal: parMap[k] }; })
+          .sort(function (a, b) { return b.antal - a.antal; })
+          .slice(0, 20);
+
+        var typiskAntalPizzor = null;
+        var typisktPris = null;
+
+        if (pizzeriorMedPris.length) {
+          var antalMap = {};
+          pizzeriorMedPris.forEach(function (p) {
+            var k = String(p.antalPizzor);
+            antalMap[k] = (antalMap[k] || 0) + 1;
+          });
+          typiskAntalPizzor = Number(Object.keys(antalMap).sort(function (a, b) {
+            var diff = antalMap[b] - antalMap[a];
+            if (diff !== 0) return diff;
+            return Number(a) - Number(b);
+          })[0]);
+        }
+
+        if (priser.length) {
+          var prisMap = {};
+          priser.forEach(function (v) {
+            var k = String(v);
+            prisMap[k] = (prisMap[k] || 0) + 1;
+          });
+          typisktPris = Number(Object.keys(prisMap).sort(function (a, b) {
+            var diff = prisMap[b] - prisMap[a];
+            if (diff !== 0) return diff;
+            return Number(a) - Number(b);
+          })[0]);
+        }
+
+        var maxAntal = pizzeriorMedPris.length ? Math.max.apply(null, pizzeriorMedPris.map(function (p) { return p.antalPizzor; })) : null;
+        var minAntal = pizzeriorMedPris.length ? Math.min.apply(null, pizzeriorMedPris.map(function (p) { return p.antalPizzor; })) : null;
+
+        var billigastMedFlest = null;
+        var dyrastMedMinst = null;
+
+        if (maxAntal !== null) {
+          var kandidaterFlest = pizzeriorMedPris
+            .filter(function (p) { return p.antalPizzor === maxAntal; })
+            .sort(function (a, b) { return a.snittPrisExakt - b.snittPrisExakt; });
+          billigastMedFlest = kandidaterFlest[0] || null;
+        }
+
+        if (minAntal !== null) {
+          var kandidaterMinst = pizzeriorMedPris
+            .filter(function (p) { return p.antalPizzor === minAntal; })
+            .sort(function (a, b) { return b.snittPrisExakt - a.snittPrisExakt; });
+          dyrastMedMinst = kandidaterMinst[0] || null;
+        }
+
+        return {
+          antalPizzerior: dataset.length,
+          antalPizzor:    allaPizzor.length,
+          snittPris:      priser.length ? Math.round(snitt(priser)) : null,
+          minPris:        priser.length ? Math.min.apply(null, priser) : null,
+          maxPris:        priser.length ? Math.max.apply(null, priser) : null,
+          medianPris:     medianPris,
+          kvartil1:       kvartil1,
+          kvartil3:       kvartil3,
+          prisbredd:      prisbredd,
+          andelUnder100:  andelUnder100,
+          andelOver150:   andelOver150,
+          pizzeriorMedPris: pizzeriorMedPris,
+          pizzeriorEfterLagsta: pizzeriorEfterLagsta,
+          billigastRanking: pizzeriorMedPris.slice(0, 20),
+          dyrastRanking:    pizzeriorMedPris.slice(-20).reverse(),
+          flestPizzor:      dataset.slice().sort(function (a, b) { return b.pizzor.length - a.pizzor.length; }).slice(0, 20),
+          minstPizzor:      dataset.slice().sort(function (a, b) { return a.pizzor.length - b.pizzor.length; }).slice(0, 20),
+          topIngredienser:  topIng,
+          topIngrediensPar: topPar,
+          vanligastePizzatyper: vanligastePizzatyper,
+          valueRanking: valueRanking.slice(0, 20),
+          jamnastPizzeria: jamnastPizzeria,
+          mestSpretigPizzeria: mestSpretigPizzeria,
+          typiskAntalPizzor: typiskAntalPizzor,
+          typisktPris: typisktPris,
+          billigastMedFlest: billigastMedFlest,
+          dyrastMedMinst: dyrastMedMinst,
+          menyKvalitetRanking: (function () {
+            var snittPrisAllt = priser.length ? snitt(priser) : 130;
+            return dataset
+              .filter(function (p) { return p.pizzor.length >= 5; })
+              .map(function (p) {
+                /* Variation: unika ingredienser / antal pizzor, skala 0-100 */
+                var ingSet = {};
+                p.pizzor.forEach(function (pi) {
+                  (pi.ingredienser || []).forEach(function (i) { ingSet[i.toLowerCase().trim()] = true; });
+                });
+                var unikaIng = Object.keys(ingSet).length;
+                var varScore = Math.min(100, (unikaIng / p.pizzor.length) * 20);
+
+                /* Prisbalans: låg stdAvvikelse relativt till snitt = jämna priser */
+                var ps = p.pizzor.map(function (pi) { return pi.pris; }).filter(function (v) { return typeof v === 'number' && v > 0; });
+                var sn = ps.length ? snitt(ps) : 0;
+                var std = 0;
+                if (ps.length > 1 && sn) {
+                  std = Math.sqrt(ps.reduce(function (s, v) { return s + Math.pow(v - sn, 2); }, 0) / ps.length);
+                }
+                var balansScore = sn ? Math.max(0, 100 - (std / sn) * 100) : 50;
+
+                /* Prisnivå: billigare än snittet = högre poäng */
+                var prisScore = sn ? Math.max(0, Math.min(100, 100 - ((sn - snittPrisAllt) / snittPrisAllt) * 100)) : 50;
+
+                var total = Math.round(varScore * 0.4 + balansScore * 0.3 + prisScore * 0.3);
+                var betyg = total >= 80 ? 'Utmärkt' : total >= 65 ? 'Bra' : total >= 50 ? 'Medel' : 'Svag';
+                return {
+                  pizzeria: p.pizzeria,
+                  omrade: p.omrade,
+                  stad: p.stad,
+                  score: total,
+                  betyg: betyg,
+                  unikaIng: unikaIng,
+                  antalPizzor: p.pizzor.length,
+                  snittPris: Math.round(sn)
+                };
+              })
+              .sort(function (a, b) { return b.score - a.score; })
+              .slice(0, 20);
+          })(),
+          outliers: (function () {
+            /* Gruppera alla pizzor per normaliserat namn */
+            var namnMap = {};
+            dataset.forEach(function (p) {
+              p.pizzor.forEach(function (pi) {
+                if (typeof pi.pris !== 'number' || pi.pris <= 0) return;
+                var key = normaliseraNamn(pi.namn);
+                if (!namnMap[key]) namnMap[key] = [];
+                namnMap[key].push({ pizzeria: p.pizzeria, omrade: p.omrade, stad: p.stad, namn: pi.namn, pris: pi.pris });
+              });
+            });
+            var result = [];
+            Object.keys(namnMap).forEach(function (key) {
+              var grupp = namnMap[key];
+              if (grupp.length < 4) return;
+              var ps = grupp.map(function (x) { return x.pris; });
+              var m = snitt(ps);
+              var std = Math.sqrt(ps.reduce(function (s, v) { return s + Math.pow(v - m, 2); }, 0) / ps.length);
+              if (std < 5) return;
+              grupp.forEach(function (x) {
+                var z = (x.pris - m) / std;
+                if (Math.abs(z) >= 1.8) {
+                  result.push({
+                    namn: x.namn,
+                    pizzeria: x.pizzeria,
+                    omrade: x.omrade,
+                    stad: x.stad,
+                    pris: x.pris,
+                    snittForNamn: Math.round(m),
+                    diff: Math.round(x.pris - m),
+                    z: z
+                  });
+                }
+              });
+            });
+            result.sort(function (a, b) { return Math.abs(b.z) - Math.abs(a.z); });
+            return result.slice(0, 20);
+          })(),
+          ingrediensDensitet: (function () {
+            /* Snitt antal ingredienser per pizza, per pizzeria */
+            var totalaIngCount = 0;
+            var totalaIngPizzor = 0;
+            var ranking = dataset
+              .filter(function (p) { return p.pizzor.length >= 3; })
+              .map(function (p) {
+                var counts = p.pizzor.map(function (pi) {
+                  return Array.isArray(pi.ingredienser) ? pi.ingredienser.length : 0;
+                });
+                totalaIngCount += counts.reduce(function (s, v) { return s + v; }, 0);
+                totalaIngPizzor += counts.length;
+                var m = snitt(counts);
+                var mx = Math.max.apply(null, counts);
+                var pizzaMedMest = p.pizzor.reduce(function (best, pi) {
+                  return (Array.isArray(pi.ingredienser) && pi.ingredienser.length > (Array.isArray(best.ingredienser) ? best.ingredienser.length : -1)) ? pi : best;
+                }, p.pizzor[0]);
+                return {
+                  pizzeria: p.pizzeria,
+                  omrade: p.omrade,
+                  stad: p.stad,
+                  snittIng: Math.round(m * 10) / 10,
+                  maxIng: mx,
+                  pizzaMedMest: pizzaMedMest ? pizzaMedMest.namn : ''
+                };
+              })
+              .sort(function (a, b) { return b.snittIng - a.snittIng; });
+            return {
+              ranking: ranking.slice(0, 20),
+              globaltSnitt: totalaIngPizzor > 0 ? Math.round((totalaIngCount / totalaIngPizzor) * 10) / 10 : 0
+            };
+          })(),
+          prisPerIngrediens: (function () {
+            /* Rå value per pizza: pris delat med antal ingredienser (minst 4 ingredienser krävs) */
+            var perPizza = [];
+            dataset.forEach(function (p) {
+              p.pizzor.forEach(function (pi) {
+                if (typeof pi.pris !== 'number') return;
+                var antalIng = Array.isArray(pi.ingredienser) ? pi.ingredienser.length : 0;
+                if (antalIng <= 3) return;
+                perPizza.push({
+                  pizzeria: p.pizzeria,
+                  omrade: p.omrade,
+                  stad: p.stad,
+                  pizzaNamn: pi.namn,
+                  pris: pi.pris,
+                  antalIng: antalIng,
+                  prisPerIng: pi.pris / antalIng
+                });
+              });
+            });
+            if (!perPizza.length) {
+              return { dyrast: [], billigast: [], globalMax: null, globalMin: null };
+            }
+            perPizza.sort(function (a, b) { return b.prisPerIng - a.prisPerIng; });
+            return {
+              dyrast: perPizza.slice(0, 20),
+              billigast: perPizza.slice(-20).reverse(),
+              globalMax: perPizza[0],
+              globalMin: perPizza[perPizza.length - 1]
+            };
+          })(),
+          pizzaMeter: (function () {
+            var antal = allaPizzor.length;
+            var meter = Math.round(antal * 0.3);
+            return {
+              antalPizzor: antal,
+              meter: meter,
+              kilometer: Math.round((meter / 1000) * 100) / 100
+            };
+          })(),
+          eatTime: (function () {
+            var antal = allaPizzor.length;
+            var years = antal / 365.25;
+            return {
+              antalPizzor: antal,
+              years: Math.round(years * 10) / 10,
+              days: antal
+            };
+          })(),
+          prisPerBokstavNamn: (function () {
+            var prisPerBokstav = pizzeriorMedPris
+              .map(function (p) {
+                if (!p || p.snittPrisExakt == null || !p.pizzeria) return null;
+                var bokstaver = p.pizzeria.replace(/\s/g, '').length;
+                if (!bokstaver) return null;
+                return p.snittPrisExakt / bokstaver;
+              })
+              .filter(function (v) { return typeof v === 'number' && !isNaN(v); });
+
+            if (!prisPerBokstav.length) return null;
+
+            return {
+              snitt: Math.round(snitt(prisPerBokstav) * 10) / 10,
+              antal: prisPerBokstav.length
+            };
+          })(),
+          prisPerVokalNamn: (function () {
+            var prisPerVokal = pizzeriorMedPris
+              .map(function (p) {
+                if (!p || p.snittPrisExakt == null || !p.pizzeria) return null;
+                var vowels = (p.pizzeria.match(/[aeiouyåäö]/gi) || []).length;
+                if (!vowels) return null;
+                return p.snittPrisExakt / vowels;
+              })
+              .filter(function (v) { return typeof v === 'number' && !isNaN(v); });
+
+            if (!prisPerVokal.length) return null;
+
+            return {
+              snitt: Math.round(snitt(prisPerVokal) * 10) / 10,
+              antal: prisPerVokal.length
+            };
+          })(),
+          prisPerKonsonantNamn: (function () {
+            var prisPerKonsonant = pizzeriorMedPris
+              .map(function (p) {
+                if (!p || p.snittPrisExakt == null || !p.pizzeria) return null;
+                var namn = p.pizzeria.toLowerCase();
+                var bokstaver = (namn.match(/[a-zåäö]/g) || []).length;
+                var vowels = (namn.match(/[aeiouyåäö]/g) || []).length;
+                var konsonanter = bokstaver - vowels;
+                if (!konsonanter) return null;
+                return p.snittPrisExakt / konsonanter;
+              })
+              .filter(function (v) { return typeof v === 'number' && !isNaN(v); });
+
+            if (!prisPerKonsonant.length) return null;
+
+            return {
+              snitt: Math.round(snitt(prisPerKonsonant) * 10) / 10,
+              antal: prisPerKonsonant.length
+            };
+          })(),
+          prisPerAdressLangd: (function () {
+            var prisPerAdress = pizzeriorMedPris
+              .map(function (p) {
+                if (!p || p.snittPrisExakt == null) return null;
+                var adressLangd = String(p.adress || '').length;
+                if (!adressLangd) return null;
+                return p.snittPrisExakt / adressLangd;
+              })
+              .filter(function (v) { return typeof v === 'number' && !isNaN(v); });
+
+            if (!prisPerAdress.length) return null;
+
+            return {
+              snitt: Math.round(snitt(prisPerAdress) * 10) / 10,
+              antal: prisPerAdress.length
+            };
+          })(),
+          prisVsPostnummer: (function () {
+            var postMap = {};
+            pizzeriorMedPris.forEach(function (p) {
+              if (!p || p.snittPrisExakt == null) return;
+              var adress = String(p.adress || '');
+              var m = adress.match(/\b(\d{3})\s?(\d{2})\b/);
+              if (!m) return;
+              var postnr = m[1] + ' ' + m[2];
+              if (!postMap[postnr]) postMap[postnr] = [];
+              postMap[postnr].push(p.snittPrisExakt);
+            });
+
+            var ranking = Object.keys(postMap)
+              .map(function (postnr) {
+                var arr = postMap[postnr];
+                return {
+                  postnr: postnr,
+                  snittPrisExakt: snitt(arr),
+                  snittPris: Math.round(snitt(arr)),
+                  antal: arr.length
+                };
+              })
+              .sort(function (a, b) { return b.snittPrisExakt - a.snittPrisExakt; });
+
+            if (!ranking.length) return null;
+
+            return {
+              ranking: ranking,
+              dyrast: ranking[0],
+              billigast: ranking[ranking.length - 1],
+              antalPostnummer: ranking.length
+            };
+          })(),
+          prisVsOmradeNamnLangd: (function () {
+            var omradeRows = pizzeriorMedPris
+              .filter(function (p) { return p && p.snittPrisExakt != null && p.omrade; })
+              .map(function (p) {
+                var namn = String(p.omrade).trim();
+                var langd = namn.replace(/\s/g, '').length;
+                return {
+                  omrade: namn,
+                  langd: langd,
+                  pris: p.snittPrisExakt
+                };
+              })
+              .filter(function (x) { return x.langd > 0; });
+
+            if (omradeRows.length < 2) return null;
+
+            var langder = omradeRows.map(function (x) { return x.langd; }).sort(function (a, b) { return a - b; });
+            var mid = Math.floor(langder.length / 2);
+            var median = langder.length % 2 === 0
+              ? (langder[mid - 1] + langder[mid]) / 2
+              : langder[mid];
+
+            var korta = omradeRows.filter(function (x) { return x.langd <= median; });
+            var langa = omradeRows.filter(function (x) { return x.langd > median; });
+
+            if (!korta.length || !langa.length) return null;
+
+            var kortSnitt = snitt(korta.map(function (x) { return x.pris; }));
+            var langSnitt = snitt(langa.map(function (x) { return x.pris; }));
+
+            return {
+              granskortLangd: median,
+              kortSnitt: Math.round(kortSnitt * 10) / 10,
+              langSnitt: Math.round(langSnitt * 10) / 10,
+              diff: Math.round((langSnitt - kortSnitt) * 10) / 10,
+              antalKorta: korta.length,
+              antalLanga: langa.length
+            };
+          })(),
+          pizzaDNA: (function () {
+            var TRIVIAL = ['tomatsås', 'ost', 'mozzarella', 'tomatsas'];
+            return dataset
+              .filter(function (p) { return p.pizzor.length >= 3; })
+              .map(function (p) {
+                /* Räkna ingrediensfrekvens för denna pizzeria */
+                var freq = {};
+                p.pizzor.forEach(function (pi) {
+                  if (!Array.isArray(pi.ingredienser)) return;
+                  pi.ingredienser.forEach(function (ing) {
+                    var k = ing.toLowerCase().trim();
+                    if (TRIVIAL.indexOf(k) !== -1) return;
+                    freq[k] = (freq[k] || 0) + 1;
+                  });
+                });
+                var top5 = Object.keys(freq)
+                  .map(function (k) { return { namn: k, antal: freq[k] }; })
+                  .sort(function (a, b) { return b.antal - a.antal; })
+                  .slice(0, 5);
+                /* Bygg en enkel profilmening */
+                var profilOrd = top5.map(function (x) { return x.namn; });
+                var profil = profilOrd.length
+                  ? profilOrd.slice(0, -1).join(', ') + (profilOrd.length > 1 ? ' & ' + profilOrd[profilOrd.length - 1] : profilOrd[0])
+                  : '';
+                return {
+                  pizzeria: p.pizzeria,
+                  omrade: p.omrade,
+                  stad: p.stad,
+                  top5: top5,
+                  profil: profil,
+                  antalPizzor: p.pizzor.length
+                };
+              })
+              .sort(function (a, b) { return b.antalPizzor - a.antalPizzor; });
+          })(),
+          ovanligaKombinationer: (function () {
+            var TRIVIAL = ['tomats\u00e5s', 'ost', 'mozzarella', 'tomatsas'];
+            /* R\u00e4kna individuell frekvens och parfrekvens p\u00e5 allaPizzor */
+            var ingFreq = {};
+            var parFreq = {};
+            var parPizzeria = {};
+            var totalPizzor = 0;
+            dataset.forEach(function (p) {
+              p.pizzor.forEach(function (pi) {
+                if (!Array.isArray(pi.ingredienser)) return;
+                totalPizzor++;
+                var ings = pi.ingredienser
+                  .map(function (x) { return x.toLowerCase().trim(); })
+                  .filter(function (x) { return TRIVIAL.indexOf(x) === -1; });
+                /* Individuell frekvens */
+                var seen = {};
+                ings.forEach(function (k) {
+                  if (!seen[k]) { seen[k] = true; ingFreq[k] = (ingFreq[k] || 0) + 1; }
+                });
+                /* Parfrekvens */
+                for (var i = 0; i < ings.length; i++) {
+                  for (var j = i + 1; j < ings.length; j++) {
+                    var a = ings[i] < ings[j] ? ings[i] : ings[j];
+                    var b = ings[i] < ings[j] ? ings[j] : ings[i];
+                    var key = a + '|||' + b;
+                    parFreq[key] = (parFreq[key] || 0) + 1;
+                    if (!parPizzeria[key]) parPizzeria[key] = p.pizzeria;
+                  }
+                }
+              });
+            });
+            if (totalPizzor === 0) return [];
+            /* Ber\u00e4kna PMI-liknande ovanlighetsscore */
+            /* score = count(a,b) / (freq(a) * freq(b)) * totalPizzor */
+            /* H\u00f6g score = de tv\u00e5 syns OFTARE tillsammans \u00e4n slumpen f\u00f6ruts\u00e4ger */
+            /* Filtrera: minst 3 pizzor med paret, ingen trivial ingrediens */
+            var ROLIGA = ['banan', 'ananas', 'curry', 'r\u00e4kor', 'majs', 'kebab',
+              'bacon', 'jalape\u00f1o', 'jalapeno', 'chili', 'r\u00f6dbeta', 'p\u00e4ron',
+              'mango', 'kokos', 'persika', 'jordgubbar', 'fig', 'dadlar'];
+            var result = [];
+            Object.keys(parFreq).forEach(function (key) {
+              var count = parFreq[key];
+              if (count < 3) return;
+              var parts = key.split('|||');
+              var a = parts[0], b = parts[1];
+              /* Kräv minst en rolig/ovanlig ingrediens */
+              var harRolig = ROLIGA.some(function (r) { return a.indexOf(r) !== -1 || b.indexOf(r) !== -1; });
+              if (!harRolig) return;
+              var fa = ingFreq[a] || 1;
+              var fb = ingFreq[b] || 1;
+              var score = (count * totalPizzor) / (fa * fb);
+              result.push({ a: a, b: b, count: count, score: score, pizzeria: parPizzeria[key] || '' });
+            });
+            result.sort(function (x, y) { return y.score - x.score; });
+            return result.slice(0, 20);
+          })(),
+          ingrediensBingo: (function () {
+            /* Räkna unika ingrediens-kombinationer */
+            var kombinationer = {};
+            allaPizzor.forEach(function (pizza) {
+              if (!Array.isArray(pizza.ingredienser) || pizza.ingredienser.length < 2) return;
+              var sorted = pizza.ingredienser.map(function (i) { return i.toLowerCase().trim(); }).sort();
+              var key = sorted.join('|');
+              kombinationer[key] = (kombinationer[key] || 0) + 1;
+            });
+            var unika = Object.keys(kombinationer).length;
+            /* Uppskatta möjliga kombinationer baserat på unika ingredienser */
+            var allaIngredienser = {};
+            allaPizzor.forEach(function (pizza) {
+              if (Array.isArray(pizza.ingredienser)) {
+                pizza.ingredienser.forEach(function (ing) {
+                  allaIngredienser[ing.toLowerCase().trim()] = true;
+                });
+              }
+            });
+            var unique_ing_count = Object.keys(allaIngredienser).length;
+            return {
+              faktiska: unika,
+              uniktaIngredienser: unique_ing_count
+            };
+          })()
+        };
+      }
+
+      /* ------------------------------------------------
+         6. RENDER
+      ------------------------------------------------ */
+      function renderaStatistik() {
+        var dataset = filtreraPizzerior(currentScope);
+        var stat    = beraknaStatistik(dataset);
+        var totalStat = beraknaStatistik(allaPizzerior);
+
+        /* Scope-titel */
+        var titelEl = document.getElementById('stat-scope-titel');
+        if (titelEl) {
+          if (!currentScope.value) {
+            titelEl.textContent = 'Visar statistik för hela databasen';
+          } else {
+            titelEl.textContent = 'Visar statistik för: ' + currentScope.value;
+          }
+        }
+
+        var statusEl   = document.getElementById('stat-status');
+        var sectionsEl = document.getElementById('stat-sections');
+
+        if (dataset.length === 0) {
+          if (statusEl) { statusEl.textContent = 'Inga pizzerior hittades för det valda området.'; statusEl.removeAttribute('hidden'); }
+          if (sectionsEl) sectionsEl.hidden = true;
+          return;
+        }
+
+        if (statusEl) statusEl.hidden = true;
+        if (!sectionsEl) return;
+        sectionsEl.hidden = false;
+        sectionsEl.innerHTML = '';
+
+        /* --- Länk till Random statistik --- */
+        if (stat.pizzaMeter && stat.pizzaMeter.antalPizzor > 0) {
+          sectionsEl.appendChild(skapaRandomStatistikLank());
+        }
+
+        /* --- Översikt --- */
+        sectionsEl.appendChild(skapaOversiktKort(stat));
+
+        /* --- Prisintervall --- */
+        sectionsEl.appendChild(skapaPrisKort(stat));
+
+        /* --- Snabba val --- */
+        sectionsEl.appendChild(skapaSnabbaValKort(stat));
+
+        /* --- Mest värde --- */
+        if (stat.valueRanking && stat.valueRanking.length) {
+          sectionsEl.appendChild(skapaValueScoreKort(stat));
+        }
+
+        /* --- Områdesinsikter --- */
+        sectionsEl.appendChild(skapaOmradesInsikterKort(totalStat));
+
+        /* --- Lokal känsla --- */
+        sectionsEl.appendChild(skapaLokalKanslaKort());
+
+        /* --- Snabba fakta --- */
+        sectionsEl.appendChild(skapaSnabbFaktaKort(stat));
+
+        /* --- Direkt jämförelse --- */
+        sectionsEl.appendChild(skapaJamforelseKort());
+
+        /* --- Typisk meny --- */
+        sectionsEl.appendChild(skapaTypiskMenyKort(stat));
+
+        /* --- Extrem-case --- */
+        sectionsEl.appendChild(skapaExtremKort(stat));
+
+        /* --- Billigaste pizzerior --- */
+        if (stat.billigastRanking.length) {
+          sectionsEl.appendChild(skapaRankingKort(
+            '💸 Billigaste pizzerior',
+            '🟢 Lägst snittpris',
+            'stat-card--green',
+            stat.billigastRanking,
+            function (p) { return p.snittPris + ' kr snitt'; },
+            'Rankat efter snittpris – medelvärdet av alla pizzapriser hos varje pizzeria. Topp 5 billigaste visas.'
+          ));
+        }
+
+        /* --- Dyraste pizzerior --- */
+        if (stat.dyrastRanking.length) {
+          sectionsEl.appendChild(skapaRankingKort(
+            '💰 Dyraste pizzerior',
+            '🔴 Högst snittpris',
+            'stat-card--red',
+            stat.dyrastRanking,
+            function (p) { return p.snittPris + ' kr snitt'; },
+            'Rankat efter snittpris – medelvärdet av alla pizzapriser hos varje pizzeria. Topp 5 dyraste visas.'
+          ));
+        }
+
+        /* --- Störst utbud --- */
+        if (stat.flestPizzor.length) {
+          sectionsEl.appendChild(skapaRankingKort(
+            '🍕 Störst utbud',
+            '📋 Flest pizzor på menyn',
+            'stat-card--blue',
+            stat.flestPizzor,
+            function (p) { return p.pizzor.length + ' pizzor'; },
+            'Rankat efter antal pizzor i pizzerions meny. Top 20 med flest pizzor visas.'
+          ));
+        }
+
+        /* --- Minst utbud --- */
+        if (stat.minstPizzor && stat.minstPizzor.length) {
+          sectionsEl.appendChild(skapaRankingKort(
+            '🧩 Minst utbud',
+            '📉 Färst pizzor på menyn',
+            'stat-card--blue',
+            stat.minstPizzor,
+            function (p) { return p.pizzor.length + ' pizzor'; },
+            'Rankat efter antal pizzor i pizzerions meny. Top 20 med färst pizzor visas.'
+          ));
+        }
+
+        /* --- Populära ingredienser --- */
+        if (stat.topIngredienser.length) {
+          sectionsEl.appendChild(skapaIngredienserKort(stat.topIngredienser));
+        }
+
+        /* --- Ingrediens-kombinationer --- */
+        if (stat.topIngrediensPar && stat.topIngrediensPar.length) {
+          sectionsEl.appendChild(skapaIngrediensPar(stat.topIngrediensPar));
+        }
+
+        /* --- Menykvalitet --- */
+        if (stat.menyKvalitetRanking && stat.menyKvalitetRanking.length) {
+          sectionsEl.appendChild(skapaMenyKvalitetKort(stat.menyKvalitetRanking));
+        }
+
+        /* --- Outliers --- */
+        if (stat.outliers && stat.outliers.length) {
+          sectionsEl.appendChild(skapaOutliersKort(stat.outliers));
+        }
+
+        /* --- Pizza-DNA --- */
+        if (stat.pizzaDNA && stat.pizzaDNA.length) {
+          sectionsEl.appendChild(skapaPizzaDNAKort(stat.pizzaDNA));
+        }
+
+        /* --- Ovanliga kombinationer --- */
+        if (stat.ovanligaKombinationer && stat.ovanligaKombinationer.length) {
+          sectionsEl.appendChild(skapaOvanligaKombKort(stat.ovanligaKombinationer));
+        }
+
+        /* --- Pris per ingrediens --- */
+        if (stat.prisPerIngrediens && stat.prisPerIngrediens.dyrast && stat.prisPerIngrediens.dyrast.length) {
+          sectionsEl.appendChild(skapaPrisPerIngrediensKort(stat.prisPerIngrediens));
+        }
+
+        /* --- Ingrediens-density --- */
+        if (stat.ingrediensDensitet && stat.ingrediensDensitet.ranking.length) {
+          sectionsEl.appendChild(skapaIngrediensDensitetKort(stat.ingrediensDensitet));
+        }
+
+        /* --- Vanligaste pizzatyper --- */
+        if (stat.vanligastePizzatyper && stat.vanligastePizzatyper.length) {
+          sectionsEl.appendChild(skapaPizzatyperKort(stat));
+        }
+
+        /* --- Konsistens --- */
+        sectionsEl.appendChild(skapaKonsistensKort(stat));
+
+        /* --- Lokal ranking --- */
+        sectionsEl.appendChild(skapaLokalRankingKort());
+
+        /* --- Random statistik rubrik --- */
+        if (stat.pizzaMeter && stat.pizzaMeter.antalPizzor > 0) {
+          sectionsEl.appendChild(skapaRandomStatistikRubrik());
+        }
+
+        /* --- Pris per bokstav i pizzerians namn --- */
+        if (stat.prisPerBokstavNamn) {
+          sectionsEl.appendChild(skapaPrisPerBokstavNamnKort(stat.prisPerBokstavNamn));
+        }
+
+        /* --- Pris vs antal vokaler i namnet --- */
+        if (stat.prisPerVokalNamn) {
+          sectionsEl.appendChild(skapaPrisPerVokalNamnKort(stat.prisPerVokalNamn));
+        }
+
+        /* --- Pris vs antal konsonanter --- */
+        if (stat.prisPerKonsonantNamn) {
+          sectionsEl.appendChild(skapaPrisPerKonsonantNamnKort(stat.prisPerKonsonantNamn));
+        }
+
+        /* --- Pris vs längd på adressen --- */
+        if (stat.prisPerAdressLangd) {
+          sectionsEl.appendChild(skapaPrisPerAdressLangdKort(stat.prisPerAdressLangd));
+        }
+
+        /* --- Pris vs postnummer --- */
+        if (stat.prisVsPostnummer) {
+          sectionsEl.appendChild(skapaPrisVsPostnummerKort(stat.prisVsPostnummer));
+        }
+
+        /* --- Pris vs område (kort vs långt namn) --- */
+        if (stat.prisVsOmradeNamnLangd) {
+          sectionsEl.appendChild(skapaPrisVsOmradeNamnLangdKort(stat.prisVsOmradeNamnLangd));
+        }
+
+        /* --- Pizza på rad (meter) --- */
+        if (stat.pizzaMeter && stat.pizzaMeter.antalPizzor > 0) {
+          sectionsEl.appendChild(skapaPizzaMeterKort(stat.pizzaMeter));
+        }
+
+        /* --- Hur lång tid att äta allt --- */
+        if (stat.eatTime && stat.eatTime.antalPizzor > 0) {
+          sectionsEl.appendChild(skapaEatTimeKort(stat.eatTime));
+        }
+
+        /* --- Ingrediens-bingo --- */
+        if (stat.ingrediensBingo) {
+          sectionsEl.appendChild(skapaIngrediensBingoKort(stat.ingrediensBingo));
+        }
+      }
+
+      /* ------------------------------------------------
+         7. KORTBYGGARE
+      ------------------------------------------------ */
+      function skapaOversiktKort(stat) {
+        var card = skapaKort('📈 Översikt', 'Hela databasen i siffror', 'stat-card--green', 'Visar totalt antal pizzerior och pizzor i det valda urvalet. Snittpriset är medelvärdet av alla enskilda pizzapriser. Lägsta och högsta pris är det billigaste respektive dyraste priset bland alla pizzor i urvalet.');
+        var grid = document.createElement('div');
+        grid.className = 'stat-grid';
+
+        function numItem(value, label) {
+          var item = document.createElement('div');
+          item.className = 'stat-num-item';
+          item.innerHTML =
+            '<span class="stat-num-value">' + value + '</span>' +
+            '<span class="stat-num-label">' + label + '</span>';
+          return item;
+        }
+
+        grid.appendChild(numItem(stat.antalPizzerior, 'Pizzerior'));
+        grid.appendChild(numItem(stat.antalPizzor, 'Pizzor'));
+        if (stat.snittPris !== null) grid.appendChild(numItem(stat.snittPris + ' kr', 'Snittpris'));
+        if (stat.minPris  !== null) grid.appendChild(numItem(stat.minPris  + ' kr', 'Lägsta pris'));
+        if (stat.maxPris  !== null) grid.appendChild(numItem(stat.maxPris  + ' kr', 'Högsta pris'));
+
+        card.appendChild(grid);
+        return card;
+      }
+
+      function skapaOmradesInsikterKort(totalStat) {
+        var card = skapaKort('🏙 Områdes-insikter', '🔎 Hur urvalet står sig mot helheten', 'stat-card--blue', 'Jämför det valda urvalets snittpris mot hela databasen. Om ett område är valt jämförs även mot stadens snitt. Snittpriset beräknas som medelvärdet av alla enskilda pizzapriser i urvalet.');
+        var alternativ = hamtaScopeAlternativ();
+
+        if (!omradesInsikterScope) {
+          omradesInsikterScope = { type: currentScope.type, value: currentScope.value };
+        }
+
+        var omradesScope = omradesInsikterScope;
+        var omradesDataset = filtreraPizzerior(omradesScope);
+        var omradesStat = beraknaStatistik(omradesDataset);
+
+        var controls = document.createElement('div');
+        controls.className = 'stat-inline-scope';
+
+        var selectWrap = document.createElement('div');
+        selectWrap.className = 'stat-inline-select-wrap';
+
+        var select = document.createElement('select');
+        select.className = 'stat-select stat-select--inline';
+        select.setAttribute('aria-label', 'Välj område för statistik');
+
+        var aktivNyckel = scopeNyckel(omradesScope);
+        alternativ.forEach(function (opt) {
+          var o = document.createElement('option');
+          o.value = opt.key;
+          o.textContent = opt.label;
+          if (opt.key === aktivNyckel) o.selected = true;
+          select.appendChild(o);
+        });
+
+        select.addEventListener('change', function () {
+          omradesInsikterScope = skapaScopeFranNyckel(select.value);
+          renderaStatistik();
+        });
+
+        selectWrap.appendChild(select);
+        controls.appendChild(selectWrap);
+        card.appendChild(controls);
+
+        var p1 = document.createElement('p');
+        p1.className = 'stat-text';
+
+        var p2 = document.createElement('p');
+        p2.className = 'stat-text';
+
+        if (omradesStat.snittPris == null || totalStat.snittPris == null) {
+          p1.textContent = 'Underlaget är för litet för jämförelse just nu.';
+          card.appendChild(p1);
+          return card;
+        }
+
+        var diffMotTotal = omradesStat.snittPris - totalStat.snittPris;
+        var riktningTotal = diffMotTotal >= 0 ? 'dyrare' : 'billigare';
+        p1.textContent = scopeEtikett(omradesScope) + ' är ' + Math.abs(diffMotTotal) + ' kr ' + riktningTotal + ' än snittet i hela databasen.';
+        card.appendChild(p1);
+
+        if (omradesScope.type === 'area' && omradesDataset.length) {
+          var stad = omradesDataset[0].stad;
+          var stadsStat = beraknaStatistik(filtreraPizzerior({ type: 'city', value: stad }));
+          if (stadsStat.snittPris != null) {
+            var diffMotStad = omradesStat.snittPris - stadsStat.snittPris;
+            var riktningStad = diffMotStad >= 0 ? 'dyrare' : 'billigare';
+            p2.textContent = omradesScope.value + ' är ' + Math.abs(diffMotStad) + ' kr ' + riktningStad + ' än ' + stad + '.';
+            card.appendChild(p2);
+          }
+        } else if (omradesScope.type === 'city') {
+          var diffCity = omradesStat.snittPris - totalStat.snittPris;
+          var riktningCity = diffCity >= 0 ? 'dyrare' : 'billigare';
+          p2.textContent = omradesScope.value + ' är i snitt ' + Math.abs(diffCity) + ' kr ' + riktningCity + ' än helheten.';
+          card.appendChild(p2);
+        }
+
+        return card;
+      }
+
+      function skapaJamforelseKort() {
+        var card = skapaKort('🆚 Direkt jämförelse', '📏 Skillnad i kronor och procent', 'stat-card--gold', 'Välj två geografiska urval (stad eller område). Snittpriset för varje urval beräknas och skillnaden visas i kronor och procent. Procenten räknas som ((A − B) / B) × 100.');
+        var alternativ = hamtaScopeAlternativ();
+
+        if (!jamforScopeA || !jamforScopeB) {
+          var gbg = alternativ.find(function (o) { return o.key === 'city:Göteborg'; });
+          var mol = alternativ.find(function (o) { return o.key === 'city:Mölndal'; });
+          jamforScopeA = gbg ? gbg.key : alternativ[0].key;
+          jamforScopeB = mol ? mol.key : (alternativ[1] ? alternativ[1].key : alternativ[0].key);
+          if (jamforScopeA === jamforScopeB && alternativ[1]) jamforScopeB = alternativ[1].key;
+        }
+
+        var controls = document.createElement('div');
+        controls.className = 'stat-compare-controls';
+
+        var selectA = document.createElement('select');
+        selectA.className = 'stat-select';
+
+        var selectB = document.createElement('select');
+        selectB.className = 'stat-select';
+
+        alternativ.forEach(function (opt) {
+          var oa = document.createElement('option');
+          oa.value = opt.key;
+          oa.textContent = opt.label;
+          if (opt.key === jamforScopeA) oa.selected = true;
+          selectA.appendChild(oa);
+
+          var ob = document.createElement('option');
+          ob.value = opt.key;
+          ob.textContent = opt.label;
+          if (opt.key === jamforScopeB) ob.selected = true;
+          selectB.appendChild(ob);
+        });
+
+        controls.appendChild(selectA);
+        controls.appendChild(selectB);
+        card.appendChild(controls);
+
+        var result = document.createElement('p');
+        result.className = 'stat-text stat-compare-result';
+        card.appendChild(result);
+
+        function uppdateraJamforelse() {
+          jamforScopeA = selectA.value;
+          jamforScopeB = selectB.value;
+
+          var scopeA = skapaScopeFranNyckel(jamforScopeA);
+          var scopeB = skapaScopeFranNyckel(jamforScopeB);
+          var statA = beraknaStatistik(filtreraPizzerior(scopeA));
+          var statB = beraknaStatistik(filtreraPizzerior(scopeB));
+
+          if (statA.snittPris == null || statB.snittPris == null || statB.snittPris === 0) {
+            result.textContent = 'Jämförelsen saknar tillräckligt underlag.';
+            return;
+          }
+
+          var diff = statA.snittPris - statB.snittPris;
+          var pct = Math.round((diff / statB.snittPris) * 100);
+          var riktning = diff >= 0 ? 'dyrare' : 'billigare';
+          var pctText = (pct > 0 ? '+' : '') + pct + '%';
+          var labelA = escHtml(scopeEtikett(scopeA));
+          var labelB = escHtml(scopeEtikett(scopeB));
+          var diffKr = Math.abs(diff) + ' kr';
+
+          result.innerHTML =
+            '<span class="stat-compare-place">' + labelA + '</span> är i snitt ' +
+            '<span class="stat-compare-kpi">' + diffKr + '</span> ' + riktning + ' än ' +
+            '<span class="stat-compare-place">' + labelB + '</span> ' +
+            '(<span class="stat-compare-kpi">≈ ' + pctText + '</span>).';
+        }
+
+        selectA.addEventListener('change', uppdateraJamforelse);
+        selectB.addEventListener('change', uppdateraJamforelse);
+        uppdateraJamforelse();
+
+        return card;
+      }
+
+      function skapaTypiskMenyKort(stat) {
+        var card = skapaKort('📊 Typisk meny', '🧭 Vad som är vanligast i urvalet', 'stat-card--blue', 'Vanligaste menystorlek = det antal pizzor på menyn som flest pizzerior har. Vanligaste pris = det specifika pris (i kr) som förekommer flest gånger bland alla pizzor i urvalet.');
+
+        var p1 = document.createElement('p');
+        p1.className = 'stat-text';
+        p1.textContent = stat.typiskAntalPizzor != null
+          ? 'Vanligaste meny-storlek är ' + stat.typiskAntalPizzor + ' pizzor per pizzeria.'
+          : 'Vanligaste meny-storlek saknar underlag.';
+        card.appendChild(p1);
+
+        var p2 = document.createElement('p');
+        p2.className = 'stat-text';
+        p2.textContent = stat.typisktPris != null
+          ? 'Vanligaste priset är ' + stat.typisktPris + ' kr.'
+          : 'Vanligaste priset saknar underlag.';
+        card.appendChild(p2);
+
+        return card;
+      }
+
+      function skapaExtremKort(stat) {
+        var card = skapaKort('🏁 Extrem-case', '🔥 Udda men användbara ytterligheter', 'stat-card--red', 'Billigaste med flest: pizzerian med störst meny och lägst snittpris bland de med störst meny. Dyraste med minst: pizzerian med minst meny och högst snittpris bland de med minst meny.');
+
+        var p1 = document.createElement('p');
+        p1.className = 'stat-text';
+        if (stat.billigastMedFlest) {
+          p1.textContent = 'Billigaste pizzerian med flest pizzor är ' + stat.billigastMedFlest.pizzeria + ' (' + stat.billigastMedFlest.snittPris + ' kr snitt, ' + stat.billigastMedFlest.antalPizzor + ' pizzor).';
+        } else {
+          p1.textContent = 'Kunde inte räkna ut billigaste med flest pizzor.';
+        }
+        card.appendChild(p1);
+
+        var p2 = document.createElement('p');
+        p2.className = 'stat-text';
+        if (stat.dyrastMedMinst) {
+          p2.textContent = 'Dyraste pizzerian med minst utbud är ' + stat.dyrastMedMinst.pizzeria + ' (' + stat.dyrastMedMinst.snittPris + ' kr snitt, ' + stat.dyrastMedMinst.antalPizzor + ' pizzor).';
+        } else {
+          p2.textContent = 'Kunde inte räkna ut dyraste med minst utbud.';
+        }
+        card.appendChild(p2);
+
+        return card;
+      }
+
+      function skapaPrisKort(stat) {
+        var card = skapaKort('💵 Prisintervall', 'Lägsta och högsta pris i urvalet', 'stat-card--gold', 'Lägsta/högsta pris är den billigaste och dyraste enskilda pizzan. Snittpriset är medelvärdet av alla pizzapriser. Medianen är mittpunkten – hälften av pizzorna kostar mindre, hälften mer. Kvartil 25%/75% visar prisernas spridning. Prisbredd = högsta minus lägsta pris.');
+
+        function prisRad(label, value, sub) {
+          var row = document.createElement('div');
+          row.className = 'stat-pris-row';
+          row.innerHTML =
+            '<span class="stat-pris-label">' + label + '</span>' +
+            '<span class="stat-pris-value">' + value + '</span>' +
+            (sub ? '<span class="stat-pris-sub">' + sub + '</span>' : '');
+          return row;
+        }
+
+        if (stat.minPris !== null) card.appendChild(prisRad('Billigaste pizza', stat.minPris + ' kr', 'lägsta enskilda pris'));
+        if (stat.maxPris !== null) card.appendChild(prisRad('Dyraste pizza', stat.maxPris + ' kr', 'högsta enskilda pris'));
+        if (stat.snittPris !== null) card.appendChild(prisRad('Snittpris (alla pizzor)', stat.snittPris + ' kr', 'medelvärde'));
+        if (stat.medianPris !== null) card.appendChild(prisRad('Medianpris', stat.medianPris + ' kr', 'mittenvärde'));
+        if (stat.kvartil1 !== null && stat.kvartil3 !== null) card.appendChild(prisRad('Kvartiler (25% / 75%)', stat.kvartil1 + ' kr / ' + stat.kvartil3 + ' kr', 'spridning i prisnivå'));
+        if (stat.kvartil1 !== null && stat.kvartil3 !== null) card.appendChild(prisRad('Vanlig priszon', stat.kvartil1 + '–' + stat.kvartil3 + ' kr', 'de flesta pizzor ligger här'));
+        if (stat.prisbredd !== null) card.appendChild(prisRad('Prisbredd', stat.prisbredd + ' kr', 'högsta - lägsta pris'));
+        if (stat.andelUnder100 !== null) card.appendChild(prisRad('Andel pizzor ≤ 100 kr', stat.andelUnder100 + '%', 'andel av hela urvalet'));
+        if (stat.andelOver150 !== null) card.appendChild(prisRad('Andel pizzor ≥ 150 kr', stat.andelOver150 + '%', 'andel av hela urvalet'));
+        if (stat.pizzeriorEfterLagsta && stat.pizzeriorEfterLagsta.length) {
+          card.appendChild(prisRad('Billigaste pizzeria (frånpris)', stat.pizzeriorEfterLagsta[0].pizzeria, 'från ' + stat.pizzeriorEfterLagsta[0].lagstaPris + ' kr'));
+        }
+        if (stat.billigastRanking.length) card.appendChild(prisRad('Billigaste pizzeria (snitt)', stat.billigastRanking[0].pizzeria, stat.billigastRanking[0].snittPris + ' kr snitt'));
+        if (stat.dyrastRanking.length) card.appendChild(prisRad('Dyraste pizzeria (snitt)', stat.dyrastRanking[0].pizzeria, stat.dyrastRanking[0].snittPris + ' kr snitt'));
+
+        return card;
+      }
+
+      function skapaSnabbaValKort(stat) {
+        var card = skapaKort('🎯 Snabba val', '🧠 Vad ska jag välja?', 'stat-card--green', 'Snabba rekommendationer baserat på pris, utbud och value-score. Hjälper dig att snabbt välja efter vad som är viktigast för dig.');
+        var list = document.createElement('ul');
+        list.className = 'stat-bullet-list';
+
+        var billigast = stat.pizzeriorEfterLagsta && stat.pizzeriorEfterLagsta[0] ? stat.pizzeriorEfterLagsta[0] : null;
+        var balans = stat.valueRanking && stat.valueRanking[0] ? stat.valueRanking[0] : null;
+        var flest = stat.flestPizzor && stat.flestPizzor[0] ? stat.flestPizzor[0] : null;
+        var premium = stat.dyrastRanking && stat.dyrastRanking[0] ? stat.dyrastRanking[0] : null;
+
+        if (billigast) {
+          list.appendChild(skapaPunkt('🥇 Billigaste totalt: Vill du ha billigt → välj ' + billigast.pizzeria + ' (från ' + billigast.lagstaPris + ' kr).'));
+        }
+        if (balans) {
+          list.appendChild(skapaPunkt('⚖️ Bästa balans: Pris + utbud → välj ' + balans.pizzeria + ' (value-score ' + balans.valueScore.toFixed(2) + ').'));
+        }
+        if (flest) {
+          list.appendChild(skapaPunkt('🍕 Flest pizzor: Vill du ha mycket att välja på → välj ' + flest.pizzeria + ' (' + flest.pizzor.length + ' pizzor).'));
+        }
+        if (premium) {
+          list.appendChild(skapaPunkt('💸 Mest premium: Högst snittpris har ' + premium.pizzeria + ' (' + premium.snittPris + ' kr snitt).'));
+        }
+
+        card.appendChild(list);
+        return card;
+      }
+
+      function skapaValueScoreKort(stat) {
+        var card = skapaKort('🏆 Mest värde för pengarna', '💎 Value-score', 'stat-card--blue', 'Value-score beräknas som antalPizzor / snittPris. Högre score betyder mer meny för varje krona i snittpris.');
+        var p = document.createElement('p');
+        p.className = 'stat-text';
+        p.textContent = 'Formel: valueScore = antalPizzor / snittPris.';
+        card.appendChild(p);
+
+        var ul = document.createElement('ul');
+        ul.className = 'stat-rank-list';
+        stat.valueRanking.forEach(function (item, i) {
+          var li = document.createElement('li');
+          li.className = 'stat-rank-item';
+          var pizzeriaHref = pizzeriaLank(item.pizzeria);
+          li.innerHTML =
+            '<span class="stat-rank-pos">' + (i + 1) + '</span>' +
+            '<span class="stat-rank-namn"><a class="stat-rank-link" href="' + escHtml(pizzeriaHref) + '" aria-label="Visa meny för ' + escHtml(item.pizzeria) + '">' + escHtml(item.pizzeria) + '</a></span>' +
+            '<span class="stat-rank-pris">' + item.valueScore.toFixed(2) + '</span>';
+          ul.appendChild(li);
+        });
+        card.appendChild(ul);
+        return card;
+      }
+
+      function skapaLokalKanslaKort() {
+        var card = skapaKort('🧭 Om Du Bor Här', '🏙 Lokal känsla', 'stat-card--blue', 'Jämför stadsnivå för att ge snabb lokal känsla om prisnivån mellan olika områden.');
+        var stader = [];
+        allaPizzerior.forEach(function (p) {
+          if (p.stad && stader.indexOf(p.stad) === -1) stader.push(p.stad);
+        });
+        stader.sort(function (a, b) { return a.localeCompare(b, 'sv'); });
+
+        if (!lokalKanslaStad || stader.indexOf(lokalKanslaStad) === -1) {
+          if (stader.indexOf('Mölndal') !== -1) {
+            lokalKanslaStad = 'Mölndal';
+          } else {
+            lokalKanslaStad = stader[0] || null;
+          }
+        }
+
+        var controls = document.createElement('div');
+        controls.className = 'stat-inline-scope';
+
+        var selectWrap = document.createElement('div');
+        selectWrap.className = 'stat-inline-select-wrap';
+
+        var select = document.createElement('select');
+        select.className = 'stat-select stat-select--inline';
+        select.setAttribute('aria-label', 'Välj stad för lokal känsla');
+
+        stader.forEach(function (stad) {
+          var option = document.createElement('option');
+          option.value = stad;
+          option.textContent = 'Stad: ' + stad;
+          if (stad === lokalKanslaStad) option.selected = true;
+          select.appendChild(option);
+        });
+
+        select.addEventListener('change', function () {
+          lokalKanslaStad = select.value;
+          renderaStatistik();
+        });
+
+        selectWrap.appendChild(select);
+        controls.appendChild(selectWrap);
+        card.appendChild(controls);
+
+        var p = document.createElement('p');
+        p.className = 'stat-text';
+        var p2 = document.createElement('p');
+        p2.className = 'stat-text';
+
+        var stadStat = lokalKanslaStad ? beraknaStatistik(filtreraPizzerior({ type: 'city', value: lokalKanslaStad })) : null;
+        var totalStat = beraknaStatistik(allaPizzerior);
+
+        if (!stadStat || stadStat.snittPris == null || totalStat.snittPris == null) {
+          p.textContent = 'Kunde inte göra lokal jämförelse just nu på grund av för lite data.';
+          card.appendChild(p);
+          return card;
+        }
+
+        var diffMotTotal = stadStat.snittPris - totalStat.snittPris;
+        if (diffMotTotal < 0) {
+          p.textContent = 'I ' + lokalKanslaStad + ' är pizzor generellt billigare än helheten, cirka ' + Math.abs(diffMotTotal) + ' kr i snitt.';
+        } else if (diffMotTotal > 0) {
+          p.textContent = 'I ' + lokalKanslaStad + ' är pizzor generellt dyrare än helheten, cirka ' + Math.abs(diffMotTotal) + ' kr i snitt.';
+        } else {
+          p.textContent = lokalKanslaStad + ' ligger i princip på samma snittpris som helheten.';
+        }
+        card.appendChild(p);
+
+        var andraStader = stader
+          .filter(function (stad) { return stad !== lokalKanslaStad; })
+          .map(function (stad) {
+            return {
+              stad: stad,
+              stat: beraknaStatistik(filtreraPizzerior({ type: 'city', value: stad }))
+            };
+          })
+          .filter(function (x) { return x.stat.snittPris != null; });
+
+        if (andraStader.length) {
+          andraStader.sort(function (a, b) {
+            return Math.abs(stadStat.snittPris - a.stat.snittPris) - Math.abs(stadStat.snittPris - b.stat.snittPris);
+          });
+          var narmast = andraStader[0];
+          var diffNarmast = stadStat.snittPris - narmast.stat.snittPris;
+          if (diffNarmast < 0) {
+            p2.textContent = lokalKanslaStad + ' är även cirka ' + Math.abs(diffNarmast) + ' kr billigare än ' + narmast.stad + '.';
+          } else if (diffNarmast > 0) {
+            p2.textContent = lokalKanslaStad + ' är även cirka ' + Math.abs(diffNarmast) + ' kr dyrare än ' + narmast.stad + '.';
+          } else {
+            p2.textContent = lokalKanslaStad + ' ligger i samma prisnivå som ' + narmast.stad + '.';
+          }
+          card.appendChild(p2);
+        }
+
+        return card;
+      }
+
+      function skapaSnabbFaktaKort(stat) {
+        var card = skapaKort('⚡ Snabba Fakta', '🧠 Highlights', 'stat-card--red', 'Små highlights från datan för snabb förståelse av nivåer och extremer.');
+        var billigastFran = stat.pizzeriorEfterLagsta && stat.pizzeriorEfterLagsta[0] ? stat.pizzeriorEfterLagsta[0] : null;
+        var billigastSnitt = stat.billigastRanking && stat.billigastRanking[0] ? stat.billigastRanking[0] : null;
+        var dyrastSnitt = stat.dyrastRanking && stat.dyrastRanking[0] ? stat.dyrastRanking[0] : null;
+        var mestVarde = stat.valueRanking && stat.valueRanking[0] ? stat.valueRanking[0] : null;
+        var mestUtbud = stat.flestPizzor && stat.flestPizzor[0] ? stat.flestPizzor[0] : null;
+        var typ1 = stat.vanligastePizzatyper && stat.vanligastePizzatyper[0] ? stat.vanligastePizzatyper[0] : null;
+        var typ2 = stat.vanligastePizzatyper && stat.vanligastePizzatyper[1] ? stat.vanligastePizzatyper[1] : null;
+        var TRIVIAL_ING = ['tomatsås', 'ost', 'mozzarella'];
+        var filtreradIng = (stat.topIngredienser || []).filter(function (i) { return TRIVIAL_ING.indexOf(i.namn) === -1; });
+        var ing1 = filtreradIng[0] || null;
+        var ing2 = filtreradIng[1] || null;
+        var jamnast = stat.jamnastPizzeria || null;
+        var spretig = stat.mestSpretigPizzeria || null;
+
+        var stadSet = {};
+        var omrSet = {};
+        allaPizzerior.forEach(function (p) {
+          if (p.stad) stadSet[p.stad] = true;
+          if (p.omrade) omrSet[p.omrade] = true;
+        });
+        var antalStader = Object.keys(stadSet).length;
+        var antalOmraden = Object.keys(omrSet).length;
+
+        var fakta = [
+          '🍕 Det finns ' + stat.antalPizzor + ' pizzor i detta urval.',
+          '🏪 Urvalet innehåller ' + stat.antalPizzerior + ' pizzerior.',
+          '📊 Snittpriset är ' + (stat.snittPris != null ? stat.snittPris + ' kr' : 'okänt') + '.',
+          '📈 Medianpriset ligger på ' + (stat.medianPris != null ? stat.medianPris + ' kr' : 'okänt') + '.',
+          '🎯 De flesta pizzor kostar mellan ' + (stat.kvartil1 != null ? stat.kvartil1 : '?') + '–' + (stat.kvartil3 != null ? stat.kvartil3 : '?') + ' kr.',
+          '💸 Billigaste enskilda pizza kostar ' + (stat.minPris != null ? stat.minPris + ' kr' : 'okänt') + '.',
+          '💎 Dyraste enskilda pizza kostar ' + (stat.maxPris != null ? stat.maxPris + ' kr' : 'okänt') + '.',
+          '📏 Prisbredden är ' + (stat.prisbredd != null ? stat.prisbredd + ' kr' : 'okänd') + '.',
+          '🧠 Andel pizzor på 100 kr eller lägre: ' + (stat.andelUnder100 != null ? stat.andelUnder100 + '%' : 'okänd') + '.',
+          '🔥 Andel pizzor på 150 kr eller högre: ' + (stat.andelOver150 != null ? stat.andelOver150 + '%' : 'okänd') + '.',
+          '🥇 Billigaste frånpris just nu: ' + (billigastFran ? billigastFran.pizzeria + ' (' + billigastFran.lagstaPris + ' kr)' : 'saknas') + '.',
+          '🟢 Billigaste snittpris: ' + (billigastSnitt ? billigastSnitt.pizzeria + ' (' + billigastSnitt.snittPris + ' kr)' : 'saknas') + '.',
+          '🔴 Högsta snittpris: ' + (dyrastSnitt ? dyrastSnitt.pizzeria + ' (' + dyrastSnitt.snittPris + ' kr)' : 'saknas') + '.',
+          '🏆 Mest värde för pengarna: ' + (mestVarde ? mestVarde.pizzeria + ' (score ' + mestVarde.valueScore.toFixed(2) + ')' : 'saknas') + '.',
+          '📋 Störst meny: ' + (mestUtbud ? mestUtbud.pizzeria + ' (' + mestUtbud.pizzor.length + ' pizzor)' : 'saknas') + '.',
+          '🧭 Vanligaste menystorlek är ' + (stat.typiskAntalPizzor != null ? stat.typiskAntalPizzor + ' pizzor' : 'okänd') + '.',
+          '💰 Vanligaste priset i urvalet är ' + (stat.typisktPris != null ? stat.typisktPris + ' kr' : 'okänt') + '.',
+          '🍕 Vanligaste pizzatyp: ' + (typ1 ? typ1.namn + ' (' + typ1.antal + ' st)' : 'saknas') + '.',
+          '🍽 Näst vanligaste pizzatyp: ' + (typ2 ? typ2.namn + ' (' + typ2.antal + ' st)' : 'saknas') + '.',
+          '🧄 Vanligaste ingrediens: ' + (ing1 ? ing1.namn + ' (x' + ing1.antal + ')' : 'saknas') + '.',
+          '🌿 Näst vanligaste ingrediens: ' + (ing2 ? ing2.namn + ' (x' + ing2.antal + ')' : 'saknas') + '.',
+          '🏁 Billigaste med flest pizzor: ' + (stat.billigastMedFlest ? stat.billigastMedFlest.pizzeria : 'saknas') + '.',
+          '🏁 Dyraste med minst utbud: ' + (stat.dyrastMedMinst ? stat.dyrastMedMinst.pizzeria : 'saknas') + '.',
+          '🧱 Jämnast priser: ' + (jamnast ? jamnast.pizzeria + ' (spridning ' + jamnast.prisStdAvvikelse.toFixed(1) + ' kr)' : 'saknas') + '.',
+          '🌊 Mest varierade priser: ' + (spretig ? spretig.pizzeria + ' (spridning ' + spretig.prisStdAvvikelse.toFixed(1) + ' kr)' : 'saknas') + '.',
+          '🏙 Databasen innehåller ' + antalStader + ' städer.',
+          '📍 Databasen innehåller ' + antalOmraden + ' områden.',
+          '📉 Billigaste topplista visar ' + (stat.billigastRanking ? stat.billigastRanking.length : 0) + ' pizzerior.',
+          '📈 Dyraste topplista visar ' + (stat.dyrastRanking ? stat.dyrastRanking.length : 0) + ' pizzerior.'
+        ];
+
+        var controls = document.createElement('div');
+        controls.className = 'stat-fakta-controls';
+
+        var counter = document.createElement('span');
+        counter.className = 'stat-fakta-counter';
+
+        var nextBtn = document.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.className = 'stat-fakta-next';
+        nextBtn.setAttribute('aria-label', 'Visa nästa snabbfakta');
+        nextBtn.textContent = '➜';
+
+        controls.appendChild(counter);
+        controls.appendChild(nextBtn);
+        card.appendChild(controls);
+
+        var list = document.createElement('ul');
+        list.className = 'stat-bullet-list';
+        card.appendChild(list);
+
+        function renderFaktaSida() {
+          var perSida = 5;
+          var start = snabbFaktaIndex % fakta.length;
+          var sida = Math.floor(start / perSida) + 1;
+          var maxSidor = Math.ceil(fakta.length / perSida);
+          list.innerHTML = '';
+          for (var i = 0; i < perSida; i += 1) {
+            var idx = (start + i) % fakta.length;
+            list.appendChild(skapaPunkt(fakta[idx]));
+          }
+          counter.textContent = 'Sida ' + sida + ' av ' + maxSidor;
+        }
+
+        nextBtn.addEventListener('click', function () {
+          snabbFaktaIndex = (snabbFaktaIndex + 5) % fakta.length;
+          renderFaktaSida();
+        });
+
+        renderFaktaSida();
+        return card;
+      }
+
+      function skapaPizzatyperKort(stat) {
+        var card = skapaKort('🍕 Vanligaste Pizzatyper', '📚 Populära namn', 'stat-card--gold', 'Bygger på pizza_namn i databasen. Visar vilka pizzatyper som förekommer oftast i urvalet.');
+        var p = document.createElement('p');
+        p.className = 'stat-text';
+        p.textContent = stat.vanligastePizzatyper[0]
+          ? stat.vanligastePizzatyper[0].namn + ' är den vanligaste pizzan just nu.'
+          : 'Kunde inte avgöra vanligaste pizzatyp.';
+        card.appendChild(p);
+
+        var ul = document.createElement('ul');
+        ul.className = 'stat-bullet-list';
+        ul.style.maxHeight = '480px';
+        ul.style.overflowY = 'auto';
+        stat.vanligastePizzatyper.slice(0, 20).forEach(function (item) {
+          ul.appendChild(skapaPunkt(item.namn + ' (' + item.antal + ' st)'));
+        });
+        card.appendChild(ul);
+        return card;
+      }
+
+      function skapaKonsistensKort(stat) {
+        var card = skapaKort('🧱 Konsistens Per Pizzeria', '📉 Hur jämna priser är', 'stat-card--red', 'Mäter pris-spridning per pizzeria. Låg standardavvikelse betyder jämna priser, hög betyder större variation.');
+        var p1 = document.createElement('p');
+        p1.className = 'stat-text';
+        var p2 = document.createElement('p');
+        p2.className = 'stat-text';
+
+        if (stat.jamnastPizzeria) {
+          p1.textContent = stat.jamnastPizzeria.pizzeria + ' har väldigt jämna priser (spridning ca ' + stat.jamnastPizzeria.prisStdAvvikelse.toFixed(1) + ' kr).';
+        } else {
+          p1.textContent = 'Kunde inte hitta pizzeria med jämn prisbild ännu.';
+        }
+
+        if (stat.mestSpretigPizzeria) {
+          p2.textContent = stat.mestSpretigPizzeria.pizzeria + ' har stor variation i priser (spridning ca ' + stat.mestSpretigPizzeria.prisStdAvvikelse.toFixed(1) + ' kr).';
+        } else {
+          p2.textContent = 'Kunde inte hitta pizzeria med hög prisvariation ännu.';
+        }
+
+        card.appendChild(p1);
+        card.appendChild(p2);
+        return card;
+      }
+
+      function skapaLokalRankingKort() {
+        var card = skapaKort('🏙 Ranking Per Område', '📍 Billigast per stad', 'stat-card--green', 'Visar billigaste pizzeria (snittpris) per stad i databasen.');
+        var stadMap = {};
+        allaPizzerior.forEach(function (p) {
+          if (!p.stad) return;
+          if (!stadMap[p.stad]) stadMap[p.stad] = [];
+          stadMap[p.stad].push(p);
+        });
+
+        var list = document.createElement('ul');
+        list.className = 'stat-bullet-list';
+
+        Object.keys(stadMap).sort(function (a, b) { return a.localeCompare(b, 'sv'); }).forEach(function (stad) {
+          var stadsStat = beraknaStatistik(stadMap[stad]);
+          var billigast = stadsStat.billigastRanking && stadsStat.billigastRanking[0] ? stadsStat.billigastRanking[0] : null;
+          if (billigast) {
+            list.appendChild(skapaPunkt('Billigast i ' + stad + ': ' + billigast.pizzeria + ' (' + billigast.snittPris + ' kr snitt).'));
+          }
+        });
+
+        card.appendChild(list);
+        return card;
+      }
+
+      function skapaPunkt(text) {
+        var li = document.createElement('li');
+        li.className = 'stat-bullet-item';
+        li.textContent = text;
+        return li;
+      }
+
+      function skapaRandomStatistikRubrik() {
+        var wrap = document.createElement('div');
+        wrap.className = 'stat-subsection';
+        wrap.id = 'random-statistik';
+        wrap.innerHTML =
+          '<p class="stat-subsection-label">🎲 Random statistik</p>' +
+          '<h3 class="stat-subsection-title">Roliga, knasiga och bisarra insikter</h3>';
+        return wrap;
+      }
+
+      function skapaRandomStatistikLank() {
+        var box = document.createElement('div');
+        box.className = 'stat-random-nav';
+        box.innerHTML =
+          '<div class="stat-random-nav-content">' +
+            '<p class="stat-random-nav-label">✨ Nyfiken?</p>' +
+            '<a href="#random-statistik" class="stat-random-nav-link">Hoppa till roliga & bisarra insikter →</a>' +
+            '<p class="stat-random-nav-desc">Se intressanta mönster och kuriösa fakta om pizzorna i databasen.</p>' +
+          '</div>';
+        return box;
+      }
+
+      function skapaRankingKort(rubrik, label, modifier, lista, prisText, infoText) {
+        var card = skapaKort(rubrik, label, modifier, infoText);
+        var ul = document.createElement('ul');
+        ul.className = 'stat-rank-list';
+        ul.setAttribute('role', 'list');
+
+        lista.forEach(function (item, i) {
+          var li = document.createElement('li');
+          li.className = 'stat-rank-item';
+
+          var posKlass = i < 3 ? ' stat-rank-pos--' + (i + 1) : '';
+          var plats    = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : (i + 1);
+          var sub      = [item.omrade, item.stad].filter(Boolean).join(', ');
+          var pizzeriaHref = pizzeriaLank(item.pizzeria);
+
+          li.innerHTML =
+            '<span class="stat-rank-pos' + posKlass + '">' + plats + '</span>' +
+            '<span class="stat-rank-namn">' +
+              '<a class="stat-rank-link" href="' + escHtml(pizzeriaHref) + '" aria-label="Visa meny för ' + escHtml(item.pizzeria) + '">' +
+                escHtml(item.pizzeria) +
+                (sub ? '<span class="stat-rank-namn-sub">' + escHtml(sub) + '</span>' : '') +
+              '</a>' +
+            '</span>' +
+            '<span class="stat-rank-pris">' + escHtml(prisText(item)) + '</span>';
+
+          ul.appendChild(li);
+        });
+
+        card.appendChild(ul);
+        return card;
+      }
+
+      function skapaIngredienserKort(topIng) {
+        var card = skapaKort('🧄 Populära ingredienser', '📊 Vanligast förekommande i databasen', 'stat-card--blue', 'Räknar hur många gånger varje ingrediens förekommer i databasens ingredienslistor. De 12 vanligaste visas. Siffran ×N visar i hur många pizzor ingrediensen ingår.');
+        var wrap = document.createElement('div');
+        wrap.className = 'stat-tags';
+
+        topIng.forEach(function (ing) {
+          var tag = document.createElement('span');
+          tag.className = 'stat-tag';
+          tag.innerHTML = escHtml(ing.namn) + '<span class="stat-tag-count">×' + ing.antal + '</span>';
+          wrap.appendChild(tag);
+        });
+
+        card.appendChild(wrap);
+        return card;
+      }
+
+      function skapaIngrediensPar(topPar) {
+        var card = skapaKort('\uD83E\uDDEC Ingrediens-kombinationer', '\uD83D\uDD17 Vanligaste par i databasen', 'stat-card--blue', 'R\u00e4knar hur ofta tv\u00e5 ingredienser f\u00f6rekommer tillsammans p\u00e5 samma pizza. Tomats\u00e5s, ost och mozzarella exkluderas. Top 20 visas.');
+        var ul = document.createElement('ul');
+        ul.className = 'stat-bullet-list';
+        topPar.forEach(function (par) {
+          ul.appendChild(skapaPunkt(par.namn + ' \u00d7' + par.antal));
+        });
+        card.appendChild(ul);
+        return card;
+      }
+
+      function skapaMenyKvalitetKort(ranking) {
+        var card = skapaKort('\uD83D\uDCCA Menykvalitet', '\u2B50 Variation + Balans + Pris', 'stat-card--gold', 'Kombinerar tre faktorer: ingrediens-variation (40%), prisjämnhet (30%) och prisniv\u00e5 vs snittet (30%). Minst 5 pizzor kr\u00e4vs. Poäng 0\u2013100. Utm\u00e4rkt \u2265 80, Bra \u2265 65, Medel \u2265 50, Svag < 50.');
+        var ul = document.createElement('ul');
+        ul.className = 'stat-rank-list';
+        ul.setAttribute('role', 'list');
+        ranking.forEach(function (item, i) {
+          var li = document.createElement('li');
+          li.className = 'stat-rank-item';
+          var posKlass = i < 3 ? ' stat-rank-pos--' + (i + 1) : '';
+          var plats = i === 0 ? '\uD83E\uDD47' : i === 1 ? '\uD83E\uDD48' : i === 2 ? '\uD83E\uDD49' : (i + 1);
+          var sub = [item.omrade, item.stad].filter(Boolean).join(', ');
+          var pizzeriaHref = pizzeriaLank(item.pizzeria);
+          li.innerHTML =
+            '<span class="stat-rank-pos' + posKlass + '">' + plats + '</span>' +
+            '<span class="stat-rank-namn">' +
+              '<a class="stat-rank-link" href="' + escHtml(pizzeriaHref) + '" aria-label="Visa meny för ' + escHtml(item.pizzeria) + '">' +
+                escHtml(item.pizzeria) +
+                (sub ? '<span class="stat-rank-namn-sub">' + escHtml(sub) + '</span>' : '') +
+              '</a>' +
+            '</span>' +
+            '<span class="stat-rank-pris">' + item.score + ' p \u2014 ' + escHtml(item.betyg) + '</span>';
+          ul.appendChild(li);
+        });
+        card.appendChild(ul);
+        return card;
+      }
+
+      function skapaOutliersKort(outliers) {
+        var card = skapaKort('\uD83D\uDCC9 Extrema avvikelser', '\uD83D\uDD0E Ovanligt dyr eller billig j\u00e4mf\u00f6rt med liknande pizzor', 'stat-card--red', 'J\u00e4mf\u00f6r varje pizza mot snittpriset f\u00f6r samma pizzanamn i hela urvalet. Pizzor som avviker mer \u00e4n 1,8 standardavvikelser visas. Kr\u00e4ver minst 4 pizzerior med samma namn.');
+        var ul = document.createElement('ul');
+        ul.className = 'stat-rank-list';
+        ul.setAttribute('role', 'list');
+        outliers.forEach(function (item, i) {
+          var li = document.createElement('li');
+          li.className = 'stat-rank-item';
+          var sub = [item.omrade, item.stad].filter(Boolean).join(', ');
+          var pizzeriaHref = pizzeriaLank(item.pizzeria);
+          var diffTxt = (item.diff > 0 ? '+' : '') + item.diff + ' kr vs snitt (' + item.snittForNamn + ' kr)';
+          var posKlass = item.diff > 0 ? ' stat-rank-pos--5' : ' stat-rank-pos--1';
+          li.innerHTML =
+            '<span class="stat-rank-pos' + posKlass + '">' + (item.diff > 0 ? '\uD83D\uDD3A' : '\uD83D\uDD3B') + '</span>' +
+            '<span class="stat-rank-namn">' +
+              escHtml(item.namn) + '<span class="stat-rank-namn-sub"><a class="stat-rank-link" href="' + escHtml(pizzeriaHref) + '" aria-label="Visa meny för ' + escHtml(item.pizzeria) + '">' + escHtml(item.pizzeria) + (sub ? ', ' + escHtml(sub) : '') + '</a></span>' +
+            '</span>' +
+            '<span class="stat-rank-pris">' + item.pris + ' kr \u2014 ' + escHtml(diffTxt) + '</span>';
+          ul.appendChild(li);
+        });
+        card.appendChild(ul);
+        return card;
+      }
+
+      function skapaIngrediensDensitetKort(data) {
+        var card = skapaKort('\uD83C\uDF55 Ingrediens-density', '\uD83D\uDCCA Hur fulla pizzorna är', 'stat-card--green', 'Genomsnittligt antal ingredienser per pizza per pizzeria (minst 3 pizzor krävs). Globalt snitt räknas på hela urvalet.');
+        var snittP = document.createElement('p');
+        snittP.className = 'stat-fact-small';
+        snittP.textContent = 'Globalt snitt: ' + data.globaltSnitt + ' ingredienser/pizza';
+        card.appendChild(snittP);
+        var ul = document.createElement('ul');
+        ul.className = 'stat-rank-list';
+        ul.setAttribute('role', 'list');
+        data.ranking.forEach(function (item, i) {
+          var li = document.createElement('li');
+          li.className = 'stat-rank-item';
+          var posKlass = i < 3 ? ' stat-rank-pos--' + (i + 1) : '';
+          var plats = i === 0 ? '\uD83E\uDD47' : i === 1 ? '\uD83E\uDD48' : i === 2 ? '\uD83E\uDD49' : (i + 1);
+          var sub = [item.omrade, item.stad].filter(Boolean).join(', ');
+          var pizzeriaHref = pizzeriaLank(item.pizzeria);
+          li.innerHTML =
+            '<span class="stat-rank-pos' + posKlass + '">' + plats + '</span>' +
+            '<span class="stat-rank-namn">' +
+              '<a class="stat-rank-link" href="' + escHtml(pizzeriaHref) + '" aria-label="Visa meny för ' + escHtml(item.pizzeria) + '">' +
+                escHtml(item.pizzeria) +
+                (sub ? '<span class="stat-rank-namn-sub">' + escHtml(sub) + '</span>' : '') +
+                (item.pizzaMedMest ? '<span class="stat-rank-namn-sub">' + escHtml('Mest: ' + item.pizzaMedMest + ' (' + item.maxIng + ' ing.)') + '</span>' : '') +
+              '</a>' +
+            '</span>' +
+            '<span class="stat-rank-pris">' + item.snittIng + ' ing./pizza</span>';
+          ul.appendChild(li);
+        });
+        card.appendChild(ul);
+        return card;
+      }
+
+      function skapaPizzaMeterKort(data) {
+        var card = skapaKort('🍕 Meter pizza i databasen', '📏 Total pizzalängd', 'stat-card--orange', 'Antagande: varje pizza är 30 cm i diameter. Vi lägger alla pizzor på rad för att få total längd.');
+        var info = document.createElement('p');
+        info.className = 'stat-text';
+        info.textContent = 'Alla pizzor lagda på rad = ' + data.meter + ' meter pizza (' + data.kilometer + ' km).';
+        card.appendChild(info);
+        var fakta = document.createElement('p');
+        fakta.className = 'stat-fact-small';
+        fakta.textContent = 'Underlag: ' + data.antalPizzor + ' pizzor × 30 cm.';
+        card.appendChild(fakta);
+        return card;
+      }
+
+      function skapaEatTimeKort(data) {
+        var card = skapaKort('⏳ Hur lång tid att äta allt?', '👋 Viktig 😄', 'stat-card--blue', '🍕 1 pizza/dag = hur många år? Enkelt räknat med genomsnittlig ätrhytm.');
+        var info = document.createElement('p');
+        info.className = 'stat-text stat-text--highlight';
+        info.textContent = '1 pizza/dag = ' + data.years + ' år';
+        card.appendChild(info);
+        var fakta = document.createElement('p');
+        fakta.className = 'stat-fact-small';
+        fakta.textContent = 'Baserat på ' + data.antalPizzor + ' pizzor ÷ 365.25 dagar/år.';
+        card.appendChild(fakta);
+        return card;
+      }
+
+      function skapaPrisPerBokstavNamnKort(data) {
+        var card = skapaKort('🍕 Pris per bokstav i pizzerians namn', '👉 Slump', 'stat-card--green', 'Beräkning: för varje pizzeria räknas snittpriset ÷ antal bokstäver i namnet (mellanslag räknas inte). Sedan tas medelvärdet av alla pizzeriors kvoter – varje pizzeria väger lika tungt oavsett hur många pizzor den har.');
+        var info = document.createElement('p');
+        info.className = 'stat-text stat-text--highlight';
+        info.textContent = 'Du betalar i snitt ' + data.snitt.toFixed(1) + ' kr per bokstav i pizzerians namn';
+        card.appendChild(info);
+        return card;
+      }
+
+      function skapaPrisPerVokalNamnKort(data) {
+        var card = skapaKort('😂 Pris vs antal vokaler i namnet', '👉 Slump', 'stat-card--blue', 'Vokaler: a, e, i, o, u, y, å, ä, ö. Beräkning: för varje pizzeria räknas snittpriset ÷ antal vokaler i namnet. Sedan tas medelvärdet av alla pizzeriors kvoter. En pizzeria med få vokaler och högt pris drar upp snittet extra mycket.');
+        var info = document.createElement('p');
+        info.className = 'stat-text stat-text--highlight';
+        info.textContent = 'Du betalar i snitt ' + data.snitt.toFixed(1) + ' kr per vokal i pizzerians namn';
+        card.appendChild(info);
+        return card;
+      }
+
+      function skapaPrisPerKonsonantNamnKort(data) {
+        var card = skapaKort('🤯 Pris vs antal konsonanter', '👉 motsats', 'stat-card--orange', 'Konsonanter: alla bokstäver utom vokalerna (a, e, i, o, u, y, å, ä, ö). Beräkning: för varje pizzeria räknas snittpriset ÷ antal konsonanter i namnet. Sedan tas medelvärdet av alla pizzeriors kvoter.');
+        var info = document.createElement('p');
+        info.className = 'stat-text stat-text--highlight';
+        info.textContent = 'Du betalar i snitt ' + data.snitt.toFixed(1) + ' kr per konsonant i pizzerians namn';
+        card.appendChild(info);
+        return card;
+      }
+
+      function skapaPrisPerAdressLangdKort(data) {
+        var card = skapaKort('🤯 Pris vs längd på adressen', '👉 Slump', 'stat-card--red', 'Beräkning: för varje pizzeria räknas snittpriset ÷ antal tecken i hela adressen (inkl. siffror och mellanslag). Sedan tas medelvärdet av alla pizzeriors kvoter.');
+        var info = document.createElement('p');
+        info.className = 'stat-text stat-text--highlight';
+        info.textContent = 'Du betalar i snitt ' + data.snitt.toFixed(1) + ' kr per tecken i adressen';
+        card.appendChild(info);
+        return card;
+      }
+
+      function skapaPrisVsPostnummerKort(data) {
+        var card = skapaKort('😂 Pris vs postnummer', '👉 vissa postnummer = dyrare', 'stat-card--purple', 'Beräkning: pizzerior grupperas efter postnummer och ett snittpris räknas ut per grupp. Postnummer med bara en pizzeria kan ge extrema värden – se antalet i listan som referens.');
+        var info = document.createElement('p');
+        info.className = 'stat-text stat-text--highlight';
+        info.textContent = 'Dyrast snitt just nu: postnummer ' + data.dyrast.postnr + ' (' + data.dyrast.snittPris + ' kr).';
+        card.appendChild(info);
+        var fakta = document.createElement('p');
+        fakta.className = 'stat-fact-small';
+        fakta.textContent = 'Billigast: ' + data.billigast.postnr + ' (' + data.billigast.snittPris + ' kr). Underlag: ' + data.antalPostnummer + ' postnummer.';
+        card.appendChild(fakta);
+        return card;
+      }
+
+      function skapaPrisVsOmradeNamnLangdKort(data) {
+        var card = skapaKort('🧠 Pris vs område (kort vs långt namn)', '👉 Slump', 'stat-card--blue', 'Vi delar upp områden i korta och långa namn utifrån medianlängd i urvalet, och jämför snittpris mellan grupperna.');
+        var info = document.createElement('p');
+        info.className = 'stat-text stat-text--highlight';
+        info.textContent = 'Korta områdesnamn: ' + data.kortSnitt.toFixed(1) + ' kr. Långa områdesnamn: ' + data.langSnitt.toFixed(1) + ' kr.';
+        card.appendChild(info);
+        var fakta = document.createElement('p');
+        fakta.className = 'stat-fact-small';
+        fakta.textContent = 'Gräns: ' + data.granskortLangd + ' tecken. Skillnad (långa - korta): ' + (data.diff > 0 ? '+' : '') + data.diff.toFixed(1) + ' kr. Underlag: ' + data.antalKorta + ' korta, ' + data.antalLanga + ' långa.';
+        card.appendChild(fakta);
+        return card;
+      }
+
+      function skapaIngrediensBingoKort(data) {
+        var card = skapaKort('🧠 Ingrediens-bingo', '👉 Slump', 'stat-card--purple', 'Hur många unika ingrediens-kombinationer finns i databasen? Ett slumpspel för att testa tur.');
+        var info = document.createElement('p');
+        info.className = 'stat-text stat-text--highlight';
+        info.textContent = 'Det finns ' + data.faktiska.toLocaleString('sv-SE') + ' möjliga ingrediens-kombinationer';
+        card.appendChild(info);
+        var fakta = document.createElement('p');
+        fakta.className = 'stat-fact-small';
+        fakta.textContent = 'Baserat på ' + data.uniktaIngredienser + ' unika ingredienser och ' + data.faktiska + ' faktiska kombinationer i databasen.';
+        card.appendChild(fakta);
+        return card;
+      }
+
+      function skapaPrisPerIngrediensKort(data) {
+        var card = skapaKort('🍕 Pris per ingrediens', '💸 Rå value per pizza', 'stat-card--gold', 'Beräknas som pris ÷ antal ingredienser för varje pizza. Bara pizzor med fler än 3 ingredienser räknas med – annars snedvrids resultatet av t.ex. lasagne och sallader med få ingredienser.');
+        var info = document.createElement('p');
+        info.className = 'stat-fact-small';
+        if (data.globalMax && data.globalMin) {
+          info.textContent = 'Dyrast per ingrediens: ' + data.globalMax.prisPerIng.toFixed(1) + ' kr/ingrediens. Billigast: ' + data.globalMin.prisPerIng.toFixed(1) + ' kr/ingrediens.';
+        } else {
+          info.textContent = 'Ingen data tillgänglig för pris per ingrediens.';
+        }
+        card.appendChild(info);
+
+        var ul = document.createElement('ul');
+        ul.className = 'stat-rank-list';
+        ul.setAttribute('role', 'list');
+        data.dyrast.forEach(function (item, i) {
+          var li = document.createElement('li');
+          li.className = 'stat-rank-item';
+          var posKlass = i < 3 ? ' stat-rank-pos--' + (i + 1) : '';
+          var plats = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : (i + 1);
+          var sub = [item.omrade, item.stad].filter(Boolean).join(', ');
+          var pizzeriaHref = pizzeriaLank(item.pizzeria);
+          li.innerHTML =
+            '<span class="stat-rank-pos' + posKlass + '">' + plats + '</span>' +
+            '<span class="stat-rank-namn">' +
+              escHtml(item.pizzaNamn) +
+              '<span class="stat-rank-namn-sub"><a class="stat-rank-link" href="' + escHtml(pizzeriaHref) + '" aria-label="Visa meny för ' + escHtml(item.pizzeria) + '">' + escHtml(item.pizzeria) + (sub ? ', ' + escHtml(sub) : '') + '</a></span>' +
+              '<span class="stat-rank-namn-sub">' + item.pris + ' kr, ' + item.antalIng + ' ingredienser</span>' +
+            '</span>' +
+            '<span class="stat-rank-pris">' + item.prisPerIng.toFixed(1) + ' kr/ing</span>';
+          ul.appendChild(li);
+        });
+        card.appendChild(ul);
+        return card;
+      }
+
+      function skapaOvanligaKombKort(lista) {
+        var card = skapaKort('\uD83E\uDDEA Ovanliga kombinationer', '\uD83E\uDD2F Weird combos som faktiskt finns', 'stat-card--orange', 'Ingredienspar med minst en ovanlig ingrediens (banan, curry, r\u00e4kor\u2026) som f\u00f6rekommer mer s\u00e4llan \u00e4n slumpen f\u00f6rv\u00e4ntar. Sorterat efter ovanlighetsfaktor. Klicka f\u00f6r att se pizzerian.');
+        var ul = document.createElement('ul');
+        ul.className = 'stat-kombo-list';
+        ul.setAttribute('role', 'list');
+        lista.forEach(function (item) {
+          var li = document.createElement('li');
+          li.className = 'stat-kombo-item' + (item.pizzeria ? ' stat-kombo-item--link' : '');
+          var inner =
+            '<span class="stat-kombo-par">' +
+              '<span class="stat-kombo-ing">' + escHtml(item.a) + '</span>' +
+              '<span class="stat-kombo-plus">+</span>' +
+              '<span class="stat-kombo-ing">' + escHtml(item.b) + '</span>' +
+            '</span>' +
+            '<span class="stat-kombo-count">' + item.count + ' pizzor</span>';
+          if (item.pizzeria) {
+            var a = document.createElement('a');
+            a.href = pizzeriaLank(item.pizzeria);
+            a.className = 'stat-kombo-link';
+            a.setAttribute('aria-label', 'Visa ' + item.pizzeria);
+            a.innerHTML = inner;
+            li.appendChild(a);
+          } else {
+            li.innerHTML = inner;
+          }
+          ul.appendChild(li);
+        });
+        card.appendChild(ul);
+        return card;
+      }
+
+      function skapaPizzaDNAKort(dnaLista) {
+        var card = skapaKort('\uD83E\uDDE0 Pizza-DNA', '\uD83C\uDFB5 Signatur per pizzeria', 'stat-card--purple', 'Top 5 vanligaste ingredienser (exkl. tomats\u00e5s/ost/mozzarella) per pizzeria, sorterat efter menystorlek. Visar pizzerions signatursmak. Klicka f\u00f6r att se menyn.');
+        var grid = document.createElement('div');
+        grid.className = 'stat-dna-grid';
+        dnaLista.forEach(function (p) {
+          var item = document.createElement('a');
+          item.className = 'stat-dna-item';
+          item.href = pizzeriaLank(p.pizzeria);
+          item.setAttribute('aria-label', 'Visa meny f\u00f6r ' + p.pizzeria);
+          var sub = [p.omrade, p.stad].filter(Boolean).join(', ');
+          var tagsHtml = p.top5.map(function (t) {
+            var pct = Math.round((t.antal / p.antalPizzor) * 100);
+            return '<span class="stat-dna-tag">' + escHtml(t.namn) + '<span class="stat-dna-pct">' + pct + '%</span></span>';
+          }).join('');
+          item.innerHTML =
+            '<div class="stat-dna-namn">' + escHtml(p.pizzeria) +
+              (sub ? '<span class="stat-dna-sub">' + escHtml(sub) + '</span>' : '') +
+            '</div>' +
+            '<div class="stat-dna-profil">' + escHtml(p.profil) + '</div>' +
+            '<div class="stat-dna-tags">' + tagsHtml + '</div>';
+          grid.appendChild(item);
+        });
+        card.appendChild(grid);
+        return card;
+      }
+
+      function formateraInfoText(infoText) {
+        var text = String(infoText || '').trim();
+        if (!text) return text;
+        if (!/[.!?]$/.test(text)) text += '.';
+        return text + ' Tolkning: använd siffran som en riktlinje för att jämföra pizzerior och urval, inte som en exakt sanning i varje enskilt fall.';
+      }
+
+      function skapaKort(rubrik, label, modifier, infoText) {
+        var card = document.createElement('article');
+        card.className = 'stat-card ' + modifier;
+        var infoTextForPopup = formateraInfoText(infoText);
+
+        var labelEl = document.createElement('p');
+        labelEl.className = 'stat-card-label';
+        labelEl.textContent = label;
+
+        var h2 = document.createElement('h2');
+        h2.textContent = rubrik;
+
+        card.appendChild(labelEl);
+        card.appendChild(h2);
+
+        if (infoTextForPopup) {
+          var infoBtn = document.createElement('button');
+          infoBtn.type = 'button';
+          infoBtn.className = 'stat-info-btn';
+          infoBtn.setAttribute('aria-label', 'Information om denna statistik');
+          infoBtn.textContent = '?';
+          infoBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var popup = document.getElementById('stat-info-popup');
+            if (!popup) return;
+            if (!popup.classList.contains('hidden') && popup._sourceBtn === infoBtn) {
+              popup.classList.add('hidden');
+              return;
+            }
+            popup._sourceBtn = infoBtn;
+            popup.textContent = infoTextForPopup;
+            popup.classList.remove('hidden');
+            var rect = infoBtn.getBoundingClientRect();
+            var popW = Math.min(300, window.innerWidth - 16);
+            var left = rect.right - popW;
+            if (left < 8) left = 8;
+            var top = rect.bottom + 8;
+            if (top + 180 > window.innerHeight) top = rect.top - 188;
+            popup.style.left = left + 'px';
+            popup.style.top = top + 'px';
+            popup.style.maxWidth = popW + 'px';
+          });
+          card.appendChild(infoBtn);
+        }
+
+        return card;
+      }
+
+      /* Info popup singleton */
+      (function () {
+        var popup = document.createElement('div');
+        popup.className = 'stat-info-popup hidden';
+        popup.id = 'stat-info-popup';
+        document.body.appendChild(popup);
+        document.addEventListener('click', function (e) {
+          if (!popup.classList.contains('hidden') && !popup.contains(e.target)) {
+            popup.classList.add('hidden');
+          }
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') popup.classList.add('hidden');
+        });
+      }());
+
+      function escHtml(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function pizzeriaLank(namn) {
+        if (!namn) return 'pizzerior';
+        var slug = (namn)
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/\b(pizzeria|restaurang|resturang)\b/g, ' ')
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '')
+          .replace(/-{2,}/g, '-');
+        return 'pizzerior/pizzeria.html?slug=' + encodeURIComponent(slug) + '&pizzeria=' + encodeURIComponent(namn);
+      }
+
+    })();
+    </script>
+
+
+<nav class="bottom-nav" aria-label="Sidobottennav">
+  <div class="bottom-nav-social">
+    <a href="https://www.facebook.com/profile.php?id=61588728802691" class="social-btn social-btn--fb" target="_blank" rel="noopener noreferrer">
+      <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9v-2.89h2.54V9.81c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.12 22 16.99 22 12z"/></svg>
+      Facebook
+    </a>
+    <a href="https://www.instagram.com/billigapizzor/" class="social-btn social-btn--ig" target="_blank" rel="noopener noreferrer">
+      <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      Instagram
+    </a>
+  </div>
+  <div class="bottom-nav-links">
+    <a href="/" class="bottom-nav-link">Pizzor</a>
+    <a href="/pizzerior" class="bottom-nav-link">Pizzerior</a>
+    <a href="/karta" class="bottom-nav-link">Karta</a>
+    <a href="/statistik" class="bottom-nav-link">Statistik</a>
+    <a href="/om-oss" class="bottom-nav-link">Om oss</a>
+  </div>
+</nav>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <div>
+      <p class="footer-heading">Info</p>
+      <ul class="footer-links">
+        <li><a href="/integritetspolicy">Integritetspolicy</a></li>
+        <li><a href="mailto:kontakt@billigapizzor.se">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

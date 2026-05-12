@@ -1,0 +1,604 @@
+﻿<!doctype html>
+<html lang="sv">
+  <head>
+
+    <script>
+      if (location.protocol !== 'file:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+        var cb = document.createElement('script');
+        cb.id = 'Cookiebot';
+        cb.src = 'https://consent.cookiebot.com/uc.js';
+        cb.setAttribute('data-cbid', '6737e892-68b1-4cc1-bfa3-ac36651cd635');
+        cb.setAttribute('data-blockingmode', 'auto');
+        cb.type = 'text/javascript';
+        document.head.appendChild(cb);
+
+        (function forceCookiebotDialogWhenMissingConsent() {
+          var hasConsent = document.cookie.indexOf('CookieConsent=') !== -1 ||
+            document.cookie.indexOf('CookieConsentBulkTicket=') !== -1;
+          if (hasConsent) return;
+
+          var attempts = 0;
+          var maxAttempts = 20;
+          var intervalId = setInterval(function () {
+            attempts += 1;
+
+            if (window.Cookiebot && typeof window.Cookiebot.renew === 'function') {
+              clearInterval(intervalId);
+              window.Cookiebot.renew();
+              return;
+            }
+
+            if (attempts >= maxAttempts) {
+              clearInterval(intervalId);
+            }
+          }, 500);
+        })();
+      }
+    </script>
+
+
+<!-- Google Tag Manager (blockerad tills consent, bortkommenterad för lokal utveckling) -->
+<!--
+<script type="text/plain" data-cookieconsent="statistics">
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KQW5KLZ8');
+</script>
+-->
+
+
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>Billig pizza Göteborg – Hitta billigast nära dig</title>
+  <meta name="description" content="Hitta billig pizza i Göteborg & Mölndal. Jämför priser, menyer och pizzerior nära dig – se billigaste alternativen direkt och spara pengar idag!" />
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://billigapizzor.se/" />
+
+  <!-- Open Graph (Facebook, Instagram, Discord) -->
+  <meta property="og:title" content="Billig pizza i Göteborg – se billigaste nära dig 🍕" />
+  <meta property="og:description" content="Vilken pizzeria är billigast nära dig? Jämför pizzapriser i Göteborg & Mölndal och hitta bästa dealen på sekunder." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://billigapizzor.se/" />
+  <meta property="og:image" content="https://billigapizzor.se/images/og-billigapizzor-1200x630.jpg" />
+  <meta property="og:site_name" content="Billiga Pizzor" />
+  <meta property="og:locale" content="sv_SE" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hitta billigaste pizzan i Göteborg 🍕" />
+  <meta name="twitter:description" content="Jämför pizzapriser, menyer och pizzerior nära dig. Snabbaste sättet att hitta billig pizza i Göteborg." />
+  <meta name="twitter:image" content="https://billigapizzor.se/images/og-billigapizzor-1200x630.jpg" />
+
+  <!-- Mobile / PWA -->
+  <meta name="theme-color" content="#1f7a4c" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Billiga Pizzor" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="application-name" content="Billiga Pizzor" />
+  <meta name="author" content="Billiga Pizzor" />
+
+  <!-- Icons -->
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/images/Pizza%20_Gubbe.png" />
+  <link rel="apple-touch-icon" href="/images/Pizza%20_Gubbe.png" />
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="sv-SE" href="https://billigapizzor.se/" />
+  <link rel="alternate" hreflang="x-default" href="https://billigapizzor.se/" />
+
+  <!-- Performance -->
+  <link rel="preconnect" href="https://billigapizzor.se" />
+  <link rel="preload" href="/css/index.css" as="style" />
+  <link rel="preload" href="/css/style.css" as="style" />
+  <link rel="preload" href="/js/shared.js" as="script" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://billigapizzor.se/#website",
+        "name": "Billiga Pizzor",
+        "url": "https://billigapizzor.se/",
+        "inLanguage": "sv-SE",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://billigapizzor.se/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://billigapizzor.se/#webpage",
+        "url": "https://billigapizzor.se/",
+        "name": "Billig pizza Göteborg – Hitta billigast nära dig",
+        "isPartOf": {
+          "@id": "https://billigapizzor.se/#website"
+        },
+        "description": "Jämför pizzapriser i Göteborg och Mölndal. Hitta billigaste pizzan nära dig och filtrera snabbt efter område, meny och pris.",
+        "inLanguage": "sv-SE",
+        "about": [
+          { "@type": "Thing", "name": "billig pizza Göteborg" },
+          { "@type": "Thing", "name": "billig pizza Mölndal" },
+          { "@type": "Thing", "name": "pizzeria nära mig" },
+          { "@type": "Thing", "name": "jämför pizzapriser" }
+        ],
+        "areaServed": [
+          { "@type": "City", "name": "Göteborg" },
+          { "@type": "City", "name": "Mölndal" },
+          { "@type": "City", "name": "Kungsbacka" }
+        ],
+        "mainEntity": {
+          "@type": "ItemList",
+          "name": "Pizzerior och pizzor att jämföra",
+          "numberOfItems": 1500,
+          "itemListOrder": "https://schema.org/ItemListOrderAscending",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Hitta billig pizza nära dig"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Jämför pizzapriser per område"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Filtrera pizzerior efter pris och meny"
+            }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" crossorigin="" />
+  <link rel="stylesheet" href="/css/index.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <style>
+    .mobil-las-mer-btn {
+      display: none;
+    }
+
+    #live-mini-map .karta-kluster {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(145deg, rgba(212, 60, 72, 0.9), rgba(177, 36, 49, 0.9));
+      border: 1px solid rgba(255, 235, 240, 0.52);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.28), 0 0 12px rgba(218, 78, 95, 0.2);
+      transition: transform 0.15s;
+    }
+
+    #live-mini-map .karta-kluster:hover {
+      transform: scale(1.12);
+    }
+
+    #live-mini-map .karta-kluster span {
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    @media (max-width: 768px) {
+      .mobil-las-mer-btn {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQW5KLZ8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/" class="nav-logo">
+          <img src="/images/Pizza _Gubbe.png" alt="Pizza Gubbe - Billiga Pizzor">
+        </a>
+
+        <div class="hamburger-ikon" onclick="toggleMobilMeny()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="nav-social">
+          <span class="nav-social-label">Följ oss</span>
+          <a href="https://www.facebook.com/profile.php?id=61588728802691" class="social-btn social-btn--fb" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg class="social-icon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9v-2.89h2.54V9.81c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.12 22 16.99 22 12z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/billigapizzor/" class="social-btn social-btn--ig" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="social-icon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="/" onclick="closeMobilMeny()">PIZZOR</a></li>
+          <li><a href="/pizzerior" onclick="closeMobilMeny()">PIZZERIOR</a></li>
+          <li><a href="/karta" onclick="closeMobilMeny()">KARTA</a></li>
+          <li><a href="/statistik" onclick="closeMobilMeny()">STATISTIK</a></li>
+          <li><a href="/om-oss" onclick="closeMobilMeny()">OM OSS</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <button id="topp-knapp" title="Gå till toppen">▲</button>
+
+    <section class="live-top" id="live-top-sektion" aria-label="Live statistik och karta">
+      <div class="live-top-grid">
+        <div class="live-kpi-panel" aria-live="polite">
+          <div class="live-top-head">
+            <p class="live-top-kicker">📍 Statistik för aktuell kartvy</p>
+            <p class="live-top-sub" id="live-vy-label">0 pizzerior i vyn</p>
+          </div>
+
+          <div class="live-kpi-grid">
+            <article class="live-kpi-card live-kpi-card--open">
+              <span class="live-kpi-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </span>
+              <strong class="live-kpi-value" id="live-kpi-open">0</strong>
+              <span class="live-kpi-label">öppna nu</span>
+            </article>
+
+            <article class="live-kpi-card live-kpi-card--pizzor">
+              <span class="live-kpi-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 2v10l6.5 3.7"/><line x1="2" y1="12" x2="12" y2="12"/></svg>
+              </span>
+              <strong class="live-kpi-value" id="live-kpi-pizzor">0</strong>
+              <span class="live-kpi-label">pizzor i utbud</span>
+            </article>
+
+            <article class="live-kpi-card live-kpi-card--cheap">
+              <span class="live-kpi-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+              </span>
+              <strong class="live-kpi-value" id="live-kpi-cheapest">-</strong>
+              <span class="live-kpi-label">billigaste pizza</span>
+            </article>
+
+            <article class="live-kpi-card live-kpi-card--avg">
+              <span class="live-kpi-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              </span>
+              <strong class="live-kpi-value" id="live-kpi-average">-</strong>
+              <span class="live-kpi-label">snittpris</span>
+            </article>
+          </div>
+
+          <p class="disclaimer">Priser kan ändras. Kontrollera alltid med pizzerian.</p>
+        </div>
+
+        <aside class="live-map-card" aria-label="Karta över pizzerior">
+          <div id="live-mini-map" class="live-mini-map" role="img" aria-label="Interaktiv karta med pizzerior"></div>
+          <div id="live-kontroller" class="live-kontroller" aria-label="Kartkontroller">
+            <button id="live-map-expand" class="live-kontroll-btn live-kontroll-btn--expand" type="button" aria-label="Visa större karta" title="Visa större karta">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+            </button>
+            <button id="live-sok-toggle" class="live-kontroll-btn live-kontroll-btn--icon" type="button" aria-label="Öppna sök">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="16.5" y1="16.5" x2="22" y2="22"></line>
+              </svg>
+            </button>
+            <button id="live-narmast-btn" class="live-kontroll-btn live-kontroll-btn--icon live-kontroll-btn--pin" type="button" aria-label="Hämta min position">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </button>
+            <div id="live-info-badge" class="live-info-badge">
+              <span class="live-info-dot"></span>
+              <span id="live-info-text">0 av 0</span>
+            </div>
+            <button id="live-map-sat-btn" class="live-kontroll-btn live-kontroll-btn--sat" type="button" aria-label="Växla satellitläge" aria-pressed="false" title="Växla satellitläge">SAT</button>
+          </div>
+        </aside>
+      </div>
+
+    </section>
+
+    <div id="live-karta-modal" class="live-karta-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Stor karta">
+      <div class="live-karta-modal-inner">
+        <button id="live-karta-modal-close" class="live-karta-modal-close" type="button" aria-label="Stäng större karta">×</button>
+        <iframe id="live-karta-iframe-stor" title="Stor karta" loading="lazy" referrerpolicy="no-referrer"></iframe>
+      </div>
+    </div>
+
+    <div id="huvud-sok-sektion">
+      <!-- Sökrutan syns ALLTID på mobil -->
+      <div class="sok-wrapper">
+        <input
+          type="text"
+          id="sokruta"
+          placeholder="Sök bland pizzor…"
+          aria-label="Sökfält för pizzor"
+        />
+      </div>
+      <div id="antal-traffar-container"></div>
+    </div>
+
+    <!-- "Läs mer" knapp för mobil - expanderar filter + kategor -->
+    <button
+      id="mobil-las-mer-btn"
+      class="mobil-las-mer-btn"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobil-filter-sektion"
+    >
+      <span class="mobil-las-mer-pil">▼</span>
+      <span class="mobil-las-mer-text">Läs mer och visa alla alternativ</span>
+    </button>
+
+    <!-- Allt detta döljs på mobil tills knappen klickas -->
+    <div id="mobil-filter-sektion">
+      <!-- Kategori-strip -->
+      <div class="kategori-strip" id="kategori-strip" aria-label="Filtrera efter kategori">
+        <button class="ks-pil ks-pil--vanster" id="ks-pil-vanster" type="button" aria-label="Scrolla kategorier åt vänster" aria-hidden="true" tabindex="-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <div class="kategori-strip-inner">
+          <button class="kategori-chip kategori-chip--active" data-kategori="Pizzor (alla)" onclick="valjKategori(this)">
+            <span class="kategori-chip-ikon">🍕</span>
+            <span class="kategori-chip-label">Pizzor (alla)</span>
+          </button>
+          <button class="kategori-chip" data-kategori="Amerikanska pannpizzor" onclick="valjKategori(this)">
+            <span class="kategori-chip-ikon"><img src="images/icons8-usa-flag-50.png" alt="Amerikansk" style="width:1.3em;height:1.3em;border-radius:50%;object-fit:cover;vertical-align:middle;"></span>
+            <span class="kategori-chip-label">Amerikanska</span>
+          </button>
+          <button class="kategori-chip" data-kategori="Burgare" onclick="valjKategori(this)">
+            <span class="kategori-chip-ikon">🍔</span>
+            <span class="kategori-chip-label">Burgare</span>
+          </button>
+          <button class="kategori-chip" data-kategori="Fläskfilé" onclick="valjKategori(this)">
+            <span class="kategori-chip-ikon">🍖</span>
+            <span class="kategori-chip-label">Fläskfilé</span>
+          </button>
+          <button class="kategori-chip" data-kategori="Inbakade" onclick="valjKategori(this)">
+            <span class="kategori-chip-ikon">🫓</span>
+            <span class="kategori-chip-label">Inbakade</span>
+          </button>
+          <button class="kategori-chip" data-kategori="Kebab" onclick="valjKategori(this)">
+            <span class="kategori-chip-ikon">🥙</span>
+            <span class="kategori-chip-label">Kebab</span>
+          </button>
+          <button class="kategori-chip" data-kategori="Rullar" onclick="valjKategori(this)">
+            <span class="kategori-chip-ikon">🌯</span>
+            <span class="kategori-chip-label">Rullar</span>
+          </button>
+          <button class="kategori-chip" data-kategori="Köttfärs" onclick="valjKategori(this)">
+            <span class="kategori-chip-ikon">🍕</span>
+            <span class="kategori-chip-label">Köttfärs</span>
+          </button>
+          <button class="kategori-chip" data-kategori="Kyckling" onclick="valjKategori(this)">
+            <span class="kategori-chip-ikon">🍗</span>
+            <span class="kategori-chip-label">Kyckling</span>
+          </button>
+          <button class="kategori-chip" data-kategori="Oxfilé" onclick="valjKategori(this)">
+            <span class="kategori-chip-ikon">🥩</span>
+            <span class="kategori-chip-label">Oxfilé</span>
+          </button>
+          <button class="kategori-chip" data-kategori="Salami" onclick="valjKategori(this)">
+            <span class="kategori-chip-ikon">🍕</span>
+            <span class="kategori-chip-label">Salami</span>
+          </button>
+          <button class="kategori-chip" data-kategori="Skaldjur" onclick="valjKategori(this)">
+            <span class="kategori-chip-ikon">🦐</span>
+            <span class="kategori-chip-label">Skaldjur</span>
+          </button>
+          <button class="kategori-chip" data-kategori="Vegetariska" onclick="valjKategori(this)">
+            <span class="kategori-chip-ikon">🥬</span>
+            <span class="kategori-chip-label">Vegetarisk</span>
+          </button>
+        </div>
+        <button class="ks-pil ks-pil--hoger" id="ks-pil-hoger" type="button" aria-label="Scrolla kategorier åt höger" aria-hidden="true" tabindex="-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobil-kontroller" class="mobil-kontroller-compact">
+      <button
+        id="mobil-filter-toggle"
+        class="pizzeria-btn"
+        onclick="togglaMobilFilter()"
+      >
+        🔍 Visa filter<span class="filter-toggle-count" id="filter-toggle-count"></span>
+      </button>
+
+      <div class="filter-bottom-row">
+        <button id="rensa-filter-btn" class="pizzeria-btn">
+          ✨ Rensa alla filter
+        </button>
+
+        <button id="narmast-btn" class="pizzeria-btn" type="button">
+          📍 Närmast mig
+        </button>
+
+        <div id="sorterings-sektion">
+          <label for="pris-sortering">Sortera efter:</label>
+          <select id="pris-sortering">
+            <option value="standard">Välj sortering...</option>
+            <option value="billigast">Pris: Lägsta först 🟢</option>
+            <option value="dyrast">Pris: Högsta först 🔴</option>
+            <option value="pizzeria-az">Pizzeria A–Ö 🏪</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="mobil-status-rad">
+        <button
+          id="rensa-filter-btn-mobile"
+          class="pizzeria-btn"
+          onclick="document.getElementById('rensa-filter-btn').click()"
+        >
+          ✨ Rensa alla filter
+        </button>
+        <div id="antal-traffar-mobile" aria-live="polite"></div>
+      </div>
+    </div>
+
+
+
+    <p id="mobil-scroll-hint" class="mobil-scroll-hint dold" aria-hidden="true">Scrolla ner 👇</p>
+
+    <div id="narmast-status" aria-live="polite"></div>
+
+    <div id="aktiva-filter-chips"></div>
+
+    <hr />
+
+    <div id="pris-slider-wrap" aria-label="Filtrera efter prisintervall">
+      <div class="pris-slider-header">
+        <span class="pris-slider-label">💰 Pris</span>
+        <span id="pris-slider-visning">Alla priser</span>
+      </div>
+      <div class="pris-slider-track-wrap">
+        <div class="pris-slider-track-bg"></div>
+        <div class="pris-slider-fill-left" id="pris-slider-fill-left"></div>
+        <div class="pris-slider-fill" id="pris-slider-fill"></div>
+        <input type="range" id="pris-slider-min" class="pris-slider-input" min="0" max="100" value="0" step="1" aria-label="Lägsta pris">
+        <input type="range" id="pris-slider-max" class="pris-slider-input" min="0" max="100" value="100" step="1" aria-label="Högsta pris">
+      </div>
+      <div class="pris-slider-zoner" aria-hidden="true">
+        <span>Vanliga priser</span>
+        <span>Dyrare</span>
+      </div>
+    </div>
+
+    <section id="pizza-assistent" aria-labelledby="pizza-assistent-rubrik" hidden>
+      <div class="pizza-assistent-inner">
+        <h2 id="pizza-assistent-rubrik">🍕 Fråga om priser & pizzerior i Mölndal</h2>
+        <p class="pizza-assistent-intro">Snabba svar från vår menydata. Inte ChatGPT, utan en direkt pizza-kalkylator för sidan.</p>
+
+        <div class="pizza-assistent-rad">
+          <input id="pizza-assistent-input" type="text" placeholder="Hur många pizzor får jag för 1000 kr?" aria-label="Ställ en fråga om pizzor" />
+          <button id="pizza-assistent-knapp" class="pizzeria-btn" type="button">🔍 Fråga</button>
+        </div>
+
+        <div class="pizza-assistent-exempel">
+          <p class="pizza-assistent-exempel-inline"><strong>Exempel:</strong> 1000 kr · Vad kostar pizzor på Nisses? · Billigaste kebabpizza i Lindome? · Hur hittar jag till Bella Ciao?</p>
+        </div>
+
+        <div class="pizza-assistent-snabbfragor" aria-label="Populära frågor">
+          <button class="assistent-fraga-chip" type="button" data-fraga="Billigaste pizzan">Billigaste pizzan</button>
+          <button class="assistent-fraga-chip" type="button" data-fraga="Hur många pizzor får jag för 1000 kr?">1000 kr</button>
+          <button class="assistent-fraga-chip" type="button" data-fraga="Snittpris">Snittpris</button>
+          <button class="assistent-fraga-chip" type="button" data-fraga="Billig kebabpizza">Billig kebabpizza</button>
+          <button class="assistent-fraga-chip" type="button" data-fraga="Varför skapade ni sidan?">Varför sidan?</button>
+          <button class="assistent-fraga-chip" type="button" data-fraga="Hur hittar jag till Nisses Pizzeria?">Hitta till pizzeria</button>
+          <button class="assistent-fraga-chip" type="button" data-fraga="Hur kontaktar jag er?">Kontakt</button>
+        </div>
+
+        <div id="pizza-assistent-svar" aria-live="polite">💡 Prova en fråga för att få ett direkt svar från menydatan.</div>
+      </div>
+    </section>
+
+    <div id="resultat-lista"></div>
+
+    <div id="ladda-fler-sektion" style="display: none">
+      <button id="ladda-fler-btn" class="pizzeria-btn">
+        Ladda fler pizzor...
+      </button>
+    </div>
+
+    
+
+    <section id="policy-sektion" class="dold-sektion">
+      <div class="om-oss-container">
+        <h2>Cookies & Integritet 🛡️</h2>
+        <p>
+          Vi använder Google Analytics för att förstå hur sidan används. All
+          data samlas in anonymt och används endast för att förbättra tjänsten
+          för dig.
+        </p>
+        <p>
+          Genom att använda sidan godkänner du att cookies används. Du kan när
+          som helst ändra ditt val genom att rensa webbläsarens cookies.
+        </p>
+        <p>
+          Platsdata 📍 Om du använder funktionen "Närmast mig" används din
+          position endast för att visa pizzerior nära dig. Positionen sparas
+          inte och delas inte med tredje part.
+        </p>
+
+        <button onclick="togglaPolicySektion()" class="stang-btn">Stäng</button>
+      </div>
+    </section>
+
+    <section id="botten-info-sektion" class="botten-info-sektion">
+      <div class="hero-text-content">
+        <p>
+          Vi täcker <strong>hela Mölndal</strong> – från Lindome i söder till Krokslätt i norr, inklusive områden som Mölndals centrum, Åby, Bifrost, Eklanda och Kikås.
+          Istället för att hoppa mellan pizzeriorna har vi samlat allt på ett ställe så att du snabbt hittar en pizza som passar smak och budget.
+        </p>
+      </div>
+
+      <ul class="hero-features">
+        <li><span class="hf-icon hf-green">🍕</span><span>500+ pizzor från lokala menyer</span></li>
+        <li><span class="hf-icon hf-red">💰</span><span>Jämför priser – se billigast och dyrast</span></li>
+        <li><span class="hf-icon hf-green">🔍</span><span>Filtrera efter ingredienser</span></li>
+        <li><span class="hf-icon hf-red">📍</span><span>Hitta pizzerior närmast dig</span></li>
+      </ul>
+    </section>
+
+    
+<nav class="bottom-nav" aria-label="Sidobottennav">
+  <div class="bottom-nav-social">
+    <a href="https://www.facebook.com/profile.php?id=61588728802691" class="social-btn social-btn--fb" target="_blank" rel="noopener noreferrer">
+      <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9v-2.89h2.54V9.81c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.12 22 16.99 22 12z"/></svg>
+      Facebook
+    </a>
+    <a href="https://www.instagram.com/billigapizzor/" class="social-btn social-btn--ig" target="_blank" rel="noopener noreferrer">
+      <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      Instagram
+    </a>
+  </div>
+  <div class="bottom-nav-links">
+    <a href="/" class="bottom-nav-link">Pizzor</a>
+    <a href="/pizzerior" class="bottom-nav-link">Pizzerior</a>
+    <a href="/karta" class="bottom-nav-link">Karta</a>
+    <a href="/statistik" class="bottom-nav-link">Statistik</a>
+    <a href="/om-oss" class="bottom-nav-link">Om oss</a>
+  </div>
+</nav>
+
+<footer class="site-footer" role="contentinfo">
+      <div class="footer-inner">
+        <div>
+          <p class="footer-heading">Info</p>
+          <ul class="footer-links">
+            <li><a href="/integritetspolicy">Integritetspolicy</a></li>
+            <li><a href="mailto:kontakt@billigapizzor.se">Kontakt</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/shared.js?v=20260512a"></script>
+    <script src="js/filter-core.js?v=20260512a"></script>
+    <script src="js/filter-mobile.js?v=20260512a"></script>
+    <script src="js/index-sida.js?v=20260512a"></script>
+</body>
+</html>
+
+
